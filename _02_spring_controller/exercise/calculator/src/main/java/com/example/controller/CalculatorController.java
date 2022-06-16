@@ -14,7 +14,7 @@ public class CalculatorController {
     private CalculatorService calculatorService;
 
     @GetMapping
-    public String showList(){
+    public String showList() {
         return "list";
     }
 
@@ -22,11 +22,11 @@ public class CalculatorController {
     public String calculator(@RequestParam("firstNumber") double firstNumber,
                              @RequestParam("secondNumber") double secondNumber,
                              @RequestParam("check") char check,
-                             Model model){
+                             Model model) {
 
-        model.addAttribute("result", calculatorService.calculator(firstNumber, secondNumber,check));
-        model.addAttribute("firstNumber",firstNumber );
-        model.addAttribute("secondNumber",secondNumber );
+        model.addAttribute("result", calculatorService.calculator(firstNumber, secondNumber, check));
+        model.addAttribute("firstNumber", firstNumber);
+        model.addAttribute("secondNumber", secondNumber);
 
         return "list";
     }
