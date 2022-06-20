@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bf63e3ff-1216-4c74-910f-06040df265e9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/practice.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customer/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customer/src/main/java/cg/wbd/grandemonstration/controller/CustomerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customer/src/main/java/cg/wbd/grandemonstration/model/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customer/src/main/java/cg/wbd/grandemonstration/service/BaseRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customer/src/main/java/cg/wbd/grandemonstration/service/CustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customer/src/main/java/cg/wbd/grandemonstration/service/impl/SimpleCustomerServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customer/src/main/resources/hibernate.conf.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customer/src/main/webapp/WEB-INF/applicationContext.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customer/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customer/src/main/webapp/WEB-INF/views/info.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customer/src/main/webapp/WEB-INF/views/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customer/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../_01_overview_spring_mvc/practice/manage_customer_list/customer-management" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_01_overview_spring_mvc/practice/manage_customer_list/customer-management" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../_02_spring_controller/practice/customer-management" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_02_spring_controller/practice/customer-management" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../_03_views_and_thymeleaf/exercise/managemnet_product/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_03_views_and_thymeleaf/exercise/managemnet_product/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../_03_views_and_thymeleaf/exercise/managemnet_product/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_03_views_and_thymeleaf/exercise/managemnet_product/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../_03_views_and_thymeleaf/exercise/managemnet_product/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_03_views_and_thymeleaf/exercise/managemnet_product/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../_03_views_and_thymeleaf/exercise/managemnet_product/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_03_views_and_thymeleaf/exercise/managemnet_product/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../_03_views_and_thymeleaf/practice/management_customer/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_03_views_and_thymeleaf/practice/management_customer/.idea/gradle.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="2ApDcAvjxE1PG8fxwXYsXxh6ncZ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bf63e3ff-1216-4c74-910f-06040df265e9" name="Default Changelist" comment="" />
+      <created>1655697709756</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1655697709756</updated>
+      <workItem from="1655697713080" duration="238000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="549" y="187" key="FileChooserDialogImpl" timestamp="1655697939263">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1655697939263" />
+    <state x="209" y="43" key="new project wizard" timestamp="1655697944873">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="209" y="43" key="new project wizard/0.0.1536.864@0.0.1536.864" timestamp="1655697944873" />
+  </component>
+</project>

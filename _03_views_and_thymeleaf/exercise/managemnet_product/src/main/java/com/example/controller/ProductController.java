@@ -57,7 +57,7 @@ public class ProductController {
     }
 
     @PostMapping("/update")
-    public String update(Product product, RedirectAttributes redirect) {
+    public String update(Product product) {
         productService.update(product.getId(), product);
         return "redirect:/index";
     }
