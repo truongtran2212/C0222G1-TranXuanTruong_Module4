@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+<body>
+<h3>Create Song</h3>
+<p>
+    <a th:href="@{/list}">
+        <button>
+            Back to Blog list
+        </button>
+    </a>
+</p>
+<div id="form">
+    <form th:action="@{/create}" th:object="${blogDTO}" method="post">
+        <div>
+            <label>Tiêu đề</label>
+            <input type="text" th:field="*{title}">
+        </div>
+
+        <div>
+            <label>Nội dung</label>
+            <input type="text" th:field="*{content}">
+        </div>
+
+        <div>
+            <label>Ngày viết</label>
+            <input type="date" th:field="*{createDay}">
+        </div>
+
+        <button type="submit">Create</button>
+    </form>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
