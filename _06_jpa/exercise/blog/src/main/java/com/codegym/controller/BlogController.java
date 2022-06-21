@@ -1,7 +1,7 @@
 package com.codegym.controller;
 
 import com.codegym.model.Blog;
-import com.codegym.model.BlogDTO;
+import com.codegym.model.BlogDto;
 import com.codegym.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,12 +23,12 @@ public class BlogController {
 
     @GetMapping("/create")
     private String showFormCreate(Model model) {
-        model.addAttribute("blogDTO", new BlogDTO());
+        model.addAttribute("blogDto", new BlogDto());
         return "create";
     }
 
     @PostMapping("/create")
-    private String create(BlogDTO blogDTO) {
+    private String create(BlogDto blogDTO) {
         blogService.create(blogDTO.getContent());
         blogService.create(blogDTO.getTitle(), blogDTO.getCreateDay());
         return "redirect:/list";
@@ -53,7 +53,7 @@ public class BlogController {
     }
 
     @PostMapping("/update")
-    private String update(BlogDTO blogDTO, Blog blog) {
+    private String update(BlogDto blogDTO, Blog blog) {
         blogService.update(blogDTO.getTitle(), blogDTO.getContent(), blogDTO.getCreateDay(), blog.getId());
         return "redirect:/list";
     }

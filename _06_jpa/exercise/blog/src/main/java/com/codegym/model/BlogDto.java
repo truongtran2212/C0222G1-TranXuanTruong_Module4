@@ -1,14 +1,14 @@
 package com.codegym.model;
 
-public class BlogDTO {
+public class BlogDto {
     private String title;
     private String content;
     private String createDay;
 
-    public BlogDTO() {
+    public BlogDto() {
     }
 
-    public BlogDTO(String title, String content, String createDay) {
+    public BlogDto(String title, String content, String createDay) {
         this.title = title;
         this.content = content;
         this.createDay = createDay;
