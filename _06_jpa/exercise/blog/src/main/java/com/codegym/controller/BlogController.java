@@ -29,7 +29,8 @@ public class BlogController {
 
     @PostMapping("/create")
     private String create(BlogDTO blogDTO) {
-        blogService.create(blogDTO.getTitle(),blogDTO.getCreateDay());
+        blogService.create(blogDTO.getContent());
+        blogService.create(blogDTO.getTitle(), blogDTO.getCreateDay());
         return "redirect:/list";
     }
 
@@ -53,7 +54,7 @@ public class BlogController {
 
     @PostMapping("/update")
     private String update(BlogDTO blogDTO, Blog blog) {
-        blogService.update(blogDTO.getTitle() ,blogDTO.getContent(),blogDTO.getCreateDay(), blog.getId());
+        blogService.update(blogDTO.getTitle(), blogDTO.getContent(), blogDTO.getCreateDay(), blog.getId());
         return "redirect:/list";
     }
 }

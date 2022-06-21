@@ -7,8 +7,10 @@ import javax.persistence.*;
 public class BlogDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(name = "content", columnDefinition = "text")
+    @Column(name = "id")
+    private Integer id;
+
+    @Column(columnDefinition = "text")
     private String content;
 
     @OneToOne(mappedBy = "blogDetail")

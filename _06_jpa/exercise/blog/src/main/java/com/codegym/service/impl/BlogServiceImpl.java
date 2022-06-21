@@ -15,6 +15,8 @@ public class BlogServiceImpl implements BlogService {
 
     @Autowired
     private BlogRepository blogRepository;
+
+    @Autowired
     private BlogDetailRepository blogDetailRepository;
 
 
@@ -30,8 +32,8 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public void create(String title,String createDay) {
-        blogRepository.create(title,createDay);
+    public void create(String title, String createDay) {
+        blogRepository.create(title, createDay);
     }
 
     @Override
@@ -45,8 +47,8 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public void update(String title,String content,String createDay, int id) {
-        blogRepository.update(title,content,createDay, id);
+    public void update(String title, String content, String createDay, int id) {
+        blogRepository.update(title, content, createDay, id);
     }
 
     @Override

@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String title;
 
     @Column(name = "create_day")
@@ -18,7 +18,7 @@ public class Blog {
     private int status;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "content_id", referencedColumnName = "id")
+    @JoinColumn(name = "blog_detail_id", referencedColumnName = "id")
     private BlogDetail blogDetail;
 
     public Blog() {
@@ -35,6 +35,22 @@ public class Blog {
         this.title = title;
         this.createDay = createDay;
         this.status = status;
+    }
+
+    public Blog(int id, String title, String createDay, int status, BlogDetail blogDetail) {
+        this.id = id;
+        this.title = title;
+        this.createDay = createDay;
+        this.status = status;
+        this.blogDetail = blogDetail;
+    }
+
+    public BlogDetail getBlogDetail() {
+        return blogDetail;
+    }
+
+    public void setBlogDetail(BlogDetail blogDetail) {
+        this.blogDetail = blogDetail;
     }
 
     public int getId() {
