@@ -21,6 +21,31 @@ public class Blog {
     @JoinColumn(name = "blog_detail_id", referencedColumnName = "id")
     private BlogDetail blogDetail;
 
+    @ManyToOne
+    @JoinColumn(name = "id_category")
+    private Category category;
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Blog(Integer id, String title, String createDay, int status, BlogDetail blogDetail, Category category) {
+        this.id = id;
+        this.title = title;
+        this.createDay = createDay;
+        this.status = status;
+        this.blogDetail = blogDetail;
+        this.category = category;
+    }
+
     public Blog() {
     }
 

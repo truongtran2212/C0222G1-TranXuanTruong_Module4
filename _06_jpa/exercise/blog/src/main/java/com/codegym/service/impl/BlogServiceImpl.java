@@ -27,13 +27,13 @@ public class BlogServiceImpl implements BlogService {
 
 
     @Override
-    public void create(String content) {
+    public void createDetail(String content) {
         blogDetailRepository.create(content);
     }
 
     @Override
-    public void create(String title, String createDay) {
-        blogRepository.create(title, createDay);
+    public void create(String title, String createDay, int blogDetailId) {
+        blogRepository.create(title, createDay,blogDetailId);
     }
 
     @Override

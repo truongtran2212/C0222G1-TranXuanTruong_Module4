@@ -17,9 +17,10 @@ public interface BlogRepository extends JpaRepository<Blog, Integer> {
     List<Blog> findAllBlog();
 
     @Modifying
-    @Query(value = "insert into blog (title,create_day) values (:title,:createDay)", nativeQuery = true)
+    @Query(value = "insert into blog (title,create_day,blog_detail_id) values (:title,:createDay,:blogDetailId)", nativeQuery = true)
     void create(@Param("title") String title,
-                @Param("createDay") String createDay);
+                @Param("createDay") String createDay,
+                @Param("blogDetailId") int blogDetailId);
 
     @Modifying
     @Query(value = "update blog set status = 1 where id = :id", nativeQuery = true)
