@@ -3,7 +3,7 @@ package com.example.validatemusic.model;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -20,7 +20,7 @@ public class Music {
     private String nameMusic;
 
     @Pattern(regexp = "^[A-Za-z-0-9 ]*$", message = "Sai định dạng và không được để trống")
-    @Size(min = 1,max = 300, message = "không được nhập quá 300 kí tự")
+    @Size(min = 1, max = 300, message = "không được nhập quá 300 kí tự")
     private String singer;
 
     @Column(name = "type_music")

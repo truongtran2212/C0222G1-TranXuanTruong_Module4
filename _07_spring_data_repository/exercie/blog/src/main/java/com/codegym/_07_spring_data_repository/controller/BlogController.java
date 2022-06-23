@@ -49,6 +49,8 @@ public class BlogController {
         blogDetailService.createDetail(blogDTO.getContent());
         int idDetail = blogDetailService.findAllBlogDetail().size();
         blogService.create(blogDTO.getTitle(), blogDTO.getCreateDay(), idDetail, blogDTO.getIdCategory());
+
+        //Gửi lại cho @GetMapping("/list")
         return "redirect:/list";
     }
 
@@ -61,6 +63,8 @@ public class BlogController {
     @PostMapping("/delete")
     private String delete(Blog blog) {
         blogService.delete(blog.getId());
+
+        //Gửi lại cho @GetMapping("/list")
         return "redirect:/list";
     }
 
@@ -74,6 +78,8 @@ public class BlogController {
     @PostMapping("/update")
     private String update(BlogDto blogDTO, Blog blog) {
         blogService.update(blogDTO.getTitle(), blogDTO.getCreateDay(), blog.getCategory().getId(), blog.getId());
+
+        //Gửi lại cho @GetMapping("/list")
         return "redirect:/list";
     }
 
@@ -89,6 +95,7 @@ public class BlogController {
         return "list";
     }
 
+    // Sử dụng onchange ở category.html
     @GetMapping("/searchCategory")
     private String searchCategory(@RequestParam(name = "page", defaultValue = "0") int page,
                                   @RequestParam(name = "idCategory") int idCategory, Model model) {

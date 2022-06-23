@@ -2,7 +2,7 @@ package com.example.form_register.controller;
 
 import com.example.form_register.model.User;
 import com.example.form_register.service.FormRegisterService;
-import com.sun.org.apache.xpath.internal.operations.Mod;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -36,14 +36,14 @@ public class FormRegisterController {
     @PostMapping("/create")
     public String create(@Valid @ModelAttribute(name = "user") User user, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "create";
         }
-        formRegisterService.create( user.getFirstName(),
-                                    user.getLastName(),
-                                    user.getPhoneNumber(),
-                                    user.getAge(),
-                                    user.getEmail());
+        formRegisterService.create(user.getFirstName(),
+                user.getLastName(),
+                user.getPhoneNumber(),
+                user.getAge(),
+                user.getEmail());
         redirectAttributes.addFlashAttribute("msg", "Đã thêm mới thành công");
         return "redirect:/list";
     }

@@ -19,7 +19,7 @@ public class MusicController {
 
     @GetMapping("/list")
     public String showListMusic(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
-        model.addAttribute("musicList", musicService.findAll(PageRequest.of(page,2)));
+        model.addAttribute("musicList", musicService.findAll(PageRequest.of(page, 2)));
         return "index";
     }
 
@@ -33,11 +33,11 @@ public class MusicController {
     public String create(@Valid @ModelAttribute(name = "music") Music music, BindingResult bindingResult,
                          RedirectAttributes redirectAttributes) {
 
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "create";
         }
-        musicService.create(music.getNameMusic(),music.getSinger(),music.getTypeMusic());
-        redirectAttributes.addFlashAttribute("msg","Thêm mới thành công");
+        musicService.create(music.getNameMusic(), music.getSinger(), music.getTypeMusic());
+        redirectAttributes.addFlashAttribute("msg", "Thêm mới thành công");
         return "redirect:/list";
     }
 
@@ -50,10 +50,10 @@ public class MusicController {
     @PostMapping("/update")
     public String update(@Valid @ModelAttribute(name = "music") Music music, BindingResult bindingResult) {
 
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "update";
         }
-        musicService.update(music.getNameMusic(),music.getSinger(),music.getTypeMusic(), music.getId());
+        musicService.update(music.getNameMusic(), music.getSinger(), music.getTypeMusic(), music.getId());
         return "redirect:/list";
     }
 }

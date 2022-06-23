@@ -17,6 +17,10 @@
     <button type="submit">Tìm kiếm</button>
 </form>
 
+<div th:if="${message != null}">
+    <h4 th:text="${message}"></h4>
+</div>
+
 <table id="product">
     <thead>
     <tr>
@@ -40,12 +44,23 @@
         <td th:text="${product.priceProduct}"></td>
         <td th:text="${product.detailProduct}"></td>
         <td th:text="${product.production}"></td>
-        <td><a th:href="@{/{id}/update(id=${product.getId()})}">edit</a></td>
+        <td><a th:href="@{/{id}/update(id=${product.getId()})}">update</a></td>
         <td><a th:href="@{/{id}/delete(id=${product.getId()})}">delete</a></td>
         <td><a th:href="@{/{id}/detail(id=${product.getId()})}">detail</a></td>
     </tr>
     </tbody>
 </table>
+<div>
+    <span>
+        <a th:if="${productList.hasPrevious()}" th:href="@{/list(page = ${productList.number - 1})}">Previous</a>
+    </span>
+    <span th:each="pageNo: ${#numbers.sequence(0,productList.totalPages - 1)}">
+        <a th:href="@{/list(page = ${pageNo})}" th:text="${pageNo}"></a>
+    </span>
+    <span>
+        <a th:if="${productList.hasNext()}" th:href="@{/list(page = ${productList.number +1})}">Next</a>
+    </span>
+</div>
 <footer th:replace="/layout :: footer"></footer>
 </body>
 </html>

@@ -20,6 +20,6 @@ public class FormRegisterServiceImpl implements FormRegisterService {
 
     @Override
     public void create(String firstName, String lastName, String phoneNumber, int age, String email) {
-        formRegisterRepository.create(firstName,lastName,phoneNumber,age,email);
+        formRegisterRepository.create(firstName, lastName, phoneNumber, age, email);
     }
 }

@@ -13,13 +13,13 @@ public class User {
     private Integer id;
 
     @Column(name = "first_name")
-    @Pattern(regexp = "^[A-Za-z]*$",message = "Sai định dạng")
-    @Size(min = 5,max = 45,message = "Không đúng format")
+    @Pattern(regexp = "^[A-Za-z]*$", message = "Sai định dạng")
+    @Size(min = 5, max = 45, message = "Không đúng format")
     private String firstName;
 
     @Column(name = "last_name")
     @Pattern(regexp = "^[A-Za-z ]*$", message = "Sai định dạng")
-    @Size(min = 5,max = 45,message = "Không đúng format")
+    @Size(min = 5, max = 45, message = "Không đúng format")
     private String lastName;
 
 

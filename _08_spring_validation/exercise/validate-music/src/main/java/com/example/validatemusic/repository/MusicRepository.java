@@ -1,6 +1,5 @@
 package com.example.validatemusic.repository;
 
-import ch.qos.logback.core.boolex.EvaluationException;
 import com.example.validatemusic.model.Music;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
