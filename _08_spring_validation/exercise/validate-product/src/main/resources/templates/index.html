@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h3>Product</h3>
+<p>
+    <a th:href="@{/create}">
+        Add new product
+    </a>
+</p>
+
+<form action="/search">
+    <label>
+        <input type="text" name="nameProduct">
+    </label>
+    <button type="submit">Tìm kiếm</button>
+</form>
+
+<div th:if="${message != null}">
+    <h4 th:text="${message}"></h4>
+</div>
+
+<table id="product">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Id</th>
+        <th>Tên sản phẩm</th>
+        <th>Giá sản phẩm</th>
+        <th>Chi tiết sản phẩm</th>
+        <th>Tên nhà sản xuất</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Detail</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product,varStat : ${productList}">
+        <td th:text="${varStat.count}"></td>
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.nameProduct}"></td>
+        <td th:text="${product.priceProduct}"></td>
+        <td th:text="${product.detailProduct}"></td>
+        <td th:text="${product.production}"></td>
+        <td><a th:href="@{/{id}/update(id=${product.getId()})}">update</a></td>
+        <td><a th:href="@{/{id}/delete(id=${product.getId()})}">delete</a></td>
+        <td><a th:href="@{/{id}/detail(id=${product.getId()})}">detail</a></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <span>
+        <a th:if="${productList.hasPrevious()}" th:href="@{/list(page = ${productList.number - 1})}">Previous</a>
+    </span>
+    <span th:each="pageNo: ${#numbers.sequence(0,productList.totalPages - 1)}">
+        <a th:href="@{/list(page = ${pageNo})}" th:text="${pageNo}"></a>
+    </span>
+    <span>
+        <a th:if="${productList.hasNext()}" th:href="@{/list(page = ${productList.number +1})}">Next</a>
+    </span>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

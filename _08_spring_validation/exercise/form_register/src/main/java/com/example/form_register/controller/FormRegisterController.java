@@ -24,7 +24,7 @@ public class FormRegisterController {
     @GetMapping("/list")
     public String showFormRegister(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
         model.addAttribute("userList", formRegisterService.findAll(PageRequest.of(page, 2)));
-        return "list";
+        return "index";
     }
 
     @GetMapping("/create")
