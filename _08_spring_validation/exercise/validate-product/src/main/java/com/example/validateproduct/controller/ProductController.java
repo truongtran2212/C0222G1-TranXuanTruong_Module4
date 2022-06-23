@@ -1,14 +1,17 @@
 package com.example.validateproduct.controller;
 
-import com.example.productjpa.model.Product;
-import com.example.productjpa.service.ProductService;
+import com.example.validateproduct.model.Product;
+import com.example.validateproduct.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -30,7 +33,11 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-    public String create(@ModelAttribute(name = "product") Product product) {
+    public String create(@Valid @ModelAttribute(name = "product") Product product, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "create";
+        }
         productService.create(product.getNameProduct(),
                 product.getPriceProduct(), product.getDetailProduct(), product.getProduction());
         return "redirect:/list";
@@ -56,7 +63,12 @@ public class ProductController {
     }
 
     @PostMapping("/update")
-    public String update(Product product) {
+    public String update(@Valid @ModelAttribute(name = "product") Product product, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "update";
+        }
+
         productService.update(product.getNameProduct(),
                 product.getPriceProduct(),
                 product.getDetailProduct(),

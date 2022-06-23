@@ -28,7 +28,6 @@ public class User {
     private String phoneNumber;
 
 
-    @NotNull(message = "Không được để trống")
     @Min(value = 18, message = "Tuổi không được nhỏ hơn 18")
     @Max(value = 120, message = "Tuổi không được trên 120 ")
     private int age;

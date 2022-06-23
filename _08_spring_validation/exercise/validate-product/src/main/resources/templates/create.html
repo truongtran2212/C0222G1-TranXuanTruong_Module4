@@ -14,21 +14,25 @@
         <div>
             <label>Tên sản phẩm</label>
             <input type="text" th:field="*{nameProduct}">
+            <p style="color: red" th:if="${#fields.hasErrors('nameProduct')}" th:errors="*{nameProduct}"></p>
         </div>
 
         <div>
             <label>Giá sản phẩm</label>
             <input type="text" th:field="*{priceProduct}">
+            <p style="color: red" th:if="${#fields.hasErrors('priceProduct')}" th:errors="*{priceProduct}"></p>
         </div>
 
         <div>
             <label>Chi tiết sản phẩm</label>
             <input type="text" th:field="*{detailProduct}">
+            <p style="color: red" th:if="${#fields.hasErrors('detailProduct')}" th:errors="*{detailProduct}"></p>
         </div>
 
         <div>
             <label>Nhà sản xuất</label>
             <input type="text" th:field="*{production}">
+            <p style="color: red" th:if="${#fields.hasErrors('production')}" th:errors="*{production}"></p>
         </div>
 
         <button type="submit">Add new</button>
