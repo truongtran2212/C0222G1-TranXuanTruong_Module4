@@ -5,28 +5,17 @@
 <body>
 <h3>Blog</h3>
 
-<table id="blog">
-    <thead>
-    <tr>
-        <th>STT</th>
-        <th>Id</th>
-        <th>Danh mục</th>
-        <th>Edit</th>
-        <th>Delete</th>
-        <th>Detail</th>
 
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="category,varStat : ${categoryList}">
-        <td th:text="${varStat.count}"></td>
-        <td th:text="${category.id}"></td>
-        <td th:text="${category.typeBlog}"></td>
-        <td><a th:href="@{/{id}/update(id=${category.id})}">Update</a></td>
-        <td><a th:href="@{/{id}/delete(id=${category.id})}">Delete</a></td>
-        <td><a th:href="@{/{id}/detail(id=${category.id})}">Detail</a></td>
-    </tr>
-    </tbody>
-</table>
+<div>
+    <form id="category" th:action="@{/searchCategory}">
+        <label>Danh mục</label>
+        <select name="idCategory" onchange="document.getElementById('category').submit()">
+            <option>Chon</option>
+            <option
+                    th:each="category: ${categoryList}" th:value="${category.id}" th:text="${category.typeBlog}">
+            </option>
+        </select>
+    </form>
+</div>
 </body>
 </html>

@@ -19,5 +19,7 @@ public interface BlogService {
 
     Page<Blog> findAllBlog(Pageable pageable);
 
-    List<Blog> search(String title);
+    Page<Blog> search(String title, Pageable pageable);
+
+    Page<Blog> searchCategory(int idCategory, Pageable pageable);
 }

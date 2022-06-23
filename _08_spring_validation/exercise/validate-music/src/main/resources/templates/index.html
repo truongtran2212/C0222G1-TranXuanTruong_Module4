@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h3>Music</h3>
+<p>
+    <a th:href="@{/create}">
+        Add new Song
+    </a>
+</p>
+
+<form action="/search">
+    <label>
+        <input type="text" name="nameSinger">
+    </label>
+    <button type="submit">Tìm kiếm</button>
+</form>
+
+<table id="music">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Id</th>
+        <th>Tên bài hát</th>
+        <th>Nghệ sĩ thể hiện</th>
+        <th>Thể loại nhạc</th>
+        <th>Edit</th>
+        <th>Delete</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="music,varStat : ${musicList}">
+        <td th:text="${varStat.count}"></td>
+        <td th:text="${music.id}"></td>
+        <td th:text="${music.nameMusic}"></td>
+        <td th:text="${music.singer}"></td>
+        <td th:text="${music.typeMusic}"></td>
+        <td><a th:href="@{/{id}/update(id=${music.getId()})}">Update</a></td>
+        <td><a th:href="@{/{id}/delete(id=${music.getId()})}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <span>
+        <a th:if="${musicList.hasPrevious()}" th:href="@{/list(page = ${musicList.number - 1})}">Previous</a>
+    </span>
+    <span th:each="pageNo: ${#numbers.sequence(0,musicList.totalPages - 1)}">
+        <a th:href="@{/list(page = ${pageNo})}" th:text="${pageNo}"></a>
+    </span>
+    <span>
+        <a th:if="${musicList.hasNext()}" th:href="@{/list(page = ${musicList.number +1})}">Next</a>
+    </span>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

@@ -46,5 +46,8 @@ public interface BlogRepository extends JpaRepository<Blog, Integer> {
     Page<Blog> findAllBlog(Pageable pageable);
 
     @Query(value = "select * from blog where title like %:title% and status = 0", nativeQuery = true)
-    List<Blog> search(@Param("title") String title);
+    Page<Blog> search(@Param("title") String title, Pageable pageable);
+
+    @Query(value = "select * from blog where id_category = :idCategory and status = 0", nativeQuery = true)
+    Page<Blog> searchCategory(@Param("idCategory") int idCategory, Pageable pageable);
 }

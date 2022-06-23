@@ -77,16 +77,22 @@ public class BlogController {
         return "redirect:/list";
     }
 
-    @GetMapping("/menu")
+    @GetMapping
     private String showCategory(Model model) {
-
         model.addAttribute("categoryList", categoryService.findAll());
         return "category";
     }
 
     @GetMapping("/search")
-    private String search(String title, Model model) {
-        model.addAttribute("blogList", blogService.search(title));
-        return "search";
+    private String search(@RequestParam(name = "page", defaultValue = "0") int page,String title, Model model) {
+        model.addAttribute("blogList", blogService.search(title, PageRequest.of(page,2)));
+        return "list";
+    }
+
+    @GetMapping("/searchCategory")
+    private String searchCategory(@RequestParam(name = "page", defaultValue = "0") int page,
+                                  @RequestParam(name = "idCategory") int idCategory, Model model) {
+        model.addAttribute("blogList", blogService.searchCategory(idCategory, PageRequest.of(page,2)));
+        return "list";
     }
 }

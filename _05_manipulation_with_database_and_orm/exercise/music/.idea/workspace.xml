@@ -20,49 +20,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88c8d932-588f-482d-9983-8e5dfcc87a3f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/src/main/java/com/codegym/model/Category.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/java/com/codegym/_07_spring_data_repository/controller/BlogController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/java/com/codegym/_07_spring_data_repository/model/Blog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/java/com/codegym/_07_spring_data_repository/model/BlogDetail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/java/com/codegym/_07_spring_data_repository/model/BlogDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/java/com/codegym/_07_spring_data_repository/model/Category.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/java/com/codegym/_07_spring_data_repository/repository/BlogDetailRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/java/com/codegym/_07_spring_data_repository/repository/BlogRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/java/com/codegym/_07_spring_data_repository/repository/CategoryRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/java/com/codegym/_07_spring_data_repository/service/BlogDetailService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/java/com/codegym/_07_spring_data_repository/service/BlogService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/java/com/codegym/_07_spring_data_repository/service/CategoryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/java/com/codegym/_07_spring_data_repository/service/impl/BlogDetailServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/java/com/codegym/_07_spring_data_repository/service/impl/BlogServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/java/com/codegym/_07_spring_data_repository/service/impl/CategoryServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/resources/templates/category.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/resources/templates/create.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/resources/templates/delete.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/resources/templates/layout.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/resources/templates/list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/resources/templates/search.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/resources/templates/update.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../_08_spring_validation/exercise/form_register/src/main/java/com/example/form_register/controller/FormRegisterController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../_08_spring_validation/exercise/form_register/src/main/java/com/example/form_register/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../_08_spring_validation/exercise/form_register/src/main/java/com/example/form_register/repository/FormRegisterRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../_08_spring_validation/exercise/form_register/src/main/java/com/example/form_register/service/FormRegisterService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../_08_spring_validation/exercise/form_register/src/main/java/com/example/form_register/service/impl/FormRegisterServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../_08_spring_validation/exercise/form_register/src/main/resources/templates/create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../_08_spring_validation/exercise/form_register/src/main/resources/templates/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../_08_spring_validation/exercise/validate-music/src/main/java/com/example/validatemusic/controller/MusicController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../_08_spring_validation/exercise/validate-music/src/main/java/com/example/validatemusic/model/Music.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../_08_spring_validation/exercise/validate-music/src/main/java/com/example/validatemusic/repository/MusicRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../_08_spring_validation/exercise/validate-music/src/main/java/com/example/validatemusic/service/MusicService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../_08_spring_validation/exercise/validate-music/src/main/java/com/example/validatemusic/service/impl/MusicServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../_08_spring_validation/exercise/validate-music/src/main/resources/templates/create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../_08_spring_validation/exercise/validate-music/src/main/resources/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../_08_spring_validation/exercise/validate-music/src/main/resources/templates/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../_08_spring_validation/exercise/validate-music/src/main/resources/templates/update.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../_01_overview_spring_mvc/practice/manage_customer_list/customer-management" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_01_overview_spring_mvc/practice/manage_customer_list/customer-management" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../_02_spring_controller/practice/customer-management" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_02_spring_controller/practice/customer-management" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../practice/customer-management" beforeDir="false" afterPath="$PROJECT_DIR$/../../practice/customer-management" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/.gradle/6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/.gradle/6.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/.gradle/6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/.gradle/6.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/.gradle/6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/.gradle/6.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/.gradle/6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/.gradle/6.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/.gradle/6.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/.gradle/6.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/.gradle/6.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/.gradle/6.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/build/classes/java/main/com/codegym/controller/BlogController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/build/classes/java/main/com/codegym/controller/BlogController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/build/classes/java/main/com/codegym/repository/BlogRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/build/classes/java/main/com/codegym/repository/BlogRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/build/classes/java/main/com/codegym/service/BlogService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/build/classes/java/main/com/codegym/service/BlogService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/build/classes/java/main/com/codegym/service/impl/BlogServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/build/classes/java/main/com/codegym/service/impl/BlogServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/build/libs/blog-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/build/libs/blog-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/src/main/java/com/codegym/controller/BlogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/src/main/java/com/codegym/controller/BlogController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/src/main/java/com/codegym/model/Blog.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/src/main/java/com/codegym/model/Blog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/src/main/java/com/codegym/repository/BlogRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/src/main/java/com/codegym/repository/BlogRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/src/main/java/com/codegym/service/BlogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/src/main/java/com/codegym/service/BlogService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/src/main/java/com/codegym/service/impl/BlogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_06_jpa/exercise/blog/src/main/java/com/codegym/service/impl/BlogServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/java/com/codegym/_07_spring_data_repository/controller/BlogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/java/com/codegym/_07_spring_data_repository/controller/BlogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/java/com/codegym/_07_spring_data_repository/repository/BlogRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/java/com/codegym/_07_spring_data_repository/repository/BlogRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/java/com/codegym/_07_spring_data_repository/service/BlogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/java/com/codegym/_07_spring_data_repository/service/BlogService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/java/com/codegym/_07_spring_data_repository/service/impl/BlogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/java/com/codegym/_07_spring_data_repository/service/impl/BlogServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/resources/templates/category.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/resources/templates/category.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/resources/templates/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/resources/templates/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../_07_spring_data_repository/exercie/blog/src/main/resources/templates/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../_08_spring_validation/exercise/form_register/src/main/resources/templates/list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,6 +190,8 @@
       <workItem from="1655782993652" duration="2747000" />
       <workItem from="1655796324130" duration="397000" />
       <workItem from="1655909722382" duration="833000" />
+      <workItem from="1655945579119" duration="36000" />
+      <workItem from="1655969911458" duration="2954000" />
     </task>
     <servers />
   </component>
