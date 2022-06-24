@@ -19,7 +19,7 @@ public class MusicController {
 
     @GetMapping("/list")
     public String showListMusic(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
-        model.addAttribute("musicList", musicService.findAll(PageRequest.of(page, 2)));
+        model.addAttribute("musicList", musicService.findAll(PageRequest.of(page, 4)));
         return "index";
     }
 
