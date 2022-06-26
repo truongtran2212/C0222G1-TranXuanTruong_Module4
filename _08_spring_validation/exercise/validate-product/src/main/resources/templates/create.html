@@ -48,7 +48,7 @@
 
                 <div class="form-group">
                     <label>Nhà sản xuất</label>
-                    <input class="form-control" type="text" th:field="*{production}">
+                    <input  class="form-control w-100" type="text" th:field="*{production}">
                     <p class="text-danger" th:if="${#fields.hasErrors('production')}" th:errors="*{production}"></p>
                 </div>
 

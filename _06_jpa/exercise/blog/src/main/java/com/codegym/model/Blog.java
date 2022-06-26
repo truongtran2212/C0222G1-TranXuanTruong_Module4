@@ -22,7 +22,7 @@ public class Blog {
     private BlogDetail blogDetail;
 
     @ManyToOne
-    @JoinColumn(name = "id_category")
+    @JoinColumn(name = "id_category", referencedColumnName = "id")
     private Category category;
 
     public void setId(Integer id) {
