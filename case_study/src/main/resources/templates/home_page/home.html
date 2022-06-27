@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -7,7 +8,12 @@
     <link rel="stylesheet" href="/datatables/css/dataTables.bootstrap4.min.css">
     <script src="https://kit.fontawesome.com/dbc3483aca.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="FuramaCSS.css">
-
+    <style>
+        .background {
+            background-image: url({[[@{/bootstrap413/Furama_Resort_Danang_-_Cafe_Indochine_preview.jpeg}]]});
+            background-size: cover; height: 100%;
+        }
+    </style>
 </head>
 <body>
 <div class="container-fluid" style="background-color: #7FFFD4">
@@ -87,9 +93,9 @@
         </form>
     </div>
 </nav>
-<div class="container-fluid body" style="background-image:
-    url('https://phulong.com/UploadFiles/Images/FURAMA%2020%20NAM.jpg');
-      background-size: cover; height: 100%;">
+<div>
+    <img class="container-fluid body background" style="background-size: cover; height: 100%;"
+         th:src="@{/bootstrap413/Furama_Resort_Danang_-_Cafe_Indochine_preview.jpeg}" alt="">
 </div>
 </body>
 <script src="/jquery/jquery-3.5.1.min.js"></script>

@@ -101,7 +101,7 @@ rent_type_cost double
 
 CREATE table service (
 service_id int auto_increment  PRIMARY key,
-service_code varchar(45)  unique,
+service_code varchar(45) unique,
 service_name varchar(45) not null,
 service_area int,
 service_cost double not null,
@@ -127,8 +127,8 @@ contract_deposit double not null,
 contract_total_money double not null,
 
 employee_id int not null,
-customer_id varchar(45) not null,
-service_id varchar(45) not null,
+customer_id int not null,
+service_id int not null,
 
 foreign key (employee_id) REFERENCES employee (employee_id),
 foreign key (customer_id) REFERENCES customer (customer_id),

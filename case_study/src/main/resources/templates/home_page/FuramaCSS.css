@@ -6,3 +6,7 @@ li {
     height: 550px;
     width: 100%;
 }
+.background {
+    background-image: url([[@{/bootstrap413/Furama_Resort_Danang_-_Cafe_Indochine_preview.jpeg}]]);
+    background-size: cover; height: 100%;
+}
