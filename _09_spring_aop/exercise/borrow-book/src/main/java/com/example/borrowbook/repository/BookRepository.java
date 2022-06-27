@@ -1,6 +1,5 @@
 package com.example.borrowbook.repository;
 
-
 import com.example.borrowbook.model.Book;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

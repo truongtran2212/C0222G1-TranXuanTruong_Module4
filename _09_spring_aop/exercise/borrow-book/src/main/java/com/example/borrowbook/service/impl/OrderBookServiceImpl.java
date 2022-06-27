@@ -6,7 +6,7 @@ import com.example.borrowbook.service.OrderBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Controller;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,7 +21,7 @@ public class OrderBookServiceImpl implements OrderBookService {
 
     @Override
     public void create(String id, String codeBook) {
-        orderBookRepository.create(id,codeBook);
+        orderBookRepository.create(id, codeBook);
     }
 
     @Override

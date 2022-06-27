@@ -1,7 +1,7 @@
 package com.example.borrowbook.service.impl;
 
 import com.example.borrowbook.model.Book;
-import com.example.borrowbook.model.OrderBook;
+
 import com.example.borrowbook.repository.BookRepository;
 import com.example.borrowbook.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +26,11 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void borrow(int quantity, String codeBook) {
-        bookRepository.borrow(quantity,codeBook);
+        bookRepository.borrow(quantity, codeBook);
     }
 
     @Override
     public void returnBook(int quantity, String codeBook) {
-        bookRepository.returnBook(quantity + 1,codeBook);
+        bookRepository.returnBook(quantity + 1, codeBook);
     }
 }

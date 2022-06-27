@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 import javax.transaction.Transactional;
 
 @Transactional
-public interface OrderBookRepository extends PagingAndSortingRepository<OrderBook,String> {
+public interface OrderBookRepository extends PagingAndSortingRepository<OrderBook, String> {
 
     @Query(value = "select o from OrderBook o")
     Page<OrderBook> findAll(Pageable pageable);
@@ -25,6 +25,6 @@ public interface OrderBookRepository extends PagingAndSortingRepository<OrderBoo
 
     @Modifying
     @Query(value = "delete from order_book where id = :id", nativeQuery = true)
-    void delete (@Param("id") String id);
+    void delete(@Param("id") String id);
 
 }
