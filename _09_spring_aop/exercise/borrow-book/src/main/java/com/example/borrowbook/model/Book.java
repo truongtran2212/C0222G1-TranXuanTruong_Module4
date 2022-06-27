@@ -84,4 +84,16 @@ public class Book {
     public void setOrderBook(Set<OrderBook> orderBook) {
         this.orderBook = orderBook;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "codeBook='" + codeBook + '\'' +
+                ", bookName='" + bookName + '\'' +
+                ", productionName='" + productionName + '\'' +
+                ", status=" + status +
+                ", quantity=" + quantity +
+                ", orderBook=" + orderBook +
+                '}';
+    }
 }
