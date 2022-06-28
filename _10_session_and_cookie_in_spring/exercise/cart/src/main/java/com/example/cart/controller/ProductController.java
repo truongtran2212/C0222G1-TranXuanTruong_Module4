@@ -23,24 +23,9 @@ public class ProductController {
 
 
     @GetMapping("{id}/detail")
-    public String samsung(@PathVariable Integer id) {
-        productService.findById(id);
-        return "huawei";
-    }
-
-    @GetMapping("/huawei")
-    public String huawei() {
-        return "huawei";
-    }
-
-    @GetMapping("/iphone")
-    public String iphone() {
-        return "iphone";
-    }
-
-    @GetMapping("/xiaomi")
-    public String xiaomi() {
-        return "xiaomi";
+    public String samsung(@PathVariable Integer id, Model model) {
+        model.addAttribute("product", productService.findById(id));
+        return "detail-product";
     }
 
     @GetMapping("/list")
@@ -48,7 +33,6 @@ public class ProductController {
         model.addAttribute("productList", productService.findAll());
         return "home";
     }
-
 
     @GetMapping("{id}/add-cart")
     // @ModelAttribute ở phương thức này phải giống với @ModelAttribute ở trên
@@ -65,5 +49,4 @@ public class ProductController {
         cart.addProduct(product);
         return "redirect:/list";
     }
-
 }
