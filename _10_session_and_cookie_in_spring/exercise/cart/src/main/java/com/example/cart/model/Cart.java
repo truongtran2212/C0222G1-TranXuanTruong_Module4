@@ -56,8 +56,4 @@ public class Cart {
         }
         return countQuantity;
     }
-
-    public Integer countItem() {
-        return productIntegerMap.size();
-    }
 }
