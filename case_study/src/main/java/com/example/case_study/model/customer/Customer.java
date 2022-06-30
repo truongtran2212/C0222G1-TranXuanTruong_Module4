@@ -12,6 +12,7 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int customerId;
 
+    @Column(unique = true)
     private String customerCode;
 
     private String customerName;

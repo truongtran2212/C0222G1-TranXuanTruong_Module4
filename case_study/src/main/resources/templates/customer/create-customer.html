@@ -28,18 +28,21 @@
                 <div class="form-group">
                     <label>Mã khách hàng</label>
                     <input class="form-control" type="text" th:field="*{customerCode}">
-
+                    <p class="text-danger" th:if="${#fields.hasErrors('customerCode')}" th:errors="*{customerCode}"></p>
                 </div>
 
                 <div class="form-group">
                     <label>Tên khách hàng</label>
                     <input class="form-control" type="text" th:field="*{customerName}">
+                    <p class="text-danger" th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}"></p>
 
                 </div>
 
                 <div class="form-group">
                     <label>Ngày sinh</label>
                     <input class="form-control" type="date" th:field="*{customerBirthday}">
+                    <p class="text-danger" th:if="${#fields.hasErrors('customerBirthday')}" th:errors="*{customerBirthday}"></p>
+
                 </div>
 
                 <div class="form-group">
@@ -55,24 +58,28 @@
                     <div class="form-group">
                         <label>Căn cước công dân</label>
                         <input class="form-control" type="text" th:field="*{customerIdCard}">
+                        <p class="text-danger" th:if="${#fields.hasErrors('customerIdCard')}" th:errors="*{customerIdCard}"></p>
 
                     </div>
 
                     <div class="form-group">
                         <label>Số điện thoại</label>
                         <input class="form-control" type="text" th:field="*{customerPhone}">
+                        <p class="text-danger" th:if="${#fields.hasErrors('customerPhone')}" th:errors="*{customerPhone}"></p>
 
                     </div>
 
                     <div class="form-group">
                         <label>Email</label>
                         <input class="form-control" type="text" th:field="*{customerEmail}">
+                        <p class="text-danger" th:if="${#fields.hasErrors('customerEmail')}" th:errors="*{customerEmail}"></p>
 
                     </div>
 
                     <div class="form-group">
                         <label>Địa chỉ</label>
                         <input class="form-control" type="text" th:field="*{customerAddress}">
+                        <p class="text-danger" th:if="${#fields.hasErrors('customerAddress')}" th:errors="*{customerAddress}"></p>
 
                     </div>
 

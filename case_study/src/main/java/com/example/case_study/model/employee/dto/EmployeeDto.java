@@ -5,18 +5,49 @@ import com.example.case_study.model.employee.EducationDegree;
 import com.example.case_study.model.employee.Position;
 import com.example.case_study.model.employee.User;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
 public class EmployeeDto {
     private int id;
+
+    @Pattern(regexp = "([\\p{Lu}][\\p{Ll}]{0,8})(\\s([\\p{Lu}]|[\\p{Lu}][\\p{Ll}]{1,10})){1,10}",
+            message = "Viết bằng tiếng Việt có dấu và không được để trống")
     private String employeeName;
+
+    @NotBlank(message = "Không được đê trống")
+
     private String employeeBirthday;
+
+    @Pattern(regexp = "^[0-9]{9}|[0-9]{11}$", message = "Nhập 1 dãy số gồm 9 hoặc 11 số")
+
     private String employeeIdCard;
+
+    @Min(value = 1, message = "Lương phải là số nguyên dương")
     private double employeeSalary;
+
+    @Pattern(regexp = "^090[0-9]{7}|091[0-9]{7}|\\(84\\)\\+90[0-9]{7}|\\(84\\)\\+91[0-9]{7}$",
+            message = "Số điện thoại phải đúng định dạng 090xxxxxxx hoặc 091xxxxxxx hoặc (84)+90xxxxxxx hoặc (84)+91xxxxxxx")
+
     private String employeePhone;
+
+    @Pattern(regexp = "^[\\w\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "Sai định dạng và không được để trống")
+
     private String employeeEmail;
+
+    @NotBlank(message = "Không được đê trống")
     private String employeeAddress;
+
+
     private int positionId;
+
+
     private int educationDegreeId;
+
+
     private int divisionId;
+
     private User user;
 
     public EmployeeDto() {

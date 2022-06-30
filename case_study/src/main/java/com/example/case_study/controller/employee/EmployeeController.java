@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -46,7 +49,16 @@ public class EmployeeController {
     }
 
     @PostMapping("/create-employee")
-    public String create(@ModelAttribute(name = "employeeDto") EmployeeDto employeeDto){
+    public String create(@Valid @ModelAttribute(name = "employeeDto") EmployeeDto employeeDto,
+                         BindingResult bindingResult, Model model){
+
+        if(bindingResult.hasErrors()){
+            model.addAttribute("divisionList", divisionService.findAll());
+            model.addAttribute("educationDegreeList", educationDegreeService.findAll());
+            model.addAttribute("positionList", positionService.findAll());
+
+            return "employee/create-employee";
+        }
 
         userService.create(employeeDto.getUser());
         employeeService.create(employeeDto);
@@ -71,13 +83,12 @@ public class EmployeeController {
         model.addAttribute("educationDegreeList", educationDegreeService.findAll());
         model.addAttribute("positionList", positionService.findAll());
         model.addAttribute("userList", userService.findAll());
-        model.addAttribute("employee", employeeService.findById(id));
-        return "employee/update-employee";
-    }
 
-    @PostMapping("/update-employee")
-    public String update(@ModelAttribute(name = "employee") Employee employee){
-        employeeService.update(employee.getEmployeeName(),
+        Employee employee = employeeService.findById(id);
+
+        EmployeeDto employeeDto = new EmployeeDto(
+                employee.getEmployeeId(),
+                employee.getEmployeeName(),
                 employee.getEmployeeBirthday(),
                 employee.getEmployeeIdCard(),
                 employee.getEmployeeSalary(),
@@ -87,10 +98,36 @@ public class EmployeeController {
                 employee.getPosition().getPositionId(),
                 employee.getEducationDegree().getEducationDegreeId(),
                 employee.getDivision().getDivisionId(),
-                employee.getUser().getUserName(),
-                employee.getEmployeeId()
-        );
+                employee.getUser());
+        model.addAttribute("employeeDto", employeeDto);
+        return "employee/update-employee";
+    }
 
+    @PostMapping("/update-employee")
+    public String update(@Valid @ModelAttribute(name = "employeeDto") EmployeeDto employeeDto,
+                         BindingResult bindingResult, Model model){
+        if(bindingResult.hasErrors()){
+            model.addAttribute("divisionList", divisionService.findAll());
+            model.addAttribute("educationDegreeList", educationDegreeService.findAll());
+            model.addAttribute("positionList", positionService.findAll());
+            model.addAttribute("userList", userService.findAll());
+
+            return "employee/update-employee";
+        }
+
+        employeeService.update(employeeDto.getEmployeeName(),
+                employeeDto.getEmployeeBirthday(),
+                employeeDto.getEmployeeIdCard(),
+                employeeDto.getEmployeeSalary(),
+                employeeDto.getEmployeePhone(),
+                employeeDto.getEmployeeEmail(),
+                employeeDto.getEmployeeAddress(),
+                employeeDto.getPositionId(),
+                employeeDto.getEducationDegreeId(),
+                employeeDto.getDivisionId(),
+                employeeDto.getUser().getUserName(),
+                employeeDto.getId()
+        );
         return "redirect:/list-employee";
     }
 

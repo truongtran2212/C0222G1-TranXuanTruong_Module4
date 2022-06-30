@@ -2,13 +2,18 @@ package com.example.case_study.model.employee;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "user")
 public class User {
     @Id
     @Column(name = "username")
+
+    @NotBlank(message = "Không được đê trống")
     private String userName;
+
+    @NotBlank(message = "Không được đê trống")
     private String password;
 
     @OneToOne(mappedBy = "user")

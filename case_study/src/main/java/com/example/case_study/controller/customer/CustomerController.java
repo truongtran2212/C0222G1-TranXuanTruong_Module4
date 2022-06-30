@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 public class CustomerController {
@@ -32,11 +35,18 @@ public class CustomerController {
     }
 
     @PostMapping("/create-customer")
-    public String create(@ModelAttribute(name = "customerDto") CustomerDto customerDto){
+    public String create(@Valid @ModelAttribute(name = "customerDto") CustomerDto customerDto,
+                         BindingResult bindingResult, Model model){
+
+        if(bindingResult.hasErrors()){
+            model.addAttribute("customerTypeList", customerTypeService.findAll());
+            return "customer/create-customer";
+        }
+
         customerService.create(customerDto.getCustomerCode(),customerDto.getCustomerName(),
                 customerDto.getCustomerBirthday(),customerDto.getCustomerGender(),
                 customerDto.getCustomerIdCard(), customerDto.getCustomerPhone(),customerDto.getCustomerEmail(),
-                customerDto.getCustomerAddress(), customerDto.getCustomerTypeId());
+                customerDto.getCustomerAddress(), customerDto.getCustomerTypeId().getCustomerTypeId());
         return "redirect:/list-customer";
     }
 
@@ -56,22 +66,43 @@ public class CustomerController {
     @GetMapping("/{id}/update-customer")
     public String showFormUpdate(@PathVariable int id, Model model){
         model.addAttribute("customerTypeList", customerTypeService.findAll());
-        model.addAttribute("customer", customerService.findById(id));
+
+        Customer customer = customerService.findById(id);
+
+        CustomerDto customerDto = new CustomerDto(customer.getCustomerId(),
+                customer.getCustomerCode(),
+                customer.getCustomerName(),
+                customer.getCustomerBirthday(),
+                customer.getCustomerGender(),
+                customer.getCustomerIdCard(),
+                customer.getCustomerPhone(),
+                customer.getCustomerEmail(),
+                customer.getCustomerAddress(),
+                customer.getCustomerType());
+
+        model.addAttribute("customerDto", customerDto);
         return "customer/update-customer";
     }
 
     @PostMapping("update-customer")
-    public String update ( Customer customer){
-        customerService.update(     customer.getCustomerCode(),
-                                    customer.getCustomerName(),
-                                    customer.getCustomerBirthday(),
-                                    customer.getCustomerGender(),
-                                    customer.getCustomerIdCard(),
-                                    customer.getCustomerPhone(),
-                                    customer.getCustomerEmail(),
-                                    customer.getCustomerAddress(),
-                                    customer.getCustomerType().getCustomerTypeId(),
-                                    customer.getCustomerId());
+    public String update (@Valid @ModelAttribute("customerDto") CustomerDto customerDto,
+                          BindingResult bindingResult, Model model){
+
+        if(bindingResult.hasErrors()){
+            model.addAttribute("customerTypeList", customerTypeService.findAll());
+            return "customer/update-customer";
+        }
+
+        customerService.update(customerDto.getCustomerCode(),
+                customerDto.getCustomerName(),
+                customerDto.getCustomerBirthday(),
+                customerDto.getCustomerGender(),
+                customerDto.getCustomerIdCard(),
+                customerDto.getCustomerPhone(),
+                customerDto.getCustomerEmail(),
+                customerDto.getCustomerAddress(),
+                customerDto.getCustomerTypeId().getCustomerTypeId(),
+                customerDto.getId());
         return "redirect:/list-customer";
     }
 

@@ -51,10 +51,10 @@ public class CustomerServiceImpl implements CustomerService {
         customerRepository.update(customerCode, customerName, customerBirthday, customerGender, customerIdCard, customerPhone, customerEmail, customerAddress, customerType, id);
     }
 
-    @Override
-    public void update(Customer customer) {
-        customerRepository.save(customer);
-    }
+//    @Override
+//    public void update(Customer customer) {
+//        customerRepository.save(customer);
+//    }
 
 
 

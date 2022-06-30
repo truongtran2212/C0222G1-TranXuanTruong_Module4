@@ -33,7 +33,7 @@ public interface CustomerService {
                 int customerType,
                 int id);
 
-    void update (Customer customer);
+//    void update (Customer customer);
 
 //    Page<Customer> findByName (String name,Pageable pageable);
 
