@@ -37,8 +37,9 @@ public class SmartphoneController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Smartphone> updateSmartphone(@RequestBody Smartphone smartphone) {
-        return new ResponseEntity<>(smartphoneService.save(smartphone), HttpStatus.OK);
+    public ResponseEntity<Iterable<Smartphone>> updateSmartphone(@RequestBody Smartphone smartphone) {
+        smartphoneService.save(smartphone);
+        return new ResponseEntity<>(smartphoneService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

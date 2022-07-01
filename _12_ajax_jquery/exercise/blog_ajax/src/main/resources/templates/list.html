@@ -2,6 +2,47 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="/layout :: head">
 </head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+    function getBlog(blog) {
+        return `<tr>
+                    <td >${blog.id}</td>
+                    <td >${blog.title}</td>
+                    <td >${blog.createDay}</td>
+                    <td >${blog.typeBlog}</td>
+                 </tr>`
+    }
+
+    function search() {
+        let name = $('#name').val()
+        $.ajax({
+            headers: {
+                'Accept': "application/json",
+                'Content-Type': "application/json"
+            },
+            type: "GET",
+            url: `/blog/search/${name}`,
+
+            success: function (data) {
+                let content = '<tr>' +
+                    '<td>id</td>' +
+                    '<td>title</td>' +
+                    '<td>createDay</td>' +
+                    '<td>typeBlog</td>' +
+                    '</tr>'
+                debugger
+                for (let i = 0; i < data.length; i++) {
+                    content += getBlog(data[i]);
+                }
+                document.getElementById('blog').innerHTML = content;
+            }
+        })
+        event.preventDefault()
+
+    }
+
+</script>
 <body>
 <h3>Blog</h3>
 <p>
@@ -21,10 +62,10 @@
 </p>
 
 <div>
-    <form th:action="@{/search}">
+    <form>
         <label>Tìm kiếm theo tiêu đề</label>
-        <input type="text" name="title">
-        <button type="submit">Tìm kiếm</button>
+        <input type="text" id="name" name="title">
+        <input type="submit" value="Search" onclick="search()">
     </form>
 </div>
 
@@ -68,4 +109,5 @@
 </div>
 <footer th:replace="/layout :: footer"></footer>
 </body>
+
 </html>

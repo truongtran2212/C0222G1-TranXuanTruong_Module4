@@ -55,6 +55,11 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    public List<Blog> search(String title) {
+        return blogRepository.search(title);
+    }
+
+    @Override
     public Page<Blog> searchCategory(int idCategory, Pageable pageable) {
         return blogRepository.searchCategory(idCategory, pageable);
     }

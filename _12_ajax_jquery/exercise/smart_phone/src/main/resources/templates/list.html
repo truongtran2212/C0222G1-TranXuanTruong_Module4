@@ -36,11 +36,13 @@
 
         function successHandler() {
             $.ajax({
+                async: true,
                 type: "GET",
                 //tên API
                 url: "/smartphones",
                 //xử lý khi thành công
                 success: function (data) {
+                    debugger
                     // hien thi danh sach o day
                     let content = '    <tr>\n' +
                         '        <td>Producer</td>\n' +
@@ -95,6 +97,7 @@
                 let smartphoneId = b.attr("href")
 
                 $.ajax({
+                    async: true,
                     headers: {
                         'Accept': "application/json",
                         'Content-Type': "application/json"
@@ -103,6 +106,7 @@
                     url: `/smartphones/${smartphoneId}`,
 
                     success: function (data) {
+                        debugger
                         document.getElementById("id").value = data.id;
                         document.getElementById("producer").value = data.producer;
                         document.getElementById("model").value = data.model;
@@ -133,12 +137,24 @@
                     'Accept': "application/json",
                     'Content-Type': "application/json"
                 },
+                async: true,
                 type: "PUT",
                 data: JSON.stringify(product),
                 url: `/smartphones/update`,
 
-                success: successHandler()
-
+                success: function (event) {
+                    let content = '    <tr>\n' +
+                        '        <td>Producer</td>\n' +
+                        '        <td>Model</td>\n' +
+                        '        <td>Price</td>\n' +
+                        '        <td>Delete</td>\n' +
+                        '        <td>Update</td>\n' +
+                        '    </tr>';
+                    for (let i = 0; i < event.length; i++) {
+                        content += getSmartphone(event[i]);
+                    }
+                    document.getElementById('smartphoneList').innerHTML = content;
+                }
             })
             event.preventDefault();
         }

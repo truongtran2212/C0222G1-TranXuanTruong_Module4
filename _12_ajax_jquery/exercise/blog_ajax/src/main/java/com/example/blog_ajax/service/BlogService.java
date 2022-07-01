@@ -21,5 +21,7 @@ public interface BlogService {
 
     Page<Blog> search(String title, Pageable pageable);
 
+    List<Blog> search(String title);
+
     Page<Blog> searchCategory(int idCategory, Pageable pageable);
 }

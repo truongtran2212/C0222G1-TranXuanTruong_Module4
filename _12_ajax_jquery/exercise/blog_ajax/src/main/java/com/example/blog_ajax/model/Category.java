@@ -15,7 +15,6 @@ public class Category {
     @Column(name = "type_blog")
     private String typeBlog;
 
-
     @OneToMany(mappedBy = "category")
     @JsonBackReference(value = "loop")
     private Set<Blog> blog;

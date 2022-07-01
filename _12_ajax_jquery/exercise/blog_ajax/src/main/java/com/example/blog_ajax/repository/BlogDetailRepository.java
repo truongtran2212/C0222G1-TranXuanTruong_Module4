@@ -9,7 +9,6 @@ import org.springframework.data.repository.query.Param;
 import javax.transaction.Transactional;
 import java.util.List;
 
-
 @Transactional
 public interface BlogDetailRepository extends JpaRepository<BlogDetail, Integer> {
 
