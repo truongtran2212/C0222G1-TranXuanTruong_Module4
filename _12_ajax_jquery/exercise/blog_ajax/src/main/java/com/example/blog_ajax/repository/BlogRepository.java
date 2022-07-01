@@ -14,7 +14,6 @@ import java.util.List;
 @Transactional
 public interface BlogRepository extends JpaRepository<Blog, Integer> {
 
-
     @Query(value = "select * from blog where status = 0", nativeQuery = true)
     List<Blog> findAllBlog();
 

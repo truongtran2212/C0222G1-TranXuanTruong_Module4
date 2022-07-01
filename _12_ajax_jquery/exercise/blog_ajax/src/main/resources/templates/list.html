@@ -4,14 +4,16 @@
 </head>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript">
+    let size = 1;
 
     function getBlog(blog) {
         return `<tr>
                     <td >${blog.id}</td>
                     <td >${blog.title}</td>
                     <td >${blog.createDay}</td>
-                    <td >${blog.typeBlog}</td>
+                    <td >${blog.category.typeBlog}</td>
                  </tr>`
+
     }
 
     function search() {
@@ -40,6 +42,32 @@
         })
         event.preventDefault()
 
+    }
+
+    function upload() {
+        size += 1
+        $.ajax({
+            headers: {
+                'Accept': "application/json",
+                'Content-Type': "application/json"
+            },
+            type: "GET",
+            url: `/blog/upload/${size}`,
+            success: function (data) {
+                let content = '<tr>' +
+                    '<td>id</td>' +
+                    '<td>title</td>' +
+                    '<td>createDay</td>' +
+                    '<td>typeBlog</td>' +
+                    '</tr>'
+                debugger
+                for (let i = 0; i < data.length; i++) {
+                    content += getBlog(data[i]);
+                }
+                document.getElementById('blog').innerHTML = content;
+            }
+        })
+        event.preventDefault()
     }
 
 </script>
@@ -106,6 +134,9 @@
     <span>
         <a th:if="${blogList.hasNext()}" th:href="@{/list(page = ${blogList.number +1})}">Next</a>
     </span>
+</div>
+<div>
+    <input type="submit" value="Upload" onclick="upload()">
 </div>
 <footer th:replace="/layout :: footer"></footer>
 </body>

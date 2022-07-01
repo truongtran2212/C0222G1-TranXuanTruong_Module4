@@ -30,7 +30,7 @@ public class BlogController {
     @GetMapping("/list")
     private String showListBlog(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
         Sort sort = Sort.by("create_day");
-        Page<Blog> list = blogService.findAllBlog(PageRequest.of(page, 3, sort));
+        Page<Blog> list = blogService.findAllBlog(PageRequest.of(page, 1, sort));
         model.addAttribute("blogList", list);
         return "list";
     }

@@ -2,7 +2,6 @@ package com.example.blog_ajax.controller;
 
 import com.example.blog_ajax.model.Blog;
 import com.example.blog_ajax.model.BlogDto;
-import com.example.blog_ajax.model.BlogDtoNew;
 import com.example.blog_ajax.model.Category;
 import com.example.blog_ajax.service.BlogDetailService;
 import com.example.blog_ajax.service.BlogService;
@@ -12,12 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -32,8 +31,9 @@ public class BlogRestController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping("/list")
+    @GetMapping("/list-blog")
     private ResponseEntity<List<Blog>> showListBlog() {
+
         return new ResponseEntity<>(blogService.findAll(), HttpStatus.OK);
     }
 
@@ -67,8 +67,6 @@ public class BlogRestController {
         }
 
         blogService.update(blogDTO.getTitle(), blogDTO.getCreateDay(), blog.getCategory().getId(), blog.getId());
-
-        //Gửi lại cho @GetMapping("/list")
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -82,7 +80,6 @@ public class BlogRestController {
         return new ResponseEntity<>(categoryList, HttpStatus.OK);
     }
 
-    // Sử dụng onchange ở category.html
     @GetMapping("/searchCategory/{idCategory}")
     private ResponseEntity<Page<Blog>> searchCategory(@RequestParam(name = "page", defaultValue = "0") int page,
                                                       @PathVariable(name = "idCategory") int idCategory) {
@@ -104,16 +101,19 @@ public class BlogRestController {
     }
 
     @GetMapping("/search/{title}")
-    private ResponseEntity<List<BlogDtoNew>> search(@PathVariable(name = "title") String title) {
+    private ResponseEntity<List<Blog>> search(@PathVariable(name = "title") String title) {
         List<Blog> blogList = blogService.search(title);
-        List<BlogDtoNew> blogDtoNewList = new ArrayList<>();
-        for (Blog item : blogList) {
-            blogDtoNewList.add(new BlogDtoNew(item.getId(), item.getTitle(), item.getCreateDay(), item.getCategory().getTypeBlog()));
-        }
-        if (blogList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
 
-        return new ResponseEntity<>(blogDtoNewList, HttpStatus.OK);
+        if (blogList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(blogList, HttpStatus.OK);
+    }
+
+    @GetMapping("/upload/{size}")
+    private ResponseEntity<?> showListBlog(@RequestParam(name = "page", defaultValue = "0") int page, @PathVariable int size) {
+        Sort sort = Sort.by("create_day");
+        Page<Blog> list = blogService.findAllBlog(PageRequest.of(page, size, sort));
+        return new ResponseEntity<>(list.getContent(), HttpStatus.OK);
     }
 }
