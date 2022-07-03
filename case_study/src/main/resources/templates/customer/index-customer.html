@@ -95,19 +95,19 @@
 <div>
     <span>
         <a th:if="${customerList.hasPrevious()}"
-           th:href="@{/list-customer(page = ${customerList.number - 1})}">Previous</a>
+           th:href="@{/list-customer(page = ${customerList.number - 1}, name = ${name})}">Previous</a>
     </span>
     <span th:each="pageNo: ${#numbers.sequence(0,customerList.totalPages - 1)}">
-        <a th:href="@{/list-customer(page = ${pageNo})}" th:text="${pageNo}"></a>
+        <a th:href="@{/list-customer(page = ${pageNo}, name = ${name})}" th:text="${pageNo}"></a>
     </span>
     <span>
-        <a th:if="${customerList.hasNext()}" th:href="@{/list-customer(page = ${customerList.number +1})}">Next</a>
+        <a th:if="${customerList.hasNext()}" th:href="@{/list-customer(page = ${customerList.number +1},name = ${name})}">Next</a>
     </span>
 </div>
 
 <div class="modal" id="search">
     <div class="modal-dialog">
-        <form th:action="@{/search-customer}" method="get">
+        <form th:action="@{/list-customer}" method="get">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title w-100 text-center">Chọn thuộc tính bạn muốn tìm kiếm</h4>
@@ -115,7 +115,7 @@
                 </div>
 
                 <div class="modal-body footer border- 0">
-                    <input type="text" name="nameCustomer" placeholder="Tên khách hàng" class="form-control">
+                    <input type="text" name="name" placeholder="Tên khách hàng" class="form-control">
                 </div>
                 <div class="modal-footer border-0">
                     <button type="submit" class="btn btn-dark">

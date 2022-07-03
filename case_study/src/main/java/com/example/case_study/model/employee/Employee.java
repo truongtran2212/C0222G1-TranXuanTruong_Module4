@@ -1,6 +1,10 @@
 package com.example.case_study.model.employee;
 
+import com.example.case_study.model.contract.Contract;
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "employee")
@@ -32,9 +36,21 @@ public class Employee {
     @JoinColumn(name = "username", referencedColumnName = "username")
     private User user;
 
+    @OneToMany(mappedBy = "employee")
+    private Set<Contract> contract;
+
+    @ColumnDefault("0")
     private int status;
 
     public Employee() {
+    }
+
+    public Set<Contract> getContract() {
+        return contract;
+    }
+
+    public void setContract(Set<Contract> contract) {
+        this.contract = contract;
     }
 
     public Employee(int employeeId,
@@ -49,6 +65,7 @@ public class Employee {
                     EducationDegree educationDegree,
                     Division division,
                     User user,
+                    Set<Contract> contract,
                     int status) {
         this.employeeId = employeeId;
         this.employeeName = employeeName;
@@ -62,6 +79,7 @@ public class Employee {
         this.educationDegree = educationDegree;
         this.division = division;
         this.user = user;
+        this.contract = contract;
         this.status = status;
     }
 

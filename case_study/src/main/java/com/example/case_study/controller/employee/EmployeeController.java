@@ -4,7 +4,6 @@ import com.example.case_study.model.employee.Employee;
 import com.example.case_study.model.employee.User;
 import com.example.case_study.model.employee.dto.EmployeeDto;
 import com.example.case_study.service.employee.*;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -32,14 +31,18 @@ public class EmployeeController {
     @Autowired
     private EducationDegreeService educationDegreeService;
 
+    // search và findAll chung 1 method
     @GetMapping("/list-employee")
-    public String showListCustomer(@RequestParam(name = "page", defaultValue = "0") int page, Model model){
-        model.addAttribute("employeeList", employeeService.findAll(PageRequest.of(page,5)));
+    public String showListCustomer(@RequestParam(name = "page", defaultValue = "0") int page,
+                                   @RequestParam(name = "name", defaultValue = "") String name,
+                                   Model model) {
+        model.addAttribute("employeeList", employeeService.findAll(PageRequest.of(page, 5), name));
+        model.addAttribute("name", name);
         return "employee/index-employee";
     }
 
     @GetMapping("/create-employee")
-    public String showCreateEmployee(Model model){
+    public String showCreateEmployee(Model model) {
         model.addAttribute("divisionList", divisionService.findAll());
         model.addAttribute("educationDegreeList", educationDegreeService.findAll());
         model.addAttribute("positionList", positionService.findAll());
@@ -50,9 +53,9 @@ public class EmployeeController {
 
     @PostMapping("/create-employee")
     public String create(@Valid @ModelAttribute(name = "employeeDto") EmployeeDto employeeDto,
-                         BindingResult bindingResult, Model model){
+                         BindingResult bindingResult, Model model) {
 
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             model.addAttribute("divisionList", divisionService.findAll());
             model.addAttribute("educationDegreeList", educationDegreeService.findAll());
             model.addAttribute("positionList", positionService.findAll());
@@ -67,18 +70,19 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}/delete-employee")
-    public String showEmployeeDelete(@PathVariable(name = "id") int id, Model model){
+    public String showEmployeeDelete(@PathVariable(name = "id") int id, Model model) {
         model.addAttribute("employee", employeeService.findById(id));
         return "employee/delete-employee";
     }
+
     @PostMapping("/delete-employee")
-    public String delete(Employee employee){
+    public String delete(Employee employee) {
         employeeService.delete(employee.getEmployeeId());
         return "redirect:/list-employee";
     }
 
     @GetMapping("/{id}/update-employee")
-    public String showUpdateEmployee(@PathVariable(name = "id") int id, Model model){
+    public String showUpdateEmployee(@PathVariable(name = "id") int id, Model model) {
         model.addAttribute("divisionList", divisionService.findAll());
         model.addAttribute("educationDegreeList", educationDegreeService.findAll());
         model.addAttribute("positionList", positionService.findAll());
@@ -105,8 +109,8 @@ public class EmployeeController {
 
     @PostMapping("/update-employee")
     public String update(@Valid @ModelAttribute(name = "employeeDto") EmployeeDto employeeDto,
-                         BindingResult bindingResult, Model model){
-        if(bindingResult.hasErrors()){
+                         BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
             model.addAttribute("divisionList", divisionService.findAll());
             model.addAttribute("educationDegreeList", educationDegreeService.findAll());
             model.addAttribute("positionList", positionService.findAll());
@@ -130,11 +134,4 @@ public class EmployeeController {
         );
         return "redirect:/list-employee";
     }
-
-    @GetMapping("/search-employee")
-    public String search(String nameEmployee, Model model){
-        model.addAttribute("employeeList", employeeService.search(nameEmployee));
-        return "employee/search-employee";
-    }
-
 }

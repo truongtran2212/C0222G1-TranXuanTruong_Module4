@@ -33,49 +33,45 @@
 
 <div class="container-fluid body">
     <div class="center container-fluid">
-        <h1 style="text-align: center">Danh sách nhân viên</h1>
+        <h1 style="text-align: center">Danh sách dịch vụ</h1>
         <table border="1" style="border-collapse:  collapse; width: 100%">
             <thead>
             <tr>
-                <th>Id Employee</th>
-                <th>Employee Name</th>
-                <th>Birthday</th>
-                <th>Id Card</th>
-                <th>Salary</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Position Id</th>
-                <th>Education Degree Id</th>
-                <th>Division Id</th>
-                <th>User</th>
+                <th>Id Service</th>
+                <th>Service Code</th>
+                <th>Name</th>
+                <th>Usable Area</th>
+                <th>Cost</th>
+                <th>Service Max People</th>
+                <th>description Other Convenience</th>
+                <th>Pool Area</th>
+                <th>Rent Type</th>
+                <th>Service Type</th>
                 <th>Update</th>
                 <th>Delete</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="employee: ${employeeList}">
-                <td style="text-align: center" th:text="${employee.employeeId}"></td>
-                <td th:text="${employee.employeeName}"></td>
-                <td th:text="${employee.employeeBirthday}"></td>
-                <td th:text="${employee.employeeIdCard}"></td>
+            <tr th:each="service: ${serviceList}">
+                <td style="text-align: center" th:text="${service.serviceId}"></td>
+                <td th:text="${service.serviceCode}"></td>
+                <td th:text="${service.serviceName}"></td>
+                <td th:text="${service.serviceArea}"></td>
 
-                <td th:text="${employee.employeeSalary}"></td>
-                <td th:text="${employee.employeePhone}"></td>
-                <td th:text="${employee.employeeEmail}"></td>
-                <td th:text="${employee.employeeAddress}"></td>
-                <td th:text="${employee.position.positionName}"></td>
-                <td th:text="${employee.educationDegree.educationDegreeName}"></td>
-                <td th:text="${employee.division.divisionName}"></td>
-                <td th:text="${employee.user.userName}"></td>
-                <td><a th:href="@{/{employeeId}/update-employee(employeeId=${employee.employeeId})}">update</a></td>
-                <td><a th:href="@{/{employeeId}/delete-employee(employeeId=${employee.employeeId})}">delete</a></td>
+                <td th:text="${service.serviceCost}"></td>
+                <td th:text="${service.serviceMaxPeople}"></td>
+                <td th:text="${service.descriptionOtherConvenience}"></td>
+                <td th:text="${service.poolArea}"></td>
+                <td th:text="${service.numberOfFloors}"></td>
+                <td th:text="${service.serviceType.serviceTypeName}"></td>
+                <td><a th:href="@{/{serviceId}/update-service(serviceId=${service.serviceId})}">update</a></td>
+                <td><a th:href="@{/{serviceId}/delete-service(serviceId=${service.serviceId})}">delete</a></td>
             </tr>
             </tbody>
         </table>
         <div>
             <div class="w-100  footer" style="color: #b21f2d; font-size: 2rem">
-                <button><a th:href="@{/create-employee}"><i class="fa-solid fa-plus"></i></a></button>
+                <button><a th:href="@{/create-service}"><i class="fa-solid fa-plus"></i></a></button>
 
                 <button><a href="#" data-toggle="modal"
                            data-target="#search"><i class="fa-solid fa-magnifying-glass"></i></a></button>
@@ -86,20 +82,20 @@
 
 <div>
     <span>
-        <a th:if="${employeeList.hasPrevious()}"
-           th:href="@{/list-employee(page = ${employeeList.number - 1} , name = ${name})}">Previous</a>
+        <a th:if="${serviceList.hasPrevious()}"
+           th:href="@{/list-service(page = ${serviceList.number - 1})}">Previous</a>
     </span>
-    <span th:each="pageNo: ${#numbers.sequence(0,employeeList.totalPages - 1)}">
-        <a th:href="@{/list-employee(page = ${pageNo},name = ${name})}" th:text="${pageNo}"></a>
+    <span th:each="pageNo: ${#numbers.sequence(0,serviceList.totalPages - 1)}">
+        <a th:href="@{/list-service(page = ${pageNo})}" th:text="${pageNo}"></a>
     </span>
     <span>
-        <a th:if="${employeeList.hasNext()}" th:href="@{/list-employee(page = ${employeeList.number +1},name = ${name})}">Next</a>
+        <a th:if="${serviceList.hasNext()}" th:href="@{/list-service(page = ${serviceList.number +1})}">Next</a>
     </span>
 </div>
 
 <div class="modal" id="search">
     <div class="modal-dialog">
-        <form th:action="@{/list-employee}" method="get">
+        <form th:action="@{/list-service}" method="get">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title w-100 text-center">Chọn thuộc tính bạn muốn tìm kiếm</h4>

@@ -1,9 +1,11 @@
 package com.example.case_study.model.customer;
 
+import com.example.case_study.model.contract.Contract;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "customer")
@@ -33,14 +35,25 @@ public class Customer {
     @JoinColumn(name = "customer_type_id",referencedColumnName = "customer_type_id")
     private CustomerType customerType;
 
+    @OneToMany(mappedBy = "customer")
+    private Set<Contract> contract;
+
     @ColumnDefault("0")
     private int status;
 
     public Customer() {
     }
 
+    public Set<Contract> getContract() {
+        return contract;
+    }
+
+    public void setContract(Set<Contract> contract) {
+        this.contract = contract;
+    }
+
     public Customer(int customerId,
-                    @UniqueElements String customerCode,
+                    String customerCode,
                     String customerName,
                     String customerBirthday,
                     int customerGender,
@@ -49,7 +62,8 @@ public class Customer {
                     String customerEmail,
                     String customerAddress,
                     CustomerType customerType,
-                    int status) {
+                    int status,
+                    Set<Contract> contract) {
         this.customerId = customerId;
         this.customerCode = customerCode;
         this.customerName = customerName;
@@ -61,6 +75,7 @@ public class Customer {
         this.customerAddress = customerAddress;
         this.customerType = customerType;
         this.status = status;
+        this.contract = contract;
     }
 
     public int getCustomerId() {

@@ -8,15 +8,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
     @Override
-    public Page<Customer> findAll(Pageable pageable) {
-        return customerRepository.findAll(pageable);
+    public Page<Customer> findAll(Pageable pageable, String name) {
+        return customerRepository.findAll(pageable, name);
     }
 
     @Override
@@ -50,24 +48,4 @@ public class CustomerServiceImpl implements CustomerService {
     public void update(String customerCode, String customerName, String customerBirthday, int customerGender, String customerIdCard, String customerPhone, String customerEmail, String customerAddress, int customerType, int id) {
         customerRepository.update(customerCode, customerName, customerBirthday, customerGender, customerIdCard, customerPhone, customerEmail, customerAddress, customerType, id);
     }
-
-//    @Override
-//    public void update(Customer customer) {
-//        customerRepository.save(customer);
-//    }
-
-
-
-    @Override
-    public List<Customer> search(String name) {
-        return customerRepository.search(name);
-    }
-
-//    @Override
-//    public Page<Customer> findByName(String name, Pageable pageable) {
-//        return customerRepository.findByName(name, pageable);
-//    }
-
-
-
 }

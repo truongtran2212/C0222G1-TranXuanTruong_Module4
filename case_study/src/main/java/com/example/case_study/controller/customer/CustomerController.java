@@ -21,9 +21,13 @@ public class CustomerController {
     @Autowired
     private CustomerTypeService customerTypeService;
 
+    // search và findAll chung 1 method
     @GetMapping("/list-customer")
-    public String showListCustomer(@RequestParam(name = "page", defaultValue = "0") int page, Model model){
-        model.addAttribute("customerList", customerService.findAll(PageRequest.of(page,5)));
+    public String showListCustomer(@RequestParam(name = "page", defaultValue = "0") int page,
+                                   @RequestParam(name = "name",defaultValue = "") String name,
+                                   Model model){
+        model.addAttribute("customerList", customerService.findAll(PageRequest.of(page,5), name));
+        model.addAttribute("name", name);
         return "customer/index-customer";
     }
 
@@ -104,11 +108,5 @@ public class CustomerController {
                 customerDto.getCustomerTypeId().getCustomerTypeId(),
                 customerDto.getId());
         return "redirect:/list-customer";
-    }
-
-    @GetMapping("/search-customer")
-    public String search(String nameCustomer, Model model){
-        model.addAttribute("customerList", customerService.search(nameCustomer));
-        return "customer/search-customer";
     }
 }

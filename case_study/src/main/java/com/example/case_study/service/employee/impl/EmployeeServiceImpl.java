@@ -19,8 +19,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepository employeeRepository;
 
     @Override
-    public Page<Employee> findAll(Pageable pageable) {
-        return employeeRepository.findAll(pageable);
+    public Page<Employee> findAll(Pageable pageable, String name) {
+        return employeeRepository.findAll(pageable, name);
     }
 
     @Override
@@ -59,10 +59,5 @@ public class EmployeeServiceImpl implements EmployeeService {
                        int educationDegreeId, int divisionId, String userName, int id) {
         employeeRepository.update(employeeName, employeeBirthday, employeeIdCard, employeeSalary, employeePhone,
                 employeeEmail, employeeAddress, positionId, educationDegreeId, divisionId, userName, id);
-    }
-
-    @Override
-    public List<Employee> search(String employeeName) {
-        return employeeRepository.search(employeeName);
     }
 }

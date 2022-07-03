@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface CustomerService {
-    Page<Customer> findAll (Pageable pageable);
+    Page<Customer> findAll (Pageable pageable, String name);
 
     void create (String customerCode,
                 String customerName,
@@ -33,9 +33,4 @@ public interface CustomerService {
                 int customerType,
                 int id);
 
-//    void update (Customer customer);
-
-//    Page<Customer> findByName (String name,Pageable pageable);
-
-    List<Customer> search (String name);
 }

@@ -14,8 +14,8 @@ import java.util.List;
 @Transactional
 public interface CustomerRepository extends PagingAndSortingRepository<Customer, Integer> {
 
-    @Query(value = "select c from Customer c where c.status = 0")
-    Page<Customer> findAll(Pageable pageable);
+    @Query(value = "select c from Customer c where c.status = 0 and c.customerName like %:name%")
+    Page<Customer> findAll(Pageable pageable, @Param("name") String name);
 
     @Modifying
     @Query(value = "insert into customer (customer_code,customer_name,customer_birthday,customer_gender,customer_id_card," +
@@ -62,12 +62,6 @@ public interface CustomerRepository extends PagingAndSortingRepository<Customer,
                 @Param("customerType") int customerType,
                 @Param("id") int idCustomer);
 
-//    @Query(value = "select * from customer where customer_name like %:name%", nativeQuery = true)
-//    Page<Customer> findByName(@Param("name") String name,Pageable pageable);
-
-
-    @Query(value = "select * from customer where customer_name like %:name%", nativeQuery = true)
-    List<Customer> search(@Param("name") String name);
 }
 
 

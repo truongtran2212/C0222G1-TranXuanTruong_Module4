@@ -10,21 +10,20 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 @Transactional
 public interface EmployeeRepository extends PagingAndSortingRepository<Employee, Integer> {
 
-   @Query(value = "select * from employee where status = 0", nativeQuery = true)
-    Page<Employee> findAll (Pageable pageable);
+    @Query(value = "select * from employee where status = 0 and employee_name like %:name%", nativeQuery = true)
+    Page<Employee> findAll(Pageable pageable, @Param("name") String name);
 
-   @Modifying
+
+    @Modifying
     @Query(value = "insert into employee (employee_name,employee_birthday," +
             "employee_id_card,employee_salary,employee_phone,employee_email,employee_address," +
             "position_id,education_degree_id,division_id,username) values " +
             "(:employeeName,:employeeBirthday,:employeeIdCard,:employeeSalary,:employeePhone,:employeeEmail," +
             ":employeeAddress,:positionId,:educationDegreeId,:divisionId,:userName)", nativeQuery = true)
-
     void create(@Param("employeeName") String employeeName,
                 @Param("employeeBirthday") String employeeBirthday,
                 @Param("employeeIdCard") String employeeIdCard,
@@ -36,11 +35,11 @@ public interface EmployeeRepository extends PagingAndSortingRepository<Employee,
                 @Param("educationDegreeId") int educationDegreeId,
                 @Param("divisionId") int divisionId,
                 @Param("userName") String userName
-                );
+    );
 
     @Modifying
     @Query(value = "update employee set status = 1 where employee_id = :id", nativeQuery = true)
-    void delete (@Param("id") int id);
+    void delete(@Param("id") int id);
 
     @Query(value = "select * from employee where employee_id = :id", nativeQuery = true)
     Employee findById(@Param("id") int id);
@@ -51,7 +50,6 @@ public interface EmployeeRepository extends PagingAndSortingRepository<Employee,
             "employee_email = :employeeEmail,employee_address = :employeeAddress,position_id = :positionId," +
             "education_degree_id = :educationDegreeId,division_id = :divisionId,username = :userName where employee_id = :id",
             nativeQuery = true)
-
     void update(@Param("employeeName") String employeeName,
                 @Param("employeeBirthday") String employeeBirthday,
                 @Param("employeeIdCard") String employeeIdCard,
@@ -64,7 +62,4 @@ public interface EmployeeRepository extends PagingAndSortingRepository<Employee,
                 @Param("divisionId") int divisionId,
                 @Param("userName") String userName,
                 @Param("id") int id);
-
-    @Query(value = "select * from employee where employee_name like %:name%" ,nativeQuery = true)
-    List<Employee> search(@Param("name") String employeeName);
 }

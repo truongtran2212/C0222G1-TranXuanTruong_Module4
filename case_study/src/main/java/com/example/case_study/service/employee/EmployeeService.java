@@ -10,7 +10,9 @@ import java.util.List;
 
 
 public interface EmployeeService {
-   Page<Employee> findAll (Pageable pageable);
+
+   Page<Employee> findAll (Pageable pageable, String name);
+
 
    void save (Employee employee);
 
@@ -32,6 +34,4 @@ public interface EmployeeService {
                int divisionId,
                String userName,
                int id);
-
-   List<Employee> search(String employeeName);
 }
