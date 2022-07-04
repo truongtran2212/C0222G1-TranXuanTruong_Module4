@@ -13,6 +13,7 @@ import java.util.Set;
 public class Contract {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "contract_id")
     private Integer contractId;
 
     private String contractStartDay;
@@ -28,7 +29,7 @@ public class Contract {
     private Employee employee;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id",referencedColumnName = "custonmer_id")
+    @JoinColumn(name = "customer_id",referencedColumnName = "customer_id")
     private Customer customer;
 
     @ManyToOne

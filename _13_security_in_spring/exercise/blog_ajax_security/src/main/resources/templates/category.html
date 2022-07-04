@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h3>Blog</h3>
+
+
+<div>
+    <form id="category" th:action="@{/searchCategory}">
+        <label>Danh mục</label>
+        <select name="idCategory" onchange="document.getElementById('category').submit()">
+            <option>Chon</option>
+            <option
+                    th:each="category: ${categoryList}" th:value="${category.id}" th:text="${category.typeBlog}">
+            </option>
+        </select>
+    </form>
+</div>
+</body>
+</html>

@@ -9,6 +9,7 @@ public class AttachService {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "attach_service_id")
     private Integer attachServiceId;
 
     private String attachServiceName;

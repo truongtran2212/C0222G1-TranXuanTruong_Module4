@@ -1,5 +1,6 @@
 package com.example.case_study.controller.service;
 
+import com.example.case_study.controller.service.dto.ServiceDto;
 import com.example.case_study.service.service.RentTypeService;
 import com.example.case_study.service.service.ServiceService;
 import com.example.case_study.service.service.ServiceTypeService;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -29,4 +31,15 @@ public class ServiceController {
 
        return "service/index-service";
     }
+
+    @GetMapping("/create-service/{name}")
+    public String showFormCreate(@PathVariable(name = "name") String nameService, Model model){
+        model.addAttribute("serviceTypeList", serviceTypeService.findAll());
+        model.addAttribute("rentTypeList", rentTypeService.findAll());
+        model.addAttribute("serviceDto", new ServiceDto());
+        model.addAttribute("name", nameService);
+        return "service/create-service";
+    }
+
+
 }

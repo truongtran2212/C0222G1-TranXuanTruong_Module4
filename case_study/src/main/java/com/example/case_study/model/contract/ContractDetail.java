@@ -10,6 +10,7 @@ public class ContractDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "contract_detail_id")
     private Integer contractDetailId;
 
     @ManyToOne

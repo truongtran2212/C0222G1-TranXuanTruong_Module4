@@ -30,7 +30,6 @@
 </div>
 
 
-
 <div class="container-fluid body">
     <div class="center container-fluid">
         <h1 style="text-align: center">Danh sách nhân viên</h1>
@@ -69,7 +68,14 @@
                 <td th:text="${employee.division.divisionName}"></td>
                 <td th:text="${employee.user.userName}"></td>
                 <td><a th:href="@{/{employeeId}/update-employee(employeeId=${employee.employeeId})}">update</a></td>
-                <td><a th:href="@{/{employeeId}/delete-employee(employeeId=${employee.employeeId})}">delete</a></td>
+                <!--                <td><a th:href="@{/{employeeId}/delete-employee(employeeId=${employee.employeeId})}">delete</a></td>-->
+                <td>
+                    <a href="#"
+                       th:attr="onclick = |employeeIndex(${employee.employeeId}, '${employee.employeeName}')|" data-toggle="modal"
+                       data-target="#delete">
+                        Delete
+                    </a>
+                </td>
             </tr>
             </tbody>
         </table>
@@ -93,8 +99,26 @@
         <a th:href="@{/list-employee(page = ${pageNo},name = ${name})}" th:text="${pageNo}"></a>
     </span>
     <span>
-        <a th:if="${employeeList.hasNext()}" th:href="@{/list-employee(page = ${employeeList.number +1},name = ${name})}">Next</a>
+        <a th:if="${employeeList.hasNext()}"
+           th:href="@{/list-employee(page = ${employeeList.number +1},name = ${name})}">Next</a>
     </span>
+</div>
+
+<div class="modal" id="delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title w-100 text-center" id="name"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" onclick = employeeIndex2()>
+                    <a class="text-white">Xóa</a>
+                </button>
+                <button type="button" class="btn btn-dark " data-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="modal" id="search">
@@ -128,4 +152,19 @@
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
 <script src="/bootstrap413/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    var id;
+
+    function employeeIndex(index, name) {
+        id = index;
+        document.getElementById("name").innerHTML = "Bạn có muốn xóa nhân viên có tên \n" + name;
+    };
+
+    function employeeIndex2() {
+        let link = "/delete-employee/" + id;
+        window.location.href = link;
+    };
+</script>
+
 </html>

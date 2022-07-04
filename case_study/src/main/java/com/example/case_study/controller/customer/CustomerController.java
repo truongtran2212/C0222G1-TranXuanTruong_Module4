@@ -24,15 +24,15 @@ public class CustomerController {
     // search và findAll chung 1 method
     @GetMapping("/list-customer")
     public String showListCustomer(@RequestParam(name = "page", defaultValue = "0") int page,
-                                   @RequestParam(name = "name",defaultValue = "") String name,
-                                   Model model){
-        model.addAttribute("customerList", customerService.findAll(PageRequest.of(page,5), name));
+                                   @RequestParam(name = "name", defaultValue = "") String name,
+                                   Model model) {
+        model.addAttribute("customerList", customerService.findAll(PageRequest.of(page, 5), name));
         model.addAttribute("name", name);
         return "customer/index-customer";
     }
 
     @GetMapping("/create-customer")
-    public String showFormCreate(Model model){
+    public String showFormCreate(Model model) {
         model.addAttribute("customerTypeList", customerTypeService.findAll());
         model.addAttribute("customerDto", new CustomerDto());
         return "customer/create-customer";
@@ -40,35 +40,31 @@ public class CustomerController {
 
     @PostMapping("/create-customer")
     public String create(@Valid @ModelAttribute(name = "customerDto") CustomerDto customerDto,
-                         BindingResult bindingResult, Model model){
+                         BindingResult bindingResult, Model model) {
 
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             model.addAttribute("customerTypeList", customerTypeService.findAll());
             return "customer/create-customer";
         }
 
-        customerService.create(customerDto.getCustomerCode(),customerDto.getCustomerName(),
-                customerDto.getCustomerBirthday(),customerDto.getCustomerGender(),
-                customerDto.getCustomerIdCard(), customerDto.getCustomerPhone(),customerDto.getCustomerEmail(),
+        customerService.create(customerDto.getCustomerCode(), customerDto.getCustomerName(),
+                customerDto.getCustomerBirthday(), customerDto.getCustomerGender(),
+                customerDto.getCustomerIdCard(), customerDto.getCustomerPhone(), customerDto.getCustomerEmail(),
                 customerDto.getCustomerAddress(), customerDto.getCustomerTypeId().getCustomerTypeId());
         return "redirect:/list-customer";
     }
 
-    @GetMapping("/{id}/delete-customer")
-    public String showFormDelete(@PathVariable int id, Model model){
-        model.addAttribute("customerTypeList", customerTypeService.findAll());
-        model.addAttribute("customer", customerService.findById(id));
-        return "customer/delete-customer";
-    }
-
-    @PostMapping("delete-customer")
-    public String delete (Customer customer){
-        customerService.delete(customer.getCustomerId());
-        return "redirect:/list-customer";
+    @GetMapping("/delete-customer/{id}")
+    public String showFormDelete(@RequestParam(name = "page", defaultValue = "0") int page,
+                                 @RequestParam(name = "name", defaultValue = "") String name,
+                                 @PathVariable int id, Model model) {
+        customerService.delete(id);
+        model.addAttribute("customerList", customerService.findAll(PageRequest.of(page, 5), name));
+        return "customer/index-customer";
     }
 
     @GetMapping("/{id}/update-customer")
-    public String showFormUpdate(@PathVariable int id, Model model){
+    public String showFormUpdate(@PathVariable int id, Model model) {
         model.addAttribute("customerTypeList", customerTypeService.findAll());
 
         Customer customer = customerService.findById(id);
@@ -89,10 +85,10 @@ public class CustomerController {
     }
 
     @PostMapping("update-customer")
-    public String update (@Valid @ModelAttribute("customerDto") CustomerDto customerDto,
-                          BindingResult bindingResult, Model model){
+    public String update(@Valid @ModelAttribute("customerDto") CustomerDto customerDto,
+                         BindingResult bindingResult, Model model) {
 
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             model.addAttribute("customerTypeList", customerTypeService.findAll());
             return "customer/update-customer";
         }

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+    let size = 1;
+
+    function getBlog(blog) {
+        return `<tr>
+                    <td >${blog.id}</td>
+                    <td >${blog.title}</td>
+                    <td >${blog.createDay}</td>
+                    <td >${blog.category.typeBlog}</td>
+                 </tr>`
+
+    }
+
+    function search() {
+        let name = $('#name').val()
+        $.ajax({
+            headers: {
+                'Accept': "application/json",
+                'Content-Type': "application/json"
+            },
+            type: "GET",
+            url: `/blog/search/${name}`,
+
+            success: function (data) {
+                let content = '<tr>' +
+                    '<td>id</td>' +
+                    '<td>title</td>' +
+                    '<td>createDay</td>' +
+                    '<td>typeBlog</td>' +
+                    '</tr>'
+                debugger
+                for (let i = 0; i < data.length; i++) {
+                    content += getBlog(data[i]);
+                }
+                document.getElementById('blog').innerHTML = content;
+            }
+        })
+        event.preventDefault()
+
+    }
+
+    function upload() {
+        size += 1
+        $.ajax({
+            headers: {
+                'Accept': "application/json",
+                'Content-Type': "application/json"
+            },
+            type: "GET",
+            url: `/blog/upload/${size}`,
+            success: function (data) {
+                let content = '<tr>' +
+                    '<td>id</td>' +
+                    '<td>title</td>' +
+                    '<td>createDay</td>' +
+                    '<td>typeBlog</td>' +
+                    '</tr>'
+                debugger
+                for (let i = 0; i < data.length; i++) {
+                    content += getBlog(data[i]);
+                }
+                document.getElementById('blog').innerHTML = content;
+            }
+        })
+        event.preventDefault()
+    }
+
+</script>
+<body>
+<h3>Blog</h3>
+<p>
+    <a th:href="@{/create}">
+        <button>
+            Add new Blog
+        </button>
+    </a>
+</p>
+
+<p>
+    <a th:href="@{/}">
+        <button>
+            Back Menu
+        </button>
+    </a>
+</p>
+
+<div>
+    <form>
+        <label>Tìm kiếm theo tiêu đề</label>
+        <input type="text" id="name" name="title">
+        <input type="submit" value="Search" onclick="search()">
+    </form>
+</div>
+
+<table id="blog">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Id</th>
+        <th>Tiêu đề</th>
+        <th>Ngày viết</th>
+        <th>Danh mục</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Detail</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="blog,varStat : ${blogList}">
+        <td th:text="${varStat.count}"></td>
+        <td th:text="${blog.id}"></td>
+        <td th:text="${blog.title}"></td>
+        <td th:text="${blog.createDay}"></td>
+        <td th:text="${blog.category.typeBlog}"></td>
+        <td><a th:href="@{/{id}/update(id=${blog.id})}">Update</a></td>
+        <td><a th:href="@{/{id}/delete(id=${blog.id})}">Delete</a></td>
+        <td><a th:href="@{/{id}/detail(id=${blog.id})}">Detail</a></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <span>
+        <a th:if="${blogList.hasPrevious()}" th:href="@{/list(page = ${blogList.number - 1})}">Previous</a>
+    </span>
+    <span th:each="pageNo: ${#numbers.sequence(0,blogList.totalPages - 1)}">
+        <a th:href="@{/list(page = ${pageNo})}" th:text="${pageNo}"></a>
+    </span>
+    <span>
+        <a th:if="${blogList.hasNext()}" th:href="@{/list(page = ${blogList.number +1})}">Next</a>
+    </span>
+</div>
+<div>
+    <input type="submit" value="Upload" onclick="upload()">
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+
+</html>

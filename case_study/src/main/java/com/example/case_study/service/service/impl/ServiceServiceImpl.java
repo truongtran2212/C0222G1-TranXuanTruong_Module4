@@ -17,4 +17,9 @@ public class ServiceServiceImpl implements ServiceService {
     public Page<com.example.case_study.model.service.Service> findAll(Pageable pageable) {
         return serviceRepository.findAll(pageable);
     }
+
+    @Override
+    public void create(com.example.case_study.model.service.Service service) {
+        serviceRepository.save(service);
+    }
 }

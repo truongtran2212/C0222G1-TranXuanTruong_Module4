@@ -6,4 +6,6 @@ import org.springframework.data.domain.Pageable;
 
 public interface ServiceService {
     Page<Service> findAll (Pageable pageable);
+
+    void create (Service service);
 }

@@ -71,10 +71,11 @@
         </table>
         <div>
             <div class="w-100  footer" style="color: #b21f2d; font-size: 2rem">
-                <button><a th:href="@{/create-service}"><i class="fa-solid fa-plus"></i></a></button>
+<!--                <button><a th:href="@{/create-service}" data-toggle="modal"-->
+<!--                           data-target="#create"><i class="fa-solid fa-plus"></i></a></button>-->
 
                 <button><a href="#" data-toggle="modal"
-                           data-target="#search"><i class="fa-solid fa-magnifying-glass"></i></a></button>
+                           data-target="#create"><i class="fa-solid fa-plus"></i></a></button>
             </div>
         </div>
     </div>
@@ -93,25 +94,44 @@
     </span>
 </div>
 
-<div class="modal" id="search">
+<!--<div class="modal" id="delete">-->
+<!--    <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h4 class="modal-title w-100 text-center" id="name"></h4>-->
+<!--                <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-dark" onclick = employeeIndex2()>-->
+<!--                    <a class="text-white">Xóa</a>-->
+<!--                </button>-->
+<!--                <button type="button" class="btn btn-dark " data-dismiss="modal">Hủy</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div class="modal" id="create">
     <div class="modal-dialog">
-        <form th:action="@{/list-service}" method="get">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title w-100 text-center">Chọn thuộc tính bạn muốn tìm kiếm</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-
-                <div class="modal-body footer border- 0">
-                    <input type="text" name="name" placeholder="Tên nhân viên" class="form-control">
-                </div>
                 <div class="modal-footer border-0">
-                    <button type="submit" class="btn btn-dark">
-                        Tìm kiếm
-                    </button>
+                    <a type="submit" class="btn btn-dark" style="margin-right: 50px; font-size: 1.5rem"  href="/create-service/Villa">
+                        Villa
+                    </a>
+
+                    <a type="submit" class="btn btn-dark" style="margin-right: 50px; font-size: 1.5rem"   href="/create-service/House">
+                        House
+                    </a>
+
+                    <a type="submit" class="btn btn-dark" style="margin-right: 50px; font-size: 1.5rem" href="/create-service/Room">
+                        Room
+                    </a>
                 </div>
             </div>
-        </form>
     </div>
 </div>
 
@@ -124,4 +144,18 @@
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
 <script src="/bootstrap413/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    var nameService;
+
+    // function employeeIndex(index, name) {
+    //     id = index;
+    //     document.getElementById("name").innerHTML = "Bạn có muốn xóa nhân viên có tên \n" + name;
+    // };
+
+    function employeeIndex2() {
+        let link = "/create-service/" + nameService;
+        window.location.href = link;
+    };
+</script>
 </html>

@@ -69,16 +69,14 @@ public class EmployeeController {
         return "redirect:/list-employee";
     }
 
-    @GetMapping("/{id}/delete-employee")
-    public String showEmployeeDelete(@PathVariable(name = "id") int id, Model model) {
-        model.addAttribute("employee", employeeService.findById(id));
-        return "employee/delete-employee";
-    }
-
-    @PostMapping("/delete-employee")
-    public String delete(Employee employee) {
-        employeeService.delete(employee.getEmployeeId());
-        return "redirect:/list-employee";
+    @GetMapping("/delete-employee/{id}")
+    public String showEmployeeDelete(@RequestParam(name = "page", defaultValue = "0") int page,
+                                     @PathVariable(name = "id") int id,
+                                     @RequestParam(name = "name", defaultValue = "") String name,
+                                     Model model) {
+        employeeService.delete(id);
+        model.addAttribute("employeeList", employeeService.findAll(PageRequest.of(page, 5), name));
+        return "employee/index-employee";
     }
 
     @GetMapping("/{id}/update-employee")
