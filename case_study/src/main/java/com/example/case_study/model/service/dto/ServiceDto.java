@@ -1,14 +1,7 @@
-package com.example.case_study.controller.service.dto;
+package com.example.case_study.model.service.dto;
 
-import com.example.case_study.model.contract.Contract;
 import com.example.case_study.model.service.RentType;
 import com.example.case_study.model.service.ServiceType;
-
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import java.util.Set;
 
 public class ServiceDto {
     private Integer serviceId;
@@ -17,40 +10,76 @@ public class ServiceDto {
     private Integer serviceArea;
     private Double serviceCost;
     private Integer serviceMaxPeople;
+    private String standardRoom;
     private String descriptionOtherConvenience;
     private Double poolArea;
     private Integer numberOfFloors;
     private RentType rentType;
     private ServiceType serviceType;
-    private Set<Contract> contract;
 
     public ServiceDto() {
     }
 
-    public ServiceDto(Integer serviceId,
-                      String serviceCode,
+    public ServiceDto(String serviceCode,
                       String serviceName,
                       Integer serviceArea,
                       Double serviceCost,
                       Integer serviceMaxPeople,
+                      String standardRoom,
                       String descriptionOtherConvenience,
                       Double poolArea,
                       Integer numberOfFloors,
                       RentType rentType,
-                      ServiceType serviceType,
-                      Set<Contract> contract) {
-        this.serviceId = serviceId;
+                      ServiceType serviceType) {
         this.serviceCode = serviceCode;
         this.serviceName = serviceName;
         this.serviceArea = serviceArea;
         this.serviceCost = serviceCost;
         this.serviceMaxPeople = serviceMaxPeople;
+        this.standardRoom = standardRoom;
         this.descriptionOtherConvenience = descriptionOtherConvenience;
         this.poolArea = poolArea;
         this.numberOfFloors = numberOfFloors;
         this.rentType = rentType;
         this.serviceType = serviceType;
-        this.contract = contract;
+    }
+
+    public ServiceDto(String serviceCode,
+                      String serviceName,
+                      Integer serviceArea,
+                      Double serviceCost,
+                      Integer serviceMaxPeople,
+                      String standardRoom,
+                      String descriptionOtherConvenience,
+                      Integer numberOfFloors,
+                      RentType rentType,
+                      ServiceType serviceType) {
+        this.serviceCode = serviceCode;
+        this.serviceName = serviceName;
+        this.serviceArea = serviceArea;
+        this.serviceCost = serviceCost;
+        this.serviceMaxPeople = serviceMaxPeople;
+        this.standardRoom = standardRoom;
+        this.descriptionOtherConvenience = descriptionOtherConvenience;
+        this.numberOfFloors = numberOfFloors;
+        this.rentType = rentType;
+        this.serviceType = serviceType;
+    }
+
+    public ServiceDto(String serviceCode,
+                      String serviceName,
+                      Integer serviceArea,
+                      Double serviceCost,
+                      Integer serviceMaxPeople,
+                      RentType rentType,
+                      ServiceType serviceType) {
+        this.serviceCode = serviceCode;
+        this.serviceName = serviceName;
+        this.serviceArea = serviceArea;
+        this.serviceCost = serviceCost;
+        this.serviceMaxPeople = serviceMaxPeople;
+        this.rentType = rentType;
+        this.serviceType = serviceType;
     }
 
     public Integer getServiceId() {
@@ -141,11 +170,11 @@ public class ServiceDto {
         this.serviceType = serviceType;
     }
 
-    public Set<Contract> getContract() {
-        return contract;
+    public String getStandardRoom() {
+        return standardRoom;
     }
 
-    public void setContract(Set<Contract> contract) {
-        this.contract = contract;
+    public void setStandardRoom(String standardRoom) {
+        this.standardRoom = standardRoom;
     }
 }

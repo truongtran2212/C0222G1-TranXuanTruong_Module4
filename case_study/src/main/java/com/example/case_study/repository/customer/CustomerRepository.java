@@ -1,6 +1,7 @@
 package com.example.case_study.repository.customer;
 
 import com.example.case_study.model.customer.Customer;
+import com.example.case_study.model.customer.dto.CustomerDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
@@ -9,7 +10,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 @Transactional
 public interface CustomerRepository extends PagingAndSortingRepository<Customer, Integer> {
@@ -24,7 +24,7 @@ public interface CustomerRepository extends PagingAndSortingRepository<Customer,
             ":customerPhone,:customerEmail,:customerAddress,:customerType)", nativeQuery = true)
 
     // Dùng câu truy vấn động bị lỗi
-    void create(@Param("customerCode") String customerCode,
+    CustomerDto create(@Param("customerCode") String customerCode,
                 @Param("customerName") String customerName,
                 @Param("customerBirthday") String customerBirthday,
                 @Param("customerGender") int customerGender,

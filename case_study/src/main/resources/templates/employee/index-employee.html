@@ -30,10 +30,10 @@
 </div>
 
 
-<div class="container-fluid body">
+<div class="container-fluid body" >
     <div class="center container-fluid">
         <h1 style="text-align: center">Danh sách nhân viên</h1>
-        <table border="1" style="border-collapse:  collapse; width: 100%">
+        <table border="1" style="border-collapse:  collapse; width: 100%" id="employeeList">
             <thead>
             <tr>
                 <th>Id Employee</th>
@@ -81,7 +81,8 @@
         </table>
         <div>
             <div class="w-100  footer" style="color: #b21f2d; font-size: 2rem">
-                <button><a th:href="@{/create-employee}"><i class="fa-solid fa-plus"></i></a></button>
+                <button><a href="#" data-toggle="modal"
+                          data-target="#form-create"><i class="fa-solid fa-plus"></i></a></button>
 
                 <button><a href="#" data-toggle="modal"
                            data-target="#search"><i class="fa-solid fa-magnifying-glass"></i></a></button>
@@ -117,6 +118,107 @@
                 </button>
                 <button type="button" class="btn btn-dark " data-dismiss="modal">Hủy</button>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="form-create">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id ="create" method="post" class="w-100 bg-white">
+                <div class="p-3">
+                    <h4 style="text-align: center">Thêm nhân viên mới</h4>
+
+                    <div class="form-group">
+                        <label>Tên nhân viên</label>
+                        <input class="form-control" id="employeeName"  type="text">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ngày sinh</label>
+                        <input class="form-control" id="employeeBirthday" type="date">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Căn cước công dân</label>
+                        <input class="form-control" id="employeeIdCard" type="text">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tiền lương</label>
+                        <input class="form-control" id="employeeSalary" type="text">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Số điện thoại</label>
+                        <input class="form-control" id="employeePhone" type="text">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input class="form-control" id="employeeEmail" type="text">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Địa chỉ</label>
+                        <input class="form-control" id="employeeAddress" type="text" >
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Vị trí</label>
+                        <select class="form-group w-100" id="positionId">
+                            <option
+                                    th:each="position: ${positionList}"
+                                    th:value="${position.positionId}"
+                                    th:text="${position.positionName}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Học vấn</label>
+                        <select class="form-group w-100" id="educationDegreeId">
+                            <option
+                                    th:each="educationDegree: ${educationDegreeList}"
+                                    th:value="${educationDegree.educationDegreeId}"
+                                    th:text="${educationDegree.educationDegreeName}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Bộ phận</label>
+                        <select class="form-group w-100" id="divisionId" >
+                            <option
+                                    th:each="division: ${divisionList}"
+                                    th:value="${division.divisionId}"
+                                    th:text="${division.divisionName}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>tên tài khoản</label>
+                        <input class="form-control" type="text" id="user.userName">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Mật khẩu</label>
+                        <input class="form-control" type="password" id="user.password">
+
+                    </div>
+
+                    <td><input type="submit" value="Add" th:attr="onclick =|createEmployee()|"></td>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -165,6 +267,99 @@
         let link = "/delete-employee/" + id;
         window.location.href = link;
     };
+    
+    function createEmployee() {
+        let employeeName = $('#employeeName').val();
+        let employeeBirthday = $('#employeeBirthday').val();
+        let employeeIdCard = $('#employeeIdCard').val();
+        let employeeSalary = $('#employeeSalary').val();
+        let employeePhone = $('#employeePhone').val();
+        let employeeEmail = $('#employeeEmail').val();
+        let employeeAddress = $('#employeeAddress').val();
+        let positionId = $('#positionId').val();
+        let educationDegreeId = $('#educationDegreeId').val();
+        let divisionId = $('#divisionId').val();
+        let user = $('#user.userName').val();
+        let password = $('#user.password').val();
+
+        let newEmployee = {
+            employeeName: employeeName,
+            employeeBirthday: employeeBirthday,
+            employeeIdCard: employeeIdCard,
+            employeeSalary: employeeSalary,
+            employeePhone: employeePhone,
+            employeeEmail: employeeEmail,
+            employeeAddress: employeeAddress,
+            positionId: positionId,
+            educationDegreeId: educationDegreeId,
+            divisionId: divisionId,
+            user: user,
+            password: password,
+        }
+
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "POST",
+            data: JSON.stringify(newEmployee),
+            //tên API
+            url: "/create-employee",
+            //xử lý khi thành công
+            success: successHandler
+
+        });
+        //chặn sự kiện mặc định của thẻ
+        event.preventDefault();
+    }
+
+    function successHandler() {
+        $.ajax({
+            type: "GET",
+            url: "/list-employee-ajax",
+            success: function (data) {
+                let content = '    <tr>\n' +
+                    '        <td>employee Name</td>\n' +
+                    '        <td>employee Birthday</td>\n' +
+                    '        <td>employee Id Card</td>\n' +
+                    '        <td>employee Salary</td>\n' +
+                    '        <td>employee Phone</td>\n' +
+                    '        <td>employee Email</td>\n' +
+                    '        <td>employee Address</td>\n' +
+                    '        <td>position Id</td>\n' +
+                    '        <td>education Degree Id</td>\n' +
+                    '        <td>division Id</td>\n' +
+                    '        <td>user</td>\n' +
+                    '        <td>Delete</td>\n' +
+                    '        <td>Update</td>\n' +
+                    '    </tr>';
+                for (let i = 0; i < data.length; i++) {
+                    content += getEmployee(data[i]);
+                }
+                document.getElementById('employeeList').innerHTML = content;
+            }
+        })
+    }
+
+    function getEmployee(employee) {
+        return `<tr>
+                    <td >${employee.employeeName}</td>
+                    <td >${employee.employeeBirthday}</td>
+                    <td >${employee.employeeIdCard}</td>
+                    <td >${employee.employeeSalary}</td>
+                    <td >${employee.employeePhone}</td>
+                    <td >${employee.employeeEmail}</td>
+                    <td >${employee.employeeAddress}</td>
+                    <td >${employee.positionId}</td>
+                    <td >${employee.educationDegreeId}</td>
+                    <td >${employee.divisionId}</td>
+                    <td >${employee.user.userName}</td>` +
+            `<td><a href="${employee.id}">Delete</a></td>
+                 <td><a href="${employee.id}">Update</a></td>
+                 </tr>`;
+    }
+
 </script>
 
 </html>

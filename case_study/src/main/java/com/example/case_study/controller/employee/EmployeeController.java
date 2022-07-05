@@ -33,41 +33,44 @@ public class EmployeeController {
 
     // search và findAll chung 1 method
     @GetMapping("/list-employee")
-    public String showListCustomer(@RequestParam(name = "page", defaultValue = "0") int page,
+    public String showListEmployee(@RequestParam(name = "page", defaultValue = "0") int page,
                                    @RequestParam(name = "name", defaultValue = "") String name,
                                    Model model) {
+        model.addAttribute("divisionList", divisionService.findAll());
+        model.addAttribute("educationDegreeList", educationDegreeService.findAll());
+        model.addAttribute("positionList", positionService.findAll());
         model.addAttribute("employeeList", employeeService.findAll(PageRequest.of(page, 5), name));
         model.addAttribute("name", name);
         return "employee/index-employee";
     }
+//
+//    @GetMapping("/create-employee")
+//    public String showCreateEmployee(Model model) {
+//        model.addAttribute("divisionList", divisionService.findAll());
+//        model.addAttribute("educationDegreeList", educationDegreeService.findAll());
+//        model.addAttribute("positionList", positionService.findAll());
+//        model.addAttribute("user", new User());
+//        model.addAttribute("employeeDto", new EmployeeDto());
+//        return "employee/create-employee";
+//    }
 
-    @GetMapping("/create-employee")
-    public String showCreateEmployee(Model model) {
-        model.addAttribute("divisionList", divisionService.findAll());
-        model.addAttribute("educationDegreeList", educationDegreeService.findAll());
-        model.addAttribute("positionList", positionService.findAll());
-        model.addAttribute("user", new User());
-        model.addAttribute("employeeDto", new EmployeeDto());
-        return "employee/create-employee";
-    }
-
-    @PostMapping("/create-employee")
-    public String create(@Valid @ModelAttribute(name = "employeeDto") EmployeeDto employeeDto,
-                         BindingResult bindingResult, Model model) {
-
-        if (bindingResult.hasErrors()) {
-            model.addAttribute("divisionList", divisionService.findAll());
-            model.addAttribute("educationDegreeList", educationDegreeService.findAll());
-            model.addAttribute("positionList", positionService.findAll());
-
-            return "employee/create-employee";
-        }
-
-        userService.create(employeeDto.getUser());
-        employeeService.create(employeeDto);
-
-        return "redirect:/list-employee";
-    }
+//    @PostMapping("/create-employee")
+//    public String create(@Valid @ModelAttribute(name = "employeeDto") EmployeeDto employeeDto,
+//                         BindingResult bindingResult, Model model) {
+//
+//        if (bindingResult.hasErrors()) {
+//            model.addAttribute("divisionList", divisionService.findAll());
+//            model.addAttribute("educationDegreeList", educationDegreeService.findAll());
+//            model.addAttribute("positionList", positionService.findAll());
+//
+//            return "employee/create-employee";
+//        }
+//
+//        userService.create(employeeDto.getUser());
+//        employeeService.create(employeeDto);
+//
+//        return "redirect:/list-employee";
+//    }
 
     @GetMapping("/delete-employee/{id}")
     public String showEmployeeDelete(@RequestParam(name = "page", defaultValue = "0") int page,

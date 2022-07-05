@@ -24,72 +24,216 @@
             <a th:href="@{/list-service}" style="font-size: 2rem">Trở lại trang chính</a>
             <div class="p-3">
                 <h4 style="text-align: center">Thêm dịch vụ</h4>
-
                 <div class="form-group">
-                    <label>Mã dịch vụ</label>
-                    <input class="form-control" type="text" th:field="*{serviceCode}">
+
+                    <!--                    Villa-->
+
+                    <div th:if="${name == 'Villa'}">
+                        <div class="form-group">
+                            <label>Loại dịch vụ</label>
+                            <select class="form-group w-100" th:field="*{serviceType}">
+                                <option
+                                        th:each="item: ${serviceTypeList}"
+                                        th:value="${item.serviceTypeId}"
+                                        th:if="${item.serviceTypeId == 1}"
+                                        th:text="${item.serviceTypeName}">
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Mã dịch vụ</label>
+                            <input class="form-control" type="text" th:field="*{serviceCode}">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Tên dịch vụ</label>
+                            <input class="form-control" type="text" th:field="*{serviceName}">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Diện tích sử dụng</label>
+                            <input class="form-control" type="text" th:field="*{serviceArea}">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Giá</label>
+                            <input class="form-control" type="text" th:field="*{serviceCost}">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Số người tối đa</label>
+                            <input class="form-control" type="text" th:field="*{serviceMaxPeople}">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Tiêu chuẩn phòng</label>
+                            <input class="form-control" type="text" th:field="*{standardRoom}">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Mô tả tiện nghi khác</label>
+                            <input class="form-control" type="text" th:field="*{descriptionOtherConvenience}">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Diện tích hồ bơi</label>
+                            <input class="form-control" type="text" th:field="*{poolArea}">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Số tầng</label>
+                            <input class="form-control" type="text" th:field="*{numberOfFloors}">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Kiểu thuê</label>
+                            <select class="form-group w-100" th:readonly="true" th:field="*{rentType}">
+                                <option
+                                        th:each="item: ${rentTypeList}"
+                                        th:value="${item.rentTypeId}"
+                                        th:text="${item.rentTypeName}">
+                                </option>
+                            </select>
+                        </div>
+                        <button class="btn btn-dark" type="submit">Add new</button>
+                    </div>
+
+                    <!--                    House-->
+
+                    <div th:if="${name == 'House'}">
+                        <div class="form-group">
+                            <label>Loại dịch vụ</label>
+                            <select class="form-group w-100" th:field="*{serviceType}">
+                                <option
+                                        th:each="item: ${serviceTypeList}"
+                                        th:value="${item.serviceTypeId}"
+                                        th:if="${item.serviceTypeId == 2}"
+                                        th:text="${item.serviceTypeName}">
+                                </option>
+                            </select>
+                        </div>
+
+                        <label>Mã dịch vụ</label>
+                        <input class="form-control" type="text" th:field="*{serviceCode}">
+
+                        <div class="form-group">
+                            <label>Tên dịch vụ</label>
+                            <input class="form-control" type="text" th:field="*{serviceName}">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Diện tích sử dụng</label>
+                            <input class="form-control" type="text" th:field="*{serviceArea}">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Giá</label>
+                            <input class="form-control" type="text" th:field="*{serviceCost}">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Số người tối đa</label>
+                            <input class="form-control" type="text" th:field="*{serviceMaxPeople}">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Tiêu chuẩn phòng</label>
+                            <input class="form-control" type="text" th:field="*{standardRoom}">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Mô tả tiện nghi khác</label>
+                            <input class="form-control" type="text" th:field="*{descriptionOtherConvenience}">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Số tầng</label>
+                            <input class="form-control" type="text" th:field="*{numberOfFloors}">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Kiểu thuê</label>
+                            <select class="form-group w-100" th:field="*{rentType}">
+                                <option
+                                        th:each="rentType: ${rentTypeList}"
+                                        th:value="${rentType.rentTypeId}"
+                                        th:text="${rentType.rentTypeName}">
+                                </option>
+                            </select>
+                        </div>
+                        <button class="btn btn-dark" type="submit">Add new</button>
+                    </div>
+
+                    <!--                     Room-->
+                    <div th:if="${name == 'Room'}">
+                        <div class="form-group">
+                            <label>Loại dịch vụ</label>
+                            <select class="form-group w-100" th:field="*{serviceType}">
+                                <option
+                                        th:each="item: ${serviceTypeList}"
+                                        th:value="${item.serviceTypeId}"
+                                        th:if="${item.serviceTypeId == 3}"
+                                        th:text="${item.serviceTypeName}">
+                                </option>
+                            </select>
+                        </div>
+
+                        <label>Mã dịch vụ</label>
+                        <input class="form-control" type="text" th:field="*{serviceCode}">
+
+                        <div class="form-group">
+                            <label>Tên dịch vụ</label>
+                            <input class="form-control" type="text" th:field="*{serviceName}">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Diện tích sử dụng</label>
+                            <input class="form-control" type="text" th:field="*{serviceArea}">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Giá</label>
+                            <input class="form-control" type="text" th:field="*{serviceCost}">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Số người tối đa</label>
+                            <input class="form-control" type="text" th:field="*{serviceMaxPeople}">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Kiểu thuê</label>
+                            <select class="form-group w-100" th:field="*{rentType}">
+                                <option
+                                        th:each="rentType: ${rentTypeList}"
+                                        th:value="${rentType.rentTypeId}"
+                                        th:text="${rentType.rentTypeName}">
+                                </option>
+                            </select>
+                        </div>
+                        <button class="btn btn-dark" type="submit">Add new</button>
+                    </div>
 
                 </div>
-
-                <div class="form-group">
-                    <label>Tên dịch vụ</label>
-                    <input class="form-control" type="date" th:field="*{serviceName}">
-
-                </div>
-
-                <div class="form-group">
-                    <label>Diện tích sử dụng</label>
-                    <input class="form-control" type="text" th:field="*{serviceArea}">
-
-                </div>
-
-                <div class="form-group">
-                    <label>Giá</label>
-                    <input class="form-control" type="text" th:field="*{serviceCost}">
-
-                </div>
-
-                <div class="form-group">
-                    <label>Số người tối đa</label>
-                    <input class="form-control" type="text" th:field="*{serviceMaxPeople}">
-
-                </div>
-
-                <div class="form-group">
-                    <label>Dịch vụ đi kèm</label>
-                    <input class="form-control" type="text" th:field="*{descriptionOtherConvenience}">
-
-                </div>
-
-                <div class="form-group">
-                    <label>Diện tích hồ bơi</label>
-                    <input class="form-control" type="text" th:field="*{poolArea}">
-
-                </div>
-
-                <div class="form-group">
-                    <label>Kiểu thuê</label>
-                    <select class="form-group w-100" th:field="*{rentType}">
-                        <option
-                                th:each="position: ${positionList}"
-                                th:value="${position.positionId}"
-                                th:text="${position.positionName}">
-                        </option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Loại dịch vụ</label>
-                    <select class="form-group w-100" th:field="*{serviceType}">
-                        <option
-                                th:each="division: ${divisionList}"
-                                th:value="${division.divisionId}"
-                                th:text="${division.divisionName}">
-                        </option>
-                    </select>
-                </div>
-
-                <button class="btn btn-dark" type="submit">Add new</button>
             </div>
         </form>
     </div>

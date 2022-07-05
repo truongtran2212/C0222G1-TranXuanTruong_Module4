@@ -2,6 +2,7 @@ package com.example.case_study.repository.employee;
 
 
 import com.example.case_study.model.employee.Employee;
+import com.example.case_study.model.employee.dto.EmployeeDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
@@ -24,17 +25,17 @@ public interface EmployeeRepository extends PagingAndSortingRepository<Employee,
             "position_id,education_degree_id,division_id,username) values " +
             "(:employeeName,:employeeBirthday,:employeeIdCard,:employeeSalary,:employeePhone,:employeeEmail," +
             ":employeeAddress,:positionId,:educationDegreeId,:divisionId,:userName)", nativeQuery = true)
-    void create(@Param("employeeName") String employeeName,
-                @Param("employeeBirthday") String employeeBirthday,
-                @Param("employeeIdCard") String employeeIdCard,
-                @Param("employeeSalary") double employeeSalary,
-                @Param("employeePhone") String employeePhone,
-                @Param("employeeEmail") String employeeEmail,
-                @Param("employeeAddress") String employeeAddress,
-                @Param("positionId") int positionId,
-                @Param("educationDegreeId") int educationDegreeId,
-                @Param("divisionId") int divisionId,
-                @Param("userName") String userName
+    EmployeeDto create(@Param("employeeName") String employeeName,
+                       @Param("employeeBirthday") String employeeBirthday,
+                       @Param("employeeIdCard") String employeeIdCard,
+                       @Param("employeeSalary") double employeeSalary,
+                       @Param("employeePhone") String employeePhone,
+                       @Param("employeeEmail") String employeeEmail,
+                       @Param("employeeAddress") String employeeAddress,
+                       @Param("positionId") int positionId,
+                       @Param("educationDegreeId") int educationDegreeId,
+                       @Param("divisionId") int divisionId,
+                       @Param("userName") String userName
     );
 
     @Modifying

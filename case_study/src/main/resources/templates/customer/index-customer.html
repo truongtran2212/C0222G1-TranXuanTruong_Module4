@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/bootstrap-4.0.0-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/datatables/css/dataTables.bootstrap4.min.css">
     <script src="https://kit.fontawesome.com/dbc3483aca.js" crossorigin="anonymous"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <style>
         .center {
             justify-content: center;
@@ -80,7 +81,8 @@
                     <a href="#"
                        th:attr="onclick = |customerIndex(${customer.customerId}, '${customer.customerName}')|"
                        data-toggle="modal"
-                       data-target="#delete">
+                       data-target="#delete"
+                    class="delete">
                         Delete
                     </a>
                 </td>
@@ -173,6 +175,10 @@
         let link = "/delete-customer/" + id;
         window.location.href = link;
     };
+    
+    function f() {
+
+    }
 </script>
 
 </html>

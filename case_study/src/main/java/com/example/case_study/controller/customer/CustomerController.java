@@ -47,10 +47,7 @@ public class CustomerController {
             return "customer/create-customer";
         }
 
-        customerService.create(customerDto.getCustomerCode(), customerDto.getCustomerName(),
-                customerDto.getCustomerBirthday(), customerDto.getCustomerGender(),
-                customerDto.getCustomerIdCard(), customerDto.getCustomerPhone(), customerDto.getCustomerEmail(),
-                customerDto.getCustomerAddress(), customerDto.getCustomerTypeId().getCustomerTypeId());
+        customerService.create(customerDto);
         return "redirect:/list-customer";
     }
 

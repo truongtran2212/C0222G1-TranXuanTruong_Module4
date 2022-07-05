@@ -30,7 +30,6 @@
 </div>
 
 
-
 <div class="container-fluid body">
     <div class="center container-fluid">
         <h1 style="text-align: center">Danh sách dịch vụ</h1>
@@ -43,8 +42,10 @@
                 <th>Usable Area</th>
                 <th>Cost</th>
                 <th>Service Max People</th>
+                <th>Standard Room</th>
                 <th>description Other Convenience</th>
                 <th>Pool Area</th>
+                <th>Number of floors</th>
                 <th>Rent Type</th>
                 <th>Service Type</th>
                 <th>Update</th>
@@ -57,12 +58,13 @@
                 <td th:text="${service.serviceCode}"></td>
                 <td th:text="${service.serviceName}"></td>
                 <td th:text="${service.serviceArea}"></td>
-
                 <td th:text="${service.serviceCost}"></td>
                 <td th:text="${service.serviceMaxPeople}"></td>
+                <td th:text="${service.standardRoom}"></td>
                 <td th:text="${service.descriptionOtherConvenience}"></td>
                 <td th:text="${service.poolArea}"></td>
                 <td th:text="${service.numberOfFloors}"></td>
+                <td th:text="${service.rentType.rentTypeName}"></td>
                 <td th:text="${service.serviceType.serviceTypeName}"></td>
                 <td><a th:href="@{/{serviceId}/update-service(serviceId=${service.serviceId})}">update</a></td>
                 <td><a th:href="@{/{serviceId}/delete-service(serviceId=${service.serviceId})}">delete</a></td>
@@ -71,8 +73,8 @@
         </table>
         <div>
             <div class="w-100  footer" style="color: #b21f2d; font-size: 2rem">
-<!--                <button><a th:href="@{/create-service}" data-toggle="modal"-->
-<!--                           data-target="#create"><i class="fa-solid fa-plus"></i></a></button>-->
+                <!--                <button><a th:href="@{/create-service}" data-toggle="modal"-->
+                <!--                           data-target="#create"><i class="fa-solid fa-plus"></i></a></button>-->
 
                 <button><a href="#" data-toggle="modal"
                            data-target="#create"><i class="fa-solid fa-plus"></i></a></button>
@@ -113,25 +115,28 @@
 
 <div class="modal" id="create">
     <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title w-100 text-center">Chọn thuộc tính bạn muốn tìm kiếm</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-footer border-0">
-                    <a type="submit" class="btn btn-dark" style="margin-right: 50px; font-size: 1.5rem"  href="/create-service/Villa">
-                        Villa
-                    </a>
-
-                    <a type="submit" class="btn btn-dark" style="margin-right: 50px; font-size: 1.5rem"   href="/create-service/House">
-                        House
-                    </a>
-
-                    <a type="submit" class="btn btn-dark" style="margin-right: 50px; font-size: 1.5rem" href="/create-service/Room">
-                        Room
-                    </a>
-                </div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title w-100 text-center">Chọn thuộc tính bạn muốn tìm kiếm</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
+            <div class="modal-footer border-0">
+                <a type="submit" class="btn btn-dark" style="margin-right: 50px; font-size: 1.5rem" id="villa"
+                   href="/create-service/Villa">
+                    Villa
+                </a>
+
+                <a type="submit" class="btn btn-dark" style="margin-right: 50px; font-size: 1.5rem" id="house"
+                   href="/create-service/House">
+                    House
+                </a>
+
+                <a type="submit" class="btn btn-dark" style="margin-right: 50px; font-size: 1.5rem" id="room"
+                   href="/create-service/Room">
+                    Room
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 

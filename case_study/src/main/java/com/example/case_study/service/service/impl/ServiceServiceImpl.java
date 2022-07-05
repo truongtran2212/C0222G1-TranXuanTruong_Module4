@@ -1,5 +1,6 @@
 package com.example.case_study.service.service.impl;
 
+import com.example.case_study.model.service.dto.ServiceDto;
 import com.example.case_study.repository.service.ServiceRepository;
 import com.example.case_study.service.service.ServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,17 @@ public class ServiceServiceImpl implements ServiceService {
     }
 
     @Override
-    public void create(com.example.case_study.model.service.Service service) {
-        serviceRepository.save(service);
+    public void create(ServiceDto serviceDto) {
+        serviceRepository.create(   serviceDto.getServiceCode(),
+                                    serviceDto.getServiceName(),
+                                    serviceDto.getServiceArea(),
+                                    serviceDto.getServiceCost(),
+                                    serviceDto.getServiceMaxPeople(),
+                                    serviceDto.getStandardRoom(),
+                                    serviceDto.getDescriptionOtherConvenience(),
+                                    serviceDto.getPoolArea(),
+                                    serviceDto.getNumberOfFloors(),
+                                    serviceDto.getRentType().getRentTypeId(),
+                                    serviceDto.getServiceType().getServiceTypeId());
     }
 }

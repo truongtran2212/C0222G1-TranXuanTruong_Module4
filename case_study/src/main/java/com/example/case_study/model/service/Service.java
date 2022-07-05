@@ -25,6 +25,8 @@ public class Service {
     private Double serviceCost;
     @Column(name = "service_max_people")
     private Integer serviceMaxPeople;
+    @Column(name = "standard_room")
+    private String standardRoom;
     @Column(name = "description_other_convenience")
     private String descriptionOtherConvenience;
     @Column(name = "pool_area")
@@ -62,6 +64,7 @@ public class Service {
                    Integer serviceArea,
                    Double serviceCost,
                    Integer serviceMaxPeople,
+                   String standardRoom,
                    String descriptionOtherConvenience,
                    Double poolArea,
                    Integer numberOfFloors,
@@ -75,6 +78,7 @@ public class Service {
         this.serviceArea = serviceArea;
         this.serviceCost = serviceCost;
         this.serviceMaxPeople = serviceMaxPeople;
+        this.standardRoom = standardRoom;
         this.descriptionOtherConvenience = descriptionOtherConvenience;
         this.poolArea = poolArea;
         this.numberOfFloors = numberOfFloors;
@@ -130,6 +134,14 @@ public class Service {
 
     public void setServiceMaxPeople(Integer serviceMaxPeople) {
         this.serviceMaxPeople = serviceMaxPeople;
+    }
+
+    public String getStandardRoom() {
+        return standardRoom;
+    }
+
+    public void setStandardRoom(String standardRoom) {
+        this.standardRoom = standardRoom;
     }
 
     public String getDescriptionOtherConvenience() {
