@@ -1,8 +1,5 @@
 package com.example.case_study.repository.contract;
 
-
-import com.example.case_study.model.contract.AttachService;
-import com.example.case_study.model.contract.Contract;
 import com.example.case_study.model.contract.ContractDetail;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

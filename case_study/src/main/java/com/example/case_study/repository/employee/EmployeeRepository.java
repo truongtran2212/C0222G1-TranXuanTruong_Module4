@@ -25,7 +25,7 @@ public interface EmployeeRepository extends PagingAndSortingRepository<Employee,
             "position_id,education_degree_id,division_id,username) values " +
             "(:employeeName,:employeeBirthday,:employeeIdCard,:employeeSalary,:employeePhone,:employeeEmail," +
             ":employeeAddress,:positionId,:educationDegreeId,:divisionId,:userName)", nativeQuery = true)
-    EmployeeDto create(@Param("employeeName") String employeeName,
+    void create(        @Param("employeeName") String employeeName,
                        @Param("employeeBirthday") String employeeBirthday,
                        @Param("employeeIdCard") String employeeIdCard,
                        @Param("employeeSalary") double employeeSalary,

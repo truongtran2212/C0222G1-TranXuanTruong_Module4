@@ -16,7 +16,7 @@ public class AttachService {
 
     private Double attachServiceCost;
 
-    private Integer attachServiceUnit;
+    private String attachServiceUnit;
 
     private String attachServiceStatus;
 
@@ -37,7 +37,7 @@ public class AttachService {
     public AttachService(Integer attachServiceId,
                          String attachServiceName,
                          Double attachServiceCost,
-                         Integer attachServiceUnit,
+                         String attachServiceUnit,
                          String attachServiceStatus,
                          Set<ContractDetail> contractDetail) {
         this.attachServiceId = attachServiceId;
@@ -72,11 +72,11 @@ public class AttachService {
         this.attachServiceCost = attachServiceCost;
     }
 
-    public Integer getAttachServiceUnit() {
+    public String getAttachServiceUnit() {
         return attachServiceUnit;
     }
 
-    public void setAttachServiceUnit(Integer attachServiceUnit) {
+    public void setAttachServiceUnit(String attachServiceUnit) {
         this.attachServiceUnit = attachServiceUnit;
     }
 

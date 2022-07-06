@@ -41,6 +41,8 @@ public class EmployeeController {
         model.addAttribute("positionList", positionService.findAll());
         model.addAttribute("employeeList", employeeService.findAll(PageRequest.of(page, 5), name));
         model.addAttribute("name", name);
+//        model.addAttribute("user", new User());
+//        model.addAttribute("employeeDto", new EmployeeDto());
         return "employee/index-employee";
     }
 //
@@ -82,57 +84,57 @@ public class EmployeeController {
         return "employee/index-employee";
     }
 
-    @GetMapping("/{id}/update-employee")
-    public String showUpdateEmployee(@PathVariable(name = "id") int id, Model model) {
-        model.addAttribute("divisionList", divisionService.findAll());
-        model.addAttribute("educationDegreeList", educationDegreeService.findAll());
-        model.addAttribute("positionList", positionService.findAll());
-        model.addAttribute("userList", userService.findAll());
+//    @GetMapping("/{id}/update-employee")
+//    public String showUpdateEmployee(@PathVariable(name = "id") int id, Model model) {
+//        model.addAttribute("divisionList", divisionService.findAll());
+//        model.addAttribute("educationDegreeList", educationDegreeService.findAll());
+//        model.addAttribute("positionList", positionService.findAll());
+//        model.addAttribute("userList", userService.findAll());
+//
+//        Employee employee = employeeService.findById(id);
+//
+//        EmployeeDto employeeDto = new EmployeeDto(
+//                employee.getEmployeeId(),
+//                employee.getEmployeeName(),
+//                employee.getEmployeeBirthday(),
+//                employee.getEmployeeIdCard(),
+//                employee.getEmployeeSalary(),
+//                employee.getEmployeePhone(),
+//                employee.getEmployeeEmail(),
+//                employee.getEmployeeAddress(),
+//                employee.getPosition().getPositionId(),
+//                employee.getEducationDegree().getEducationDegreeId(),
+//                employee.getDivision().getDivisionId(),
+//                employee.getUser());
+//        model.addAttribute("employeeDto", employeeDto);
+//        return "employee/update-employee";
+//    }
 
-        Employee employee = employeeService.findById(id);
-
-        EmployeeDto employeeDto = new EmployeeDto(
-                employee.getEmployeeId(),
-                employee.getEmployeeName(),
-                employee.getEmployeeBirthday(),
-                employee.getEmployeeIdCard(),
-                employee.getEmployeeSalary(),
-                employee.getEmployeePhone(),
-                employee.getEmployeeEmail(),
-                employee.getEmployeeAddress(),
-                employee.getPosition().getPositionId(),
-                employee.getEducationDegree().getEducationDegreeId(),
-                employee.getDivision().getDivisionId(),
-                employee.getUser());
-        model.addAttribute("employeeDto", employeeDto);
-        return "employee/update-employee";
-    }
-
-    @PostMapping("/update-employee")
-    public String update(@Valid @ModelAttribute(name = "employeeDto") EmployeeDto employeeDto,
-                         BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            model.addAttribute("divisionList", divisionService.findAll());
-            model.addAttribute("educationDegreeList", educationDegreeService.findAll());
-            model.addAttribute("positionList", positionService.findAll());
-            model.addAttribute("userList", userService.findAll());
-
-            return "employee/update-employee";
-        }
-
-        employeeService.update(employeeDto.getEmployeeName(),
-                employeeDto.getEmployeeBirthday(),
-                employeeDto.getEmployeeIdCard(),
-                employeeDto.getEmployeeSalary(),
-                employeeDto.getEmployeePhone(),
-                employeeDto.getEmployeeEmail(),
-                employeeDto.getEmployeeAddress(),
-                employeeDto.getPositionId(),
-                employeeDto.getEducationDegreeId(),
-                employeeDto.getDivisionId(),
-                employeeDto.getUser().getUserName(),
-                employeeDto.getId()
-        );
-        return "redirect:/list-employee";
-    }
+//    @PostMapping("/update-employee")
+//    public String update(@Valid @ModelAttribute(name = "employeeDto") EmployeeDto employeeDto,
+//                         BindingResult bindingResult, Model model) {
+//        if (bindingResult.hasErrors()) {
+//            model.addAttribute("divisionList", divisionService.findAll());
+//            model.addAttribute("educationDegreeList", educationDegreeService.findAll());
+//            model.addAttribute("positionList", positionService.findAll());
+//            model.addAttribute("userList", userService.findAll());
+//
+//            return "employee/update-employee";
+//        }
+//
+//        employeeService.update(employeeDto.getEmployeeName(),
+//                employeeDto.getEmployeeBirthday(),
+//                employeeDto.getEmployeeIdCard(),
+//                employeeDto.getEmployeeSalary(),
+//                employeeDto.getEmployeePhone(),
+//                employeeDto.getEmployeeEmail(),
+//                employeeDto.getEmployeeAddress(),
+//                employeeDto.getPositionId(),
+//                employeeDto.getEducationDegreeId(),
+//                employeeDto.getDivisionId(),
+//                employeeDto.getUser().getUserName(),
+//                employeeDto.getId()
+//        );
+//        return "redirect:/list-employee";
+//    }
 }

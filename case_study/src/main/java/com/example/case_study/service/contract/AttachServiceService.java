@@ -8,4 +8,6 @@ import java.util.List;
 public interface AttachServiceService {
 
     List<AttachService> findAll();
+
+    void create (AttachService attachService);
 }

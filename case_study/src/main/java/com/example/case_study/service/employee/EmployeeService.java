@@ -16,7 +16,7 @@ public interface EmployeeService {
 
    void save (Employee employee);
 
-   EmployeeDto create (EmployeeDto employeeDto);
+   void create (EmployeeDto employeeDto);
 
    void delete (int id);
 

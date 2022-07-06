@@ -8,7 +8,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import javax.transaction.Transactional;
 
-
 @Transactional
 public interface ContractRepository extends PagingAndSortingRepository<Contract, Integer> {
 

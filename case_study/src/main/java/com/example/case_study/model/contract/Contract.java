@@ -20,7 +20,7 @@ public class Contract {
 
     private String contractEndDay;
 
-    private Double contractReposit;
+    private Double contractDeposit;
 
     private Double contractTotalMoney;
 
@@ -41,6 +41,7 @@ public class Contract {
 
     @ColumnDefault("0")
     private Integer status;
+
     public Contract() {
     }
 
@@ -63,22 +64,20 @@ public class Contract {
     public Contract(Integer contractId,
                     String contractStartDay,
                     String contractEndDay,
-                    Double contractReposit,
+                    Double contractDeposit,
                     Double contractTotalMoney,
                     Employee employee,
                     Customer customer,
                     Service service,
-                    Set<ContractDetail> contractDetail,
                     Integer status) {
         this.contractId = contractId;
         this.contractStartDay = contractStartDay;
         this.contractEndDay = contractEndDay;
-        this.contractReposit = contractReposit;
+        this.contractDeposit = contractDeposit;
         this.contractTotalMoney = contractTotalMoney;
         this.employee = employee;
         this.customer = customer;
         this.service = service;
-        this.contractDetail = contractDetail;
         this.status = status;
     }
 
@@ -106,12 +105,12 @@ public class Contract {
         this.contractEndDay = contractEndDay;
     }
 
-    public Double getContractReposit() {
-        return contractReposit;
+    public Double getContractDeposit() {
+        return contractDeposit;
     }
 
-    public void setContractReposit(Double contractReposit) {
-        this.contractReposit = contractReposit;
+    public void setContractDeposit(Double contractDeposit) {
+        this.contractDeposit = contractDeposit;
     }
 
     public Double getContractTotalMoney() {

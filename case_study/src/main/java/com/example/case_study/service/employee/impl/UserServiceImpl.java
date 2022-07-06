@@ -15,13 +15,13 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public void create(User user) {
-        userRepository.save(user);
+    public User create(User user) {
+    return userRepository.save(user);
     }
 
     @Override
     public void create(String userName, String password) {
-        userRepository.create(userName, password);
+     userRepository.create(userName, password);
     }
 
     @Override

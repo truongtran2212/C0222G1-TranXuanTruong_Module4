@@ -1,6 +1,8 @@
 package com.example.case_study.model.employee;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
@@ -8,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 @Table(name = "user")
 public class User {
     @Id
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
 
     @NotBlank(message = "Không được đê trống")
     private String userName;
@@ -17,6 +19,8 @@ public class User {
     private String password;
 
     @OneToOne(mappedBy = "user")
+    @JsonBackReference(value = "user")
+
     private Employee employee;
 
     public Employee getEmployee() {

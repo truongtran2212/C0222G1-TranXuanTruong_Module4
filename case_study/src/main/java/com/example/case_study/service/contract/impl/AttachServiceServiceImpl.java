@@ -17,4 +17,12 @@ public class AttachServiceServiceImpl implements AttachServiceService {
     public List<AttachService> findAll() {
         return attachServiceRepository.findAll();
     }
+
+    @Override
+    public void create(AttachService attachService) {
+        attachServiceRepository.create(attachService.getAttachServiceName(),
+                                    attachService.getAttachServiceCost()
+                                    ,attachService.getAttachServiceUnit(),
+                                    attachService.getAttachServiceUnit());
+    }
 }

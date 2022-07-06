@@ -4,9 +4,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Title</title>
-    <link rel="stylesheet" href="/bootstrap-4.0.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap413/css/bootstrap.min.css">
     <link rel="stylesheet" href="/datatables/css/dataTables.bootstrap4.min.css">
     <script src="https://kit.fontawesome.com/dbc3483aca.js" crossorigin="anonymous"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <style>
         .center {
             justify-content: center;
@@ -33,7 +34,7 @@
 <div class="container-fluid body" >
     <div class="center container-fluid">
         <h1 style="text-align: center">Danh sách nhân viên</h1>
-        <table border="1" style="border-collapse:  collapse; width: 100%" id="employeeList">
+        <table border="1" style="border-collapse:  collapse; width: 100%" id="employeeList"  >
             <thead>
             <tr>
                 <th>Id Employee</th>
@@ -52,7 +53,7 @@
                 <th>Delete</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody >
             <tr th:each="employee: ${employeeList}">
                 <td style="text-align: center" th:text="${employee.employeeId}"></td>
                 <td th:text="${employee.employeeName}"></td>
@@ -67,11 +68,16 @@
                 <td th:text="${employee.educationDegree.educationDegreeName}"></td>
                 <td th:text="${employee.division.divisionName}"></td>
                 <td th:text="${employee.user.userName}"></td>
-                <td><a th:href="@{/{employeeId}/update-employee(employeeId=${employee.employeeId})}">update</a></td>
+                <!--                <td><a th:href="@{/{employeeId}/update-employee(employeeId=${employee.employeeId})}">update</a></td>-->
+                <td>
+                    <button><a th:href="${employee.employeeId}" class="updateEmployee" data-toggle="modal"
+                               data-target="#form-update">Update</a></button>
+                </td>
                 <!--                <td><a th:href="@{/{employeeId}/delete-employee(employeeId=${employee.employeeId})}">delete</a></td>-->
                 <td>
                     <a href="#"
-                       th:attr="onclick = |employeeIndex(${employee.employeeId}, '${employee.employeeName}')|" data-toggle="modal"
+                       th:attr="onclick = |employeeIndex(${employee.employeeId}, '${employee.employeeName}')|"
+                       data-toggle="modal"
                        data-target="#delete">
                         Delete
                     </a>
@@ -82,7 +88,7 @@
         <div>
             <div class="w-100  footer" style="color: #b21f2d; font-size: 2rem">
                 <button><a href="#" data-toggle="modal"
-                          data-target="#form-create"><i class="fa-solid fa-plus"></i></a></button>
+                           data-target="#form-create"><i class="fa-solid fa-plus"></i></a></button>
 
                 <button><a href="#" data-toggle="modal"
                            data-target="#search"><i class="fa-solid fa-magnifying-glass"></i></a></button>
@@ -113,7 +119,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-dark" onclick = employeeIndex2()>
+                <button type="button" class="btn btn-dark" onclick=employeeIndex2()>
                     <a class="text-white">Xóa</a>
                 </button>
                 <button type="button" class="btn btn-dark " data-dismiss="modal">Hủy</button>
@@ -125,13 +131,13 @@
 <div class="modal" id="form-create">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id ="create" method="post" class="w-100 bg-white">
+            <form id="create" method="post" class="w-100 bg-white">
                 <div class="p-3">
                     <h4 style="text-align: center">Thêm nhân viên mới</h4>
 
                     <div class="form-group">
                         <label>Tên nhân viên</label>
-                        <input class="form-control" id="employeeName"  type="text">
+                        <input class="form-control" id="employeeName" type="text">
 
                     </div>
 
@@ -167,7 +173,7 @@
 
                     <div class="form-group">
                         <label>Địa chỉ</label>
-                        <input class="form-control" id="employeeAddress" type="text" >
+                        <input class="form-control" id="employeeAddress" type="text">
 
                     </div>
 
@@ -195,7 +201,7 @@
 
                     <div class="form-group">
                         <label>Bộ phận</label>
-                        <select class="form-group w-100" id="divisionId" >
+                        <select class="form-group w-100" id="divisionId">
                             <option
                                     th:each="division: ${divisionList}"
                                     th:value="${division.divisionId}"
@@ -206,22 +212,120 @@
 
                     <div class="form-group">
                         <label>tên tài khoản</label>
-                        <input class="form-control" type="text" id="user.userName">
+                        <input class="form-control" type="text" id="user-userName">
 
                     </div>
 
                     <div class="form-group">
                         <label>Mật khẩu</label>
-                        <input class="form-control" type="password" id="user.password">
+                        <input class="form-control" type="password" id="user-password">
 
                     </div>
 
-                    <td><input type="submit" value="Add" th:attr="onclick =|createEmployee()|"></td>
+                    <input type="submit" value="Add" onclick=createEmployee() data-dismiss="modal">
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<div class="modal" id="form-update">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="update" method="post" class="w-100 bg-white">
+                <div class="p-3">
+                    <h4 style="text-align: center">Chỉnh sửa thông tin nhân viên</h4>
+
+                    <input class="form-control" type="hidden" id="id">
+
+                    <div class="form-group">
+                        <label>Tên nhân viên</label>
+                        <input class="form-control" id="update-employeeName" type="text">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ngày sinh</label>
+                        <input class="form-control" id="update-employeeBirthday" type="date">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Căn cước công dân</label>
+                        <input class="form-control" id="update-employeeIdCard" type="text">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tiền lương</label>
+                        <input class="form-control" id="update-employeeSalary" type="text">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Số điện thoại</label>
+                        <input class="form-control" id="update-employeePhone" type="text">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input class="form-control" id="update-employeeEmail" type="text">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Địa chỉ</label>
+                        <input class="form-control" id="update-employeeAddress" type="text">
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Vị trí</label>
+                        <select class="form-group w-100" id="update-positionId">
+                            <option
+                                    th:each="position: ${positionList}"
+                                    th:value="${position.positionId}"
+                                    th:text="${position.positionName}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Học vấn</label>
+                        <select class="form-group w-100" id="update-educationDegreeId">
+                            <option
+                                    th:each="educationDegree: ${educationDegreeList}"
+                                    th:value="${educationDegree.educationDegreeId}"
+                                    th:text="${educationDegree.educationDegreeName}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Bộ phận</label>
+                        <select class="form-group w-100" id="update-divisionId">
+                            <option
+                                    th:each="division: ${divisionList}"
+                                    th:value="${division.divisionId}"
+                                    th:text="${division.divisionName}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>tên tài khoản</label>
+                        <input class="form-control" type="text" readonly id="update-user-userName">
+
+                    </div>
+
+                    <input type="submit" value="Update" onclick=updateEmployee() data-dismiss="modal">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 <div class="modal" id="search">
     <div class="modal-dialog">
@@ -267,7 +371,7 @@
         let link = "/delete-employee/" + id;
         window.location.href = link;
     };
-    
+
     function createEmployee() {
         let employeeName = $('#employeeName').val();
         let employeeBirthday = $('#employeeBirthday').val();
@@ -279,9 +383,9 @@
         let positionId = $('#positionId').val();
         let educationDegreeId = $('#educationDegreeId').val();
         let divisionId = $('#divisionId').val();
-        let user = $('#user.userName').val();
-        let password = $('#user.password').val();
-
+        let userName = $('#user-userName').val();
+        let password = $('#user-password').val();
+        debugger
         let newEmployee = {
             employeeName: employeeName,
             employeeBirthday: employeeBirthday,
@@ -293,10 +397,11 @@
             positionId: positionId,
             educationDegreeId: educationDegreeId,
             divisionId: divisionId,
-            user: user,
-            password: password,
+            user: {
+                userName: userName,
+                password: password,
+            }
         }
-
         $.ajax({
             headers: {
                 'Accept': 'application/json',
@@ -319,22 +424,27 @@
             type: "GET",
             url: "/list-employee-ajax",
             success: function (data) {
-                let content = '    <tr>\n' +
-                    '        <td>employee Name</td>\n' +
-                    '        <td>employee Birthday</td>\n' +
-                    '        <td>employee Id Card</td>\n' +
-                    '        <td>employee Salary</td>\n' +
-                    '        <td>employee Phone</td>\n' +
-                    '        <td>employee Email</td>\n' +
-                    '        <td>employee Address</td>\n' +
-                    '        <td>position Id</td>\n' +
-                    '        <td>education Degree Id</td>\n' +
-                    '        <td>division Id</td>\n' +
-                    '        <td>user</td>\n' +
-                    '        <td>Delete</td>\n' +
-                    '        <td>Update</td>\n' +
+                let content =
+
+                    '    <tr>\n' +
+                    '        <th>Id Employee</th>\n' +
+                    '        <th>Employee Name</th>\n' +
+                    '        <th>Birthday</th>\n' +
+                    '        <th>Id Card</th>\n' +
+                    '        <th>Salary</th>\n' +
+                    '        <th>Phone</th>\n' +
+                    '        <th>Email</th>\n' +
+                    '        <th>Address</th>\n' +
+                    '        <th>Position Id</th>\n' +
+                    '        <th>Education Degree Id</th>\n' +
+                    '        <th>Division Id</th>\n' +
+                    '        <th>User</th>\n' +
+                    '        <th>Update</th>\n' +
+                    '        <th>Delete</th>\n' +
                     '    </tr>';
+                debugger
                 for (let i = 0; i < data.length; i++) {
+
                     content += getEmployee(data[i]);
                 }
                 document.getElementById('employeeList').innerHTML = content;
@@ -343,7 +453,11 @@
     }
 
     function getEmployee(employee) {
-        return `<tr>
+
+        // Sử dụng thuộc tính employee chứ không phải employeeDto
+
+        return`<tr>
+                    <td style="text-align: center" >${employee.employeeId}</td>
                     <td >${employee.employeeName}</td>
                     <td >${employee.employeeBirthday}</td>
                     <td >${employee.employeeIdCard}</td>
@@ -351,13 +465,127 @@
                     <td >${employee.employeePhone}</td>
                     <td >${employee.employeeEmail}</td>
                     <td >${employee.employeeAddress}</td>
-                    <td >${employee.positionId}</td>
-                    <td >${employee.educationDegreeId}</td>
-                    <td >${employee.divisionId}</td>
+                    <td >${employee.position.positionName}</td>
+                    <td >${employee.educationDegree.educationDegreeName}</td>
+                    <td >${employee.division.divisionName}</td>
                     <td >${employee.user.userName}</td>` +
-            `<td><a href="${employee.id}">Delete</a></td>
-                 <td><a href="${employee.id}">Update</a></td>
+            `<td>
+                    <button><a href="${employee.id}" class="updateEmployee" data-toggle="modal"
+                               data-target="#form-update">Update</a></button>
+                               </td>
+                    <td>
+
+                   <a href="#"
+                       th:attr="onclick = |employeeIndex(${employee.id}, '${employee.employeeName}')|"
+                       data-toggle="modal"
+                       data-target="#delete">
+                        Delete
+                    </a>
+
+                    </td>
                  </tr>`;
+    }
+
+    $(document).ready(function () {
+        $('#employeeList').on("click", ".updateEmployee", function (event) {
+            let a = $(this);
+            let employeeId = a.attr("href")
+            $.ajax({
+                headers: {
+                    'Accept': "application/json",
+                    'Content-Type': "application/json"
+                },
+                type: "GET",
+                url: `/update-employee/${employeeId}`,
+
+                success: function (data) {
+                    document.getElementById("id").value = data.id;
+                    document.getElementById("update-employeeName").value = data.employeeName;
+                    document.getElementById("update-employeeBirthday").value = data.employeeBirthday;
+                    document.getElementById("update-employeeIdCard").value = data.employeeIdCard;
+                    document.getElementById("update-employeeSalary").value = data.employeeSalary;
+                    document.getElementById("update-employeePhone").value = data.employeePhone;
+                    document.getElementById("update-employeeEmail").value = data.employeeEmail;
+                    document.getElementById("update-employeeAddress").value = data.employeeAddress;
+                    document.getElementById("update-positionId").value = data.positionId;
+                    document.getElementById("update-educationDegreeId").value = data.educationDegreeId;
+                    document.getElementById("update-divisionId").value = data.divisionId;
+                    document.getElementById("update-user-userName").value = data.user.userName;
+                }
+            })
+            event.preventDefault();
+        })
+    })
+
+    function updateEmployee() {
+        let id = $('#id').val();
+        let employeeName = $('#update-employeeName').val();
+        let employeeBirthday = $('#update-employeeBirthday').val();
+        let employeeIdCard = $('#update-employeeIdCard').val();
+        let employeeSalary = $('#update-employeeSalary').val();
+        let employeePhone = $('#update-employeePhone').val();
+        let employeeEmail = $('#update-employeeEmail').val();
+        let employeeAddress = $('#update-employeeAddress').val();
+        let positionId = $('#update-positionId').val();
+        let educationDegreeId = $('#update-educationDegreeId').val();
+        let divisionId = $('#update-divisionId').val();
+        let userName = $('#update-user-userName').val();
+        debugger
+        let newEmployee = {
+            id: id,
+            employeeName: employeeName,
+            employeeBirthday: employeeBirthday,
+            employeeIdCard: employeeIdCard,
+            employeeSalary: employeeSalary,
+            employeePhone: employeePhone,
+            employeeEmail: employeeEmail,
+            employeeAddress: employeeAddress,
+            positionId: positionId,
+            educationDegreeId: educationDegreeId,
+            divisionId: divisionId,
+            user: {
+                userName: userName,
+            }
+        }
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "PUT",
+            data: JSON.stringify(newEmployee),
+            //tên API
+            url: "/update-employee",
+            //xử lý khi thành công
+            success: function (data) {
+                let content =
+                '    <tr>\n' +
+                '        <th>Id Employee</th>\n' +
+                '        <th>Employee Name</th>\n' +
+                '        <th>Birthday</th>\n' +
+                '        <th>Id Card</th>\n' +
+                '        <th>Salary</th>\n' +
+                '        <th>Phone</th>\n' +
+                '        <th>Email</th>\n' +
+                '        <th>Address</th>\n' +
+                '        <th>Position Id</th>\n' +
+                '        <th>Education Degree Id</th>\n' +
+                '        <th>Division Id</th>\n' +
+                '        <th>User</th>\n' +
+                '        <th>Update</th>\n' +
+                '        <th>Delete</th>\n' +
+                '    </tr>';
+
+
+
+                for (let i = 0; i < data.length; i++) {
+                    content += getEmployee(data[i]);
+                }
+                document.getElementById('employeeList').innerHTML = content;
+            }
+        });
+        //chặn sự kiện mặc định của thẻ
+        event.preventDefault();
     }
 
 </script>

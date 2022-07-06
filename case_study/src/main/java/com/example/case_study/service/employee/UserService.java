@@ -6,7 +6,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface UserService {
-    void create(User user);
+    User create(User user);
 
     void create (String userName, String password);
 

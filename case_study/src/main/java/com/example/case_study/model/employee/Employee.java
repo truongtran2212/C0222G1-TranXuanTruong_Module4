@@ -2,6 +2,7 @@ package com.example.case_study.model.employee;
 
 import com.example.case_study.model.contract.Contract;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -24,29 +25,26 @@ public class Employee {
 
     @ManyToOne
     @JoinColumn(name = "position_id", referencedColumnName = "position_id")
-    @JsonBackReference(value = "position")
     private Position position;
 
     @ManyToOne
     @JoinColumn(name = "education_degree_id", referencedColumnName = "education_degree_id")
-    @JsonBackReference(value = "educationDegree")
 
     private EducationDegree educationDegree;
 
     @ManyToOne
     @JoinColumn(name = "division_id", referencedColumnName = "division_id")
-    @JsonBackReference(value = "division")
 
     private Division division;
 
     @OneToOne
     @JoinColumn(name = "username", referencedColumnName = "username")
-    @JsonBackReference(value = "user")
 
     private User user;
 
-//    @OneToMany(mappedBy = "employee")
-//    private Set<Contract> contract;
+    @OneToMany(mappedBy = "employee")
+    @JsonBackReference
+    private Set<Contract> contract;
 
     @ColumnDefault("0")
     private int status;
@@ -54,13 +52,13 @@ public class Employee {
     public Employee() {
     }
 
-//    public Set<Contract> getContract() {
-//        return contract;
-//    }
-//
-//    public void setContract(Set<Contract> contract) {
-//        this.contract = contract;
-//    }
+    public Set<Contract> getContract() {
+        return contract;
+    }
+
+    public void setContract(Set<Contract> contract) {
+        this.contract = contract;
+    }
 
     public Employee(int employeeId,
                     String employeeName,
@@ -74,6 +72,7 @@ public class Employee {
                     EducationDegree educationDegree,
                     Division division,
                     User user,
+                    Set<Contract> contract,
                     int status) {
         this.employeeId = employeeId;
         this.employeeName = employeeName;
@@ -87,6 +86,7 @@ public class Employee {
         this.educationDegree = educationDegree;
         this.division = division;
         this.user = user;
+        this.contract = contract;
         this.status = status;
     }
 

@@ -29,19 +29,18 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EmployeeDto create(EmployeeDto employeeDto) {
-      return employeeRepository.create(  employeeDto.getEmployeeName(),
-                employeeDto.getEmployeeBirthday(),
-                employeeDto.getEmployeeIdCard(),
-                employeeDto.getEmployeeSalary(),
-                employeeDto.getEmployeePhone(),
-                employeeDto.getEmployeeEmail(),
-                employeeDto.getEmployeeAddress(),
-                employeeDto.getPositionId(),
-                employeeDto.getEducationDegreeId(),
-                employeeDto.getDivisionId(),
-                employeeDto.getUser().getUserName());
-
+    public void create(EmployeeDto employeeDto) {
+      employeeRepository.create(    employeeDto.getEmployeeName(),
+                                    employeeDto.getEmployeeBirthday(),
+                                    employeeDto.getEmployeeIdCard(),
+                                    employeeDto.getEmployeeSalary(),
+                                    employeeDto.getEmployeePhone(),
+                                    employeeDto.getEmployeeEmail(),
+                                    employeeDto.getEmployeeAddress(),
+                                    employeeDto.getPositionId(),
+                                    employeeDto.getEducationDegreeId(),
+                                    employeeDto.getDivisionId(),
+                                    employeeDto.getUser().getUserName());
     }
 
     @Override
