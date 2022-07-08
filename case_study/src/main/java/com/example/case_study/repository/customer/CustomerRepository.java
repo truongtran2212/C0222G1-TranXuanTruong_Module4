@@ -10,6 +10,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 public interface CustomerRepository extends PagingAndSortingRepository<Customer, Integer> {
@@ -17,6 +18,8 @@ public interface CustomerRepository extends PagingAndSortingRepository<Customer,
     @Query(value = "select c from Customer c where c.status = 0 and c.customerName like %:name%")
     Page<Customer> findAll(Pageable pageable, @Param("name") String name);
 
+    @Query(value = "select c from Customer c where c.status = 0")
+    List<Customer> findAll();
     @Modifying
     @Query(value = "insert into customer (customer_code,customer_name,customer_birthday,customer_gender,customer_id_card," +
             "customer_phone,customer_email,customer_address,customer_type_id) values" +

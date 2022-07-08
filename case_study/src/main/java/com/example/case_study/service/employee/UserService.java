@@ -1,14 +1,13 @@
 package com.example.case_study.service.employee;
 
-import com.example.case_study.model.employee.User;
-import org.springframework.data.repository.query.Param;
+import com.example.case_study.model.employee.UserApp;
 
 import java.util.List;
 
 public interface UserService {
-    User create(User user);
+    UserApp create(UserApp userApp);
 
     void create (String userName, String password);
 
-    List<User> findAll();
+    List<UserApp> findAll();
 }

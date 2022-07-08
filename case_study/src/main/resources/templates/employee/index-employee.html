@@ -19,7 +19,7 @@
 <div class="container-fluid" style="background-color: #7FFFD4">
     <div class="row" style="display: flex">
         <div class="col-md-2">
-            <a th:href="@{/}"><img
+            <a th:href="@{/home}"><img
                     src="https://kynghiviet.vn/public/upload/Tour/2020/FURAMA%20RESORT%20DA%20NANG/furama%20logo.png"
                     height="100px" width="100%"></a>
         </div>
@@ -31,10 +31,10 @@
 </div>
 
 
-<div class="container-fluid body" >
+<div class="container-fluid body">
     <div class="center container-fluid">
         <h1 style="text-align: center">Danh sách nhân viên</h1>
-        <table border="1" style="border-collapse:  collapse; width: 100%" id="employeeList"  >
+        <table border="1" style="border-collapse:  collapse; width: 100%" id="employeeList">
             <thead>
             <tr>
                 <th>Id Employee</th>
@@ -53,7 +53,7 @@
                 <th>Delete</th>
             </tr>
             </thead>
-            <tbody >
+            <tbody>
             <tr th:each="employee: ${employeeList}">
                 <td style="text-align: center" th:text="${employee.employeeId}"></td>
                 <td th:text="${employee.employeeName}"></td>
@@ -67,7 +67,7 @@
                 <td th:text="${employee.position.positionName}"></td>
                 <td th:text="${employee.educationDegree.educationDegreeName}"></td>
                 <td th:text="${employee.division.divisionName}"></td>
-                <td th:text="${employee.user.userName}"></td>
+                <td th:text="${employee.userApp.userName}"></td>
                 <!--                <td><a th:href="@{/{employeeId}/update-employee(employeeId=${employee.employeeId})}">update</a></td>-->
                 <td>
                     <button><a th:href="${employee.employeeId}" class="updateEmployee" data-toggle="modal"
@@ -138,43 +138,43 @@
                     <div class="form-group">
                         <label>Tên nhân viên</label>
                         <input class="form-control" id="employeeName" type="text">
-
+                        <p style="color: red;" id="nameEmployee"></p>
                     </div>
 
                     <div class="form-group">
                         <label>Ngày sinh</label>
                         <input class="form-control" id="employeeBirthday" type="date">
-
+                        <p style="color: red;" id="birthday"></p>
                     </div>
 
                     <div class="form-group">
                         <label>Căn cước công dân</label>
                         <input class="form-control" id="employeeIdCard" type="text">
-
+                        <p style="color: red;" id="idCard"></p>
                     </div>
 
                     <div class="form-group">
                         <label>Tiền lương</label>
                         <input class="form-control" id="employeeSalary" type="text">
-
+                        <p style="color: red;" id="salary"></p>
                     </div>
 
                     <div class="form-group">
                         <label>Số điện thoại</label>
                         <input class="form-control" id="employeePhone" type="text">
-
+                        <p style="color: red;" id="phone"></p>
                     </div>
 
                     <div class="form-group">
                         <label>Email</label>
                         <input class="form-control" id="employeeEmail" type="text">
-
+                        <p style="color: red;" id="email"></p>
                     </div>
 
                     <div class="form-group">
                         <label>Địa chỉ</label>
                         <input class="form-control" id="employeeAddress" type="text">
-
+                        <p style="color: red;" id="address"></p>
                     </div>
 
                     <div class="form-group">
@@ -212,17 +212,17 @@
 
                     <div class="form-group">
                         <label>tên tài khoản</label>
-                        <input class="form-control" type="text" id="user-userName">
+                        <input class="form-control" type="text" id="userApp-userName">
 
                     </div>
 
                     <div class="form-group">
                         <label>Mật khẩu</label>
-                        <input class="form-control" type="password" id="user-password">
+                        <input class="form-control" type="password" id="userApp-password">
 
                     </div>
 
-                    <input type="submit" value="Add" onclick=createEmployee() data-dismiss="modal">
+                    <input type="submit" value="Add" id="add" onclick=createEmployee()>
                 </div>
             </form>
         </div>
@@ -232,96 +232,103 @@
 <div class="modal" id="form-update">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="update" method="post" class="w-100 bg-white">
-                <div class="p-3">
-                    <h4 style="text-align: center">Chỉnh sửa thông tin nhân viên</h4>
+            <!--            <form id="update" method="post" class="w-100 bg-white">-->
+            <div class="p-3">
+                <h4 style="text-align: center">Chỉnh sửa thông tin nhân viên</h4>
 
-                    <input class="form-control" type="hidden" id="id">
+                <input class="form-control" type="hidden" id="id">
 
-                    <div class="form-group">
-                        <label>Tên nhân viên</label>
-                        <input class="form-control" id="update-employeeName" type="text">
+                <div class="form-group">
+                    <label>Tên nhân viên</label>
+                    <input class="form-control" id="update-employeeName" type="text">
+                    <p style="color: red;" id="update-name"></p>
 
-                    </div>
-
-                    <div class="form-group">
-                        <label>Ngày sinh</label>
-                        <input class="form-control" id="update-employeeBirthday" type="date">
-
-                    </div>
-
-                    <div class="form-group">
-                        <label>Căn cước công dân</label>
-                        <input class="form-control" id="update-employeeIdCard" type="text">
-
-                    </div>
-
-                    <div class="form-group">
-                        <label>Tiền lương</label>
-                        <input class="form-control" id="update-employeeSalary" type="text">
-
-                    </div>
-
-                    <div class="form-group">
-                        <label>Số điện thoại</label>
-                        <input class="form-control" id="update-employeePhone" type="text">
-
-                    </div>
-
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input class="form-control" id="update-employeeEmail" type="text">
-
-                    </div>
-
-                    <div class="form-group">
-                        <label>Địa chỉ</label>
-                        <input class="form-control" id="update-employeeAddress" type="text">
-
-                    </div>
-
-                    <div class="form-group">
-                        <label>Vị trí</label>
-                        <select class="form-group w-100" id="update-positionId">
-                            <option
-                                    th:each="position: ${positionList}"
-                                    th:value="${position.positionId}"
-                                    th:text="${position.positionName}">
-                            </option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Học vấn</label>
-                        <select class="form-group w-100" id="update-educationDegreeId">
-                            <option
-                                    th:each="educationDegree: ${educationDegreeList}"
-                                    th:value="${educationDegree.educationDegreeId}"
-                                    th:text="${educationDegree.educationDegreeName}">
-                            </option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Bộ phận</label>
-                        <select class="form-group w-100" id="update-divisionId">
-                            <option
-                                    th:each="division: ${divisionList}"
-                                    th:value="${division.divisionId}"
-                                    th:text="${division.divisionName}">
-                            </option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>tên tài khoản</label>
-                        <input class="form-control" type="text" readonly id="update-user-userName">
-
-                    </div>
-
-                    <input type="submit" value="Update" onclick=updateEmployee() data-dismiss="modal">
                 </div>
-            </form>
+
+                <div class="form-group">
+                    <label>Ngày sinh</label>
+                    <input class="form-control" id="update-employeeBirthday" type="date">
+                    <p style="color: red;" id="update-birthDay"></p>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Căn cước công dân</label>
+                    <input class="form-control" id="update-employeeIdCard" type="text">
+                    <p style="color: red;" id="update-idCard"></p>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Tiền lương</label>
+                    <input class="form-control" id="update-employeeSalary" type="text">
+                    <p style="color: red;" id="update-salary"></p>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Số điện thoại</label>
+                    <input class="form-control" id="update-employeePhone" type="text">
+                    <p style="color: red;" id="update-phone"></p>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input class="form-control" id="update-employeeEmail" type="text">
+                    <p style="color: red;" id="update-email"></p>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Địa chỉ</label>
+                    <input class="form-control" id="update-employeeAddress" type="text">
+                    <p style="color: red;" id="update-address"></p>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Vị trí</label>
+                    <select class="form-group w-100" id="update-positionId">
+                        <option
+                                th:each="position: ${positionList}"
+                                th:value="${position.positionId}"
+                                th:text="${position.positionName}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Học vấn</label>
+                    <select class="form-group w-100" id="update-educationDegreeId">
+                        <option
+                                th:each="educationDegree: ${educationDegreeList}"
+                                th:value="${educationDegree.educationDegreeId}"
+                                th:text="${educationDegree.educationDegreeName}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Bộ phận</label>
+                    <select class="form-group w-100" id="update-divisionId">
+                        <option
+                                th:each="division: ${divisionList}"
+                                th:value="${division.divisionId}"
+                                th:text="${division.divisionName}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>tên tài khoản</label>
+                    <input class="form-control" type="text" readonly id="update-userApp-userName">
+
+                </div>
+
+                <input type="submit" value="Update" onclick=updateEmployee()>
+            </div>
+            <!--            </form>-->
         </div>
     </div>
 </div>
@@ -383,8 +390,8 @@
         let positionId = $('#positionId').val();
         let educationDegreeId = $('#educationDegreeId').val();
         let divisionId = $('#divisionId').val();
-        let userName = $('#user-userName').val();
-        let password = $('#user-password').val();
+        let userName = $('#userApp-userName').val();
+        let password = $('#userApp-password').val();
         debugger
         let newEmployee = {
             employeeName: employeeName,
@@ -397,7 +404,7 @@
             positionId: positionId,
             educationDegreeId: educationDegreeId,
             divisionId: divisionId,
-            user: {
+            userApp: {
                 userName: userName,
                 password: password,
             }
@@ -412,8 +419,24 @@
             //tên API
             url: "/create-employee",
             //xử lý khi thành công
-            success: successHandler
+            success: successHandler,
+            error: function (msg) {
+                console.log(msg)
 
+                document.getElementById("nameEmployee").innerText = msg.responseJSON.employeeName
+
+                document.getElementById("birthday").innerText = msg.responseJSON.employeeBirthday
+
+                document.getElementById("idCard").innerText = msg.responseJSON.employeeIdCard
+
+                document.getElementById("salary").innerText = msg.responseJSON.employeeSalary
+
+                document.getElementById("phone").innerText = msg.responseJSON.employeePhone
+
+                document.getElementById("email").innerText = msg.responseJSON.employeePhone
+
+
+            }
         });
         //chặn sự kiện mặc định của thẻ
         event.preventDefault();
@@ -448,6 +471,10 @@
                     content += getEmployee(data[i]);
                 }
                 document.getElementById('employeeList').innerHTML = content;
+
+                $("#form-create").remove();
+                $('.modal-backdrop').remove()
+                $('#form-create').hide();
             }
         })
     }
@@ -456,7 +483,7 @@
 
         // Sử dụng thuộc tính employee chứ không phải employeeDto
 
-        return`<tr>
+        return `<tr>
                     <td style="text-align: center" >${employee.employeeId}</td>
                     <td >${employee.employeeName}</td>
                     <td >${employee.employeeBirthday}</td>
@@ -468,7 +495,7 @@
                     <td >${employee.position.positionName}</td>
                     <td >${employee.educationDegree.educationDegreeName}</td>
                     <td >${employee.division.divisionName}</td>
-                    <td >${employee.user.userName}</td>` +
+                    <td >${employee.userApp.userName}</td>` +
             `<td>
                     <button><a href="${employee.id}" class="updateEmployee" data-toggle="modal"
                                data-target="#form-update">Update</a></button>
@@ -498,6 +525,7 @@
                 type: "GET",
                 url: `/update-employee/${employeeId}`,
 
+                // Sử dụng thuộc tính của DTO
                 success: function (data) {
                     document.getElementById("id").value = data.id;
                     document.getElementById("update-employeeName").value = data.employeeName;
@@ -510,7 +538,7 @@
                     document.getElementById("update-positionId").value = data.positionId;
                     document.getElementById("update-educationDegreeId").value = data.educationDegreeId;
                     document.getElementById("update-divisionId").value = data.divisionId;
-                    document.getElementById("update-user-userName").value = data.user.userName;
+                    document.getElementById("update-userApp-userName").value = data.userApp.userName;
                 }
             })
             event.preventDefault();
@@ -529,7 +557,7 @@
         let positionId = $('#update-positionId').val();
         let educationDegreeId = $('#update-educationDegreeId').val();
         let divisionId = $('#update-divisionId').val();
-        let userName = $('#update-user-userName').val();
+        let userName = $('#update-userApp-userName').val();
         debugger
         let newEmployee = {
             id: id,
@@ -543,7 +571,7 @@
             positionId: positionId,
             educationDegreeId: educationDegreeId,
             divisionId: divisionId,
-            user: {
+            userApp: {
                 userName: userName,
             }
         }
@@ -559,29 +587,52 @@
             //xử lý khi thành công
             success: function (data) {
                 let content =
-                '    <tr>\n' +
-                '        <th>Id Employee</th>\n' +
-                '        <th>Employee Name</th>\n' +
-                '        <th>Birthday</th>\n' +
-                '        <th>Id Card</th>\n' +
-                '        <th>Salary</th>\n' +
-                '        <th>Phone</th>\n' +
-                '        <th>Email</th>\n' +
-                '        <th>Address</th>\n' +
-                '        <th>Position Id</th>\n' +
-                '        <th>Education Degree Id</th>\n' +
-                '        <th>Division Id</th>\n' +
-                '        <th>User</th>\n' +
-                '        <th>Update</th>\n' +
-                '        <th>Delete</th>\n' +
-                '    </tr>';
-
+                    '    <tr>\n' +
+                    '        <th>Id Employee</th>\n' +
+                    '        <th>Employee Name</th>\n' +
+                    '        <th>Birthday</th>\n' +
+                    '        <th>Id Card</th>\n' +
+                    '        <th>Salary</th>\n' +
+                    '        <th>Phone</th>\n' +
+                    '        <th>Email</th>\n' +
+                    '        <th>Address</th>\n' +
+                    '        <th>Position Id</th>\n' +
+                    '        <th>Education Degree Id</th>\n' +
+                    '        <th>Division Id</th>\n' +
+                    '        <th>User</th>\n' +
+                    '        <th>Update</th>\n' +
+                    '        <th>Delete</th>\n' +
+                    '    </tr>';
 
 
                 for (let i = 0; i < data.length; i++) {
                     content += getEmployee(data[i]);
                 }
                 document.getElementById('employeeList').innerHTML = content;
+
+                $("#form-update").remove();
+                $('.modal-backdrop').remove()
+                $('#form-update').hide();
+            },
+            error: function (msg) {
+                console.log(msg)
+
+                document.getElementById("update-name").innerText = msg.responseJSON.employeeName
+
+
+                document.getElementById("update-birthDayirthday").innerText = msg.responseJSON.employeeBirthday
+
+
+                document.getElementById("update-idCard").innerText = msg.responseJSON.employeeIdCard
+
+
+                document.getElementById("update-salary").innerText = msg.responseJSON.employeeSalary
+
+                document.getElementById("update-phone").innerText = msg.responseJSON.employeePhone
+
+                document.getElementById("update-email").innerText = msg.responseJSON.employeePhone
+
+
             }
         });
         //chặn sự kiện mặc định của thẻ

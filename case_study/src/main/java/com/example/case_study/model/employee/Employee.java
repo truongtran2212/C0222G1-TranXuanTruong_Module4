@@ -2,7 +2,6 @@ package com.example.case_study.model.employee;
 
 import com.example.case_study.model.contract.Contract;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -17,6 +16,8 @@ public class Employee {
     private int employeeId;
     private String employeeName;
     private String employeeBirthday;
+
+    @Column(unique = true)
     private String employeeIdCard;
     private double employeeSalary;
     private String employeePhone;
@@ -40,7 +41,7 @@ public class Employee {
     @OneToOne
     @JoinColumn(name = "username", referencedColumnName = "username")
 
-    private User user;
+    private UserApp userApp;
 
     @OneToMany(mappedBy = "employee")
     @JsonBackReference
@@ -71,7 +72,7 @@ public class Employee {
                     Position position,
                     EducationDegree educationDegree,
                     Division division,
-                    User user,
+                    UserApp userApp,
                     Set<Contract> contract,
                     int status) {
         this.employeeId = employeeId;
@@ -85,7 +86,7 @@ public class Employee {
         this.position = position;
         this.educationDegree = educationDegree;
         this.division = division;
-        this.user = user;
+        this.userApp = userApp;
         this.contract = contract;
         this.status = status;
     }
@@ -178,12 +179,12 @@ public class Employee {
         this.division = division;
     }
 
-    public User getUser() {
-        return user;
+    public UserApp getUserApp() {
+        return userApp;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserApp(UserApp userApp) {
+        this.userApp = userApp;
     }
 
     public int getStatus() {

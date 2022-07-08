@@ -109,15 +109,15 @@
 
                 <div class="form-group">
                     <label>tên tài khoản</label>
-                    <input class="form-control" type="text" th:field="*{user.userName}">
-                    <p class="text-danger" th:if="${#fields.hasErrors('user.userName')}" th:errors="*{user.userName}"></p>
+                    <input class="form-control" type="text" th:field="*{userApp.userName}">
+                    <p class="text-danger" th:if="${#fields.hasErrors('userApp.userName')}" th:errors="*{userApp.userName}"></p>
 
                 </div>
 
                 <div class="form-group">
                     <label>Mật khẩu</label>
-                    <input class="form-control" type="password" th:field="*{user.password}">
-                    <p class="text-danger" th:if="${#fields.hasErrors('user.password')}" th:errors="*{user.password}"></p>
+                    <input class="form-control" type="password" th:field="*{userApp.password}">
+                    <p class="text-danger" th:if="${#fields.hasErrors('userApp.password')}" th:errors="*{userApp.password}"></p>
 
                 </div>
 

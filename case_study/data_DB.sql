@@ -19,7 +19,7 @@ division_name varchar (45)
 );
 
 
-create table `user`(
+create table `userApp`(
 username varchar (255) PRIMARY key,
 `password` varchar(255) 
 );
@@ -36,7 +36,7 @@ username varchar (255),
 PRIMARY KEY (role_id, username),
 
 foreign key (role_id) REFERENCES `role`(role_id),
-foreign key (username) REFERENCES `user` (username)
+foreign key (username) REFERENCES `userApp` (username)
 );
 
 
@@ -61,7 +61,7 @@ username varchar (255),
 foreign key (position_id) REFERENCES `position` (position_id),
 foreign key (education_degree_id) REFERENCES education_degree (education_degree_id),
 foreign key (division_id) REFERENCES division (division_id),
-foreign key (username) REFERENCES `user` (username)
+foreign key (username) REFERENCES `userApp` (username)
 );
 
 CREATE table customer_type (

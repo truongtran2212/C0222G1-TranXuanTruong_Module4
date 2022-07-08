@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 public class ServiceController {
@@ -40,8 +43,51 @@ public class ServiceController {
     }
 
     @PostMapping("/create-service")
-    public String create(@ModelAttribute(name = "serviceDto") ServiceDto serviceDto) {
+    public String create(@Valid @ModelAttribute(name = "serviceDto") ServiceDto serviceDto, BindingResult bindingResult,
+                         Model model) {
+
+        if(bindingResult.hasErrors()){
+            model.addAttribute("serviceTypeList", serviceTypeService.findAll());
+            model.addAttribute("rentTypeList", rentTypeService.findAll());
+            model.addAttribute("name" , serviceDto.getServiceType().getServiceTypeName());
+            return "service/create-service";
+        }
         serviceService.create(serviceDto);
+        return "redirect:/list-service";
+    }
+
+    @GetMapping("/{id}/update-service")
+    public String showFormUpdate(@PathVariable int id, Model model){
+        Service service = serviceService.findById(id);
+        model.addAttribute("serviceTypeList", serviceTypeService.findAll());
+        model.addAttribute("rentTypeList", rentTypeService.findAll());
+        ServiceDto serviceDto = new ServiceDto( service.getServiceId(),
+                                                service.getServiceCode(),
+                                                service.getServiceName(),
+                                                service.getServiceArea(),
+                                                service.getServiceCost(),
+                                                service.getServiceMaxPeople(),
+                                                service.getStandardRoom(),
+                                                service.getDescriptionOtherConvenience(),
+                                                service.getPoolArea(),
+                                                service.getNumberOfFloors(),
+                                                service.getRentType(),
+                                                service.getServiceType());
+
+        model.addAttribute("serviceDto", serviceDto);
+        return "service/update-service";
+    }
+
+    @PostMapping("/update-service")
+    public String update (@Valid @ModelAttribute ServiceDto serviceDto, BindingResult bindingResult, Model model){
+
+        if(bindingResult.hasErrors()){
+            model.addAttribute("serviceTypeList", serviceTypeService.findAll());
+            model.addAttribute("rentTypeList", rentTypeService.findAll());
+            return "service/update-service";
+        }
+
+        serviceService.update(serviceDto);
         return "redirect:/list-service";
     }
 }

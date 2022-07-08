@@ -18,6 +18,8 @@ public interface EmployeeService {
 
    void create (EmployeeDto employeeDto);
 
+   List<Employee> findAll();
+
    void delete (int id);
 
    Employee findById(int id);

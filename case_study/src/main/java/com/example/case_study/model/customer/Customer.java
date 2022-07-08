@@ -24,6 +24,7 @@ public class Customer {
 
     private int customerGender;
 
+    @Column(unique = true)
     private String customerIdCard;
 
     private String customerPhone;

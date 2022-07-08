@@ -11,6 +11,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 public interface EmployeeRepository extends PagingAndSortingRepository<Employee, Integer> {
@@ -19,23 +20,26 @@ public interface EmployeeRepository extends PagingAndSortingRepository<Employee,
     Page<Employee> findAll(Pageable pageable, @Param("name") String name);
 
 
+    @Query(value = "select * from employee where status = 0", nativeQuery = true)
+    List<Employee> findAll();
+
     @Modifying
     @Query(value = "insert into employee (employee_name,employee_birthday," +
             "employee_id_card,employee_salary,employee_phone,employee_email,employee_address," +
             "position_id,education_degree_id,division_id,username) values " +
             "(:employeeName,:employeeBirthday,:employeeIdCard,:employeeSalary,:employeePhone,:employeeEmail," +
             ":employeeAddress,:positionId,:educationDegreeId,:divisionId,:userName)", nativeQuery = true)
-    void create(        @Param("employeeName") String employeeName,
-                       @Param("employeeBirthday") String employeeBirthday,
-                       @Param("employeeIdCard") String employeeIdCard,
-                       @Param("employeeSalary") double employeeSalary,
-                       @Param("employeePhone") String employeePhone,
-                       @Param("employeeEmail") String employeeEmail,
-                       @Param("employeeAddress") String employeeAddress,
-                       @Param("positionId") int positionId,
-                       @Param("educationDegreeId") int educationDegreeId,
-                       @Param("divisionId") int divisionId,
-                       @Param("userName") String userName
+    void create( @Param("employeeName") String employeeName,
+                 @Param("employeeBirthday") String employeeBirthday,
+                 @Param("employeeIdCard") String employeeIdCard,
+                 @Param("employeeSalary") double employeeSalary,
+                 @Param("employeePhone") String employeePhone,
+                 @Param("employeeEmail") String employeeEmail,
+                 @Param("employeeAddress") String employeeAddress,
+                 @Param("positionId") int positionId,
+                 @Param("educationDegreeId") int educationDegreeId,
+                 @Param("divisionId") int divisionId,
+                 @Param("userName") String userName
     );
 
     @Modifying

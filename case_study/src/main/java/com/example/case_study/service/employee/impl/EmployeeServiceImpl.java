@@ -30,8 +30,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void create(EmployeeDto employeeDto) {
-      employeeRepository.create(    employeeDto.getEmployeeName(),
-                                    employeeDto.getEmployeeBirthday(),
+      employeeRepository.create( employeeDto.getEmployeeName(),
+                                 employeeDto.getEmployeeBirthday(),
                                     employeeDto.getEmployeeIdCard(),
                                     employeeDto.getEmployeeSalary(),
                                     employeeDto.getEmployeePhone(),
@@ -40,7 +40,12 @@ public class EmployeeServiceImpl implements EmployeeService {
                                     employeeDto.getPositionId(),
                                     employeeDto.getEducationDegreeId(),
                                     employeeDto.getDivisionId(),
-                                    employeeDto.getUser().getUserName());
+                                    employeeDto.getUserApp().getUserName());
+    }
+
+    @Override
+    public List<Employee> findAll() {
+        return employeeRepository.findAll();
     }
 
     @Override

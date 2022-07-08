@@ -25,4 +25,14 @@ public class AttachServiceServiceImpl implements AttachServiceService {
                                     ,attachService.getAttachServiceUnit(),
                                     attachService.getAttachServiceUnit());
     }
+
+    @Override
+    public List<Integer> findByAttachService(int id) {
+        return attachServiceRepository.findByAttachService(id);
+    }
+
+    @Override
+    public AttachService findById(int id) {
+        return attachServiceRepository.findById(id).orElse(null);
+    }
 }

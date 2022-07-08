@@ -33,6 +33,7 @@ public class CustomerDto {
     @NotNull(message = "Không được đê trống")
     private int customerGender;
 
+
     @Pattern(regexp = "^[0-9]{9}|[0-9]{11}$", message = "Nhập 1 dãy số gồm 9 hoặc 11 số")
     private String customerIdCard;
 

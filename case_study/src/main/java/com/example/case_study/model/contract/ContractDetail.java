@@ -1,5 +1,6 @@
 package com.example.case_study.model.contract;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -21,27 +22,23 @@ public class ContractDetail {
     @JoinColumn(name = "attach_service_id", referencedColumnName = "attach_service_id")
     private AttachService attachService;
 
+    private Integer quantity;
+
     @ColumnDefault("0")
-    private Integer status;
+    private int status;
 
     public ContractDetail() {
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 
     public ContractDetail(Integer contractDetailId,
                           Contract contract,
                           AttachService attachService,
-                          Integer status) {
+                          Integer quantity,
+                          int status) {
         this.contractDetailId = contractDetailId;
         this.contract = contract;
         this.attachService = attachService;
+        this.quantity = quantity;
         this.status = status;
     }
 
@@ -67,5 +64,21 @@ public class ContractDetail {
 
     public void setAttachService(AttachService attachService) {
         this.attachService = attachService;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

@@ -1,19 +1,23 @@
 package com.example.case_study.controller.employee.rest_controller;
 
 import com.example.case_study.model.employee.Employee;
-import com.example.case_study.model.employee.User;
 import com.example.case_study.model.employee.dto.EmployeeDto;
 import com.example.case_study.service.employee.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class EmployeeRestController {
@@ -30,13 +34,14 @@ public class EmployeeRestController {
         return new ResponseEntity<>(employeeService.findAll(PageRequest.of(page,5),name).getContent(), HttpStatus.OK);
     }
 
+    // @Valid phải đặt trc @RequestBody
     @PostMapping("/create-employee")
-    public ResponseEntity<?> createEmployee(@RequestParam(name = "page", defaultValue = "0") int page,
-                                            @RequestBody EmployeeDto employeeDto
-                                            ,@RequestParam(name = "name", defaultValue = "") String name) {
+    public ResponseEntity<?> createEmployee( @RequestParam(name = "page", defaultValue = "0") int page,
+                                             @Valid @RequestBody EmployeeDto employeeDto,
+                                            @RequestParam(name = "name", defaultValue = "") String name) {
 
         // Phải tạo User trc nếu kh muốn bị lỗi
-        userService.create(employeeDto.getUser());
+        userService.create(employeeDto.getUserApp());
         employeeService.create(employeeDto);
         List<Employee> employeeList = employeeService.findAll(PageRequest.of(page,5),name).getContent();
         return new ResponseEntity<>(employeeList,HttpStatus.CREATED);
@@ -61,7 +66,7 @@ public class EmployeeRestController {
                 employee.getPosition().getPositionId(),
                 employee.getEducationDegree().getEducationDegreeId(),
                 employee.getDivision().getDivisionId(),
-                employee.getUser());
+                employee.getUserApp());
         return new ResponseEntity<>(employeeDto, HttpStatus.OK);
     }
 
@@ -79,11 +84,24 @@ public class EmployeeRestController {
                 employeeDto.getPositionId(),
                 employeeDto.getEducationDegreeId(),
                 employeeDto.getDivisionId(),
-                employeeDto.getUser().getUserName(),
+                employeeDto.getUserApp().getUserName(),
                 employeeDto.getId()
         );
 
         List<Employee> employeeList = employeeService.findAll(PageRequest.of(page,5),name).getContent();
         return new ResponseEntity<>(employeeList, HttpStatus.OK);
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(
+            MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return errors;
     }
 }

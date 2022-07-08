@@ -1,17 +1,11 @@
 package com.example.case_study.controller.employee;
 
-import com.example.case_study.model.employee.Employee;
-import com.example.case_study.model.employee.User;
-import com.example.case_study.model.employee.dto.EmployeeDto;
 import com.example.case_study.service.employee.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 
 @Controller

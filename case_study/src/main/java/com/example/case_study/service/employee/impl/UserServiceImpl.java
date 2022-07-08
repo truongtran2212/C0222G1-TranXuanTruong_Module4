@@ -1,8 +1,7 @@
 package com.example.case_study.service.employee.impl;
 
-import com.example.case_study.model.employee.User;
+import com.example.case_study.model.employee.UserApp;
 import com.example.case_study.repository.employee.UserRepository;
-import com.example.case_study.service.employee.EmployeeService;
 import com.example.case_study.service.employee.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +14,8 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public User create(User user) {
-    return userRepository.save(user);
+    public UserApp create(UserApp userApp) {
+    return userRepository.save(userApp);
     }
 
     @Override
@@ -25,7 +24,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAll() {
+    public List<UserApp> findAll() {
         return userRepository.findAll();
     }
 }

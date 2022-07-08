@@ -19,7 +19,7 @@
 <div class="container-fluid" style="background-color: #7FFFD4">
     <div class="row" style="display: flex">
         <div class="col-md-2">
-            <a th:href="@{/}"><img
+            <a th:href="@{/home}"><img
                     src="https://kynghiviet.vn/public/upload/Tour/2020/FURAMA%20RESORT%20DA%20NANG/furama%20logo.png"
                     height="100px" width="100%"></a>
         </div>
@@ -34,39 +34,39 @@
 <div class="container-fluid body">
     <div class="center container-fluid">
         <h1 style="text-align: center">Danh sách hợp đồng</h1>
-        <table border="1" style="border-collapse:  collapse; width: 100%">
+        <table border="1" style="border-collapse:  collapse; width: 100%" id="contractList">
             <thead>
             <tr>
-                <th>Id Contract</th>
-                <th>contract Start Day</th>
-                <th>contract End Day</th>
-                <th>contract Deposit</th>
-                <th>contract Total Money</th>
-                <th>Id Employee</th>
-                <th>Id Customer</th>
-                <th>Id Service</th>
-                <th>Update</th>
-                <th>Delete</th>
+                <th>#</th>
+                <th>Dịch vụ</th>
+                <th>Khách hàng</th>
+                <th>Ngày bắt đầu</th>
+                <th>Ngày kết thúc</th>
+                <th>Tiền đặt cọc</th>
+                <th>Tổng tiền</th>
+                <th>Các dịch vụ đi kèm</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="contract: ${contractList}">
                 <td style="text-align: center" th:text="${contract.contractId}"></td>
+                <td th:text="${contract.service.getServiceName()}"></td>
+                <td th:text="${contract.customer.getCustomerName()}"></td>
                 <td th:text="${contract.contractStartDay}"></td>
                 <td th:text="${contract.contractEndDay}"></td>
                 <td th:text="${contract.contractDeposit}"></td>
-                <td th:text="${contract.contractTotalMoney}"></td>
-                <td th:text="${contract.employee.getEmployeeName()}"></td>
-                <td th:text="${contract.customer.getCustomerName()}"></td>
-                <td th:text="${contract.service.getServiceName()}"></td>
-                <td><a th:href="@{/{contractId}/update-contract(contractId=${contract.contractId})}">update</a></td>
+                <td th:text="${total}"></td>
                 <td>
-                    <a href="#"
-                       th:attr="onclick = |customerIndex(${contract.contractId}|"
-                       data-toggle="modal"
-                       data-target="#delete"
-                       class="delete">
-                        Delete
+                    <a th:href="${contract.contractId}" class="contractDetail" data-toggle="modal"
+                       data-target="#form-create-contract-detail">
+                        <button class="btn btn-primary"><i class="fa-solid fa-plus"></i></button>
+                    </a>
+
+                    <a th:href="${contract.contractId}" class="attachService" data-toggle="modal"
+                       data-target="#list-attach-service">
+                        <button class="btn btn-primary">Danh sách các dịch vụ đi kèm
+
+                        </button>
                     </a>
                 </td>
             </tr>
@@ -97,27 +97,55 @@
     </span>
 </div>
 
-<div class="modal" id="search">
-    <div class="modal-dialog">
-        <form th:action="@{/list-customer}" method="get">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title w-100 text-center">Chọn thuộc tính bạn muốn tìm kiếm</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
+<!--<div class="modal" id="search">-->
+<!--    <div class="modal-dialog">-->
+<!--        <form th:action="@{/list-customer}" method="get">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <h4 class="modal-title w-100 text-center">Chọn thuộc tính bạn muốn tìm kiếm</h4>-->
+<!--                    <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+<!--                </div>-->
 
-                <div class="modal-body footer border- 0">
-                    <input type="text" name="name" placeholder="Tên khách hàng" class="form-control">
-                </div>
-                <div class="modal-footer border-0">
-                    <button type="submit" class="btn btn-dark">
-                        Tìm kiếm
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+<!--                <table border="1" style="border-collapse:  collapse; width: 100%" id="contractList">-->
+<!--                    <thead>-->
+<!--                    <tr>-->
+<!--                        <th>#</th>-->
+<!--                        <th>Dịch vụ</th>-->
+<!--                        <th>Khách hàng</th>-->
+<!--                        <th>Ngày bắt đầu</th>-->
+<!--                        <th>Ngày kết thúc</th>-->
+<!--                        <th>Tiền đặt cọc</th>-->
+<!--                        <th>Các dịch vụ đi kèm</th>-->
+<!--                    </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                    <tr th:each="contract: ${contractList}">-->
+<!--                        <td style="text-align: center" th:text="${contract.contractId}"></td>-->
+<!--                        <td th:text="${contract.service.getServiceName()}"></td>-->
+<!--                        <td th:text="${contract.customer.getCustomerName()}"></td>-->
+<!--                        <td th:text="${contract.contractStartDay}"></td>-->
+<!--                        <td th:text="${contract.contractEndDay}"></td>-->
+<!--                        <td th:text="${contract.contractDeposit}"></td>-->
+<!--                        <td>-->
+<!--                            <a href="#" data-toggle="modal"-->
+<!--                               data-target="#form-create">-->
+<!--                                <button class="btn btn-primary"><i class="fa-solid fa-plus"></i></button>-->
+<!--                            </a>-->
+
+<!--                            <a th:href="${contract.contractId}" class="attachService" data-toggle="modal"-->
+<!--                               data-target="#list-attach-service">-->
+<!--                                <button class="btn btn-primary">Danh sách các dịch vụ đi kèm-->
+
+<!--                                </button>-->
+<!--                            </a>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</div>-->
 
 <div class="modal" id="delete">
     <div class="modal-dialog">
@@ -131,6 +159,56 @@
                     <a class="text-white">Xóa</a>
                 </button>
                 <button type="button" class="btn btn-dark " data-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="list-attach-service">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title w-100 text-center">Danh sách dịch vụ đi kèm</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <table border="1" style="border-collapse:  collapse; width: 100%" id="attachServiceList">
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="form-create-contract-detail">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title w-100 text-center">Thêm hợp đồng chi tiết</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="w-100">
+                <div class="w-25 m-0 p-0 float-left">&nbsp;</div>
+                <div class=" w-50 content float-left p-0">
+                    <div class="p-3">
+                        <input class="form-control" readonly id="id">
+
+                        <div class="form-group">
+                            <label>dịch vụ đi kèm</label>
+                            <select class="form-group w-100" id="attachService">
+                                <option
+                                        th:each="item: ${attachServiceList}"
+                                        th:value="${item.attachServiceId}"
+                                        th:text="${item.attachServiceName}">
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Số lượng</label>
+                            <input class="form-control" type="text" id="quantity">
+                        </div>
+
+                        <input type="submit" value="Add" onclick = createContractDetail() data-dismiss="modal">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -161,6 +239,128 @@
 
     function f() {
 
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#contractList').on("click", ".attachService", function (event) {
+            let a = $(this);
+            let contract = a.attr("href")
+            $.ajax({
+                headers: {
+                    'Accept': "application/json",
+                    'Content-Type': "application/json"
+                },
+                type: "GET",
+                url: `/contract-rest/attach-service/${contract}`,
+
+                success: function (data) {
+                    console.log(data)
+                    debugger
+                    let content =
+                        '    <tr>\n' +
+                        '        <th>Name</th>\n' +
+                        '        <th>Unit</th>\n' +
+                        '        <th>Cost</th>\n' +
+                        '        <th>Status</th>\n' +
+                        '    </tr>';
+                    for (let i = 0; i < data.length; i++) {
+                        content += getContract(data[i])
+                    }
+                    document.getElementById("attachServiceList").innerHTML = content;
+                }
+            })
+            event.preventDefault();
+        })
+    })
+
+    function getContract(contract) {
+
+        // Sử dụng thuộc tính employee chứ không phải employeeDto
+
+        return `<tr>
+                    <td>${contract.attachServiceName}</td>
+                    <td >${contract.attachServiceUnit}</td>
+                    <td >${contract.attachServiceCost}</td>
+                    <td >${contract.attachServiceStatus}</td>
+                 </tr>`
+    }
+
+    function getContractDetail(contractDetail) {
+
+        // Sử dụng thuộc tính employee chứ không phải employeeDto
+
+        return `<tr>
+                    <td>${contractDetail.contract.contractId}</td>
+                    <td>${contractDetail.attachService.attachServiceName}</td>
+                    <td >${contractDetail.quantity}</td>
+                 </tr>`
+    }
+
+    $(document).ready(function () {
+        $('#contractList').on("click", ".contractDetail", function (event) {
+            let a = $(this);
+            let contract = a.attr("href")
+            $.ajax({
+                headers: {
+                    'Accept': "application/json",
+                    'Content-Type': "application/json"
+                },
+                type: "GET",
+                url: `/contract-rest/${contract}`,
+
+                success: function (data) {
+                    console.log(data)
+                    document.getElementById("id").value = data.contractId;
+                }
+            })
+            event.preventDefault();
+        })
+    })
+
+    function createContractDetail() {
+        debugger
+        let contractId = $('#id').val();
+        let attachServiceId = $('#attachService').val();
+        let quantity = $('#quantity').val();
+
+        let newContractDetail = {
+            // Nên đặt tên giống với thuộc tính mà đối tượng mình gửi qua
+            contract :{
+                contractId: contractId,
+            },
+
+            attachService: {
+                attachServiceId: attachServiceId,
+            },
+            quantity: quantity,
+        }
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "POST",
+            data: JSON.stringify(newContractDetail),
+            //tên API
+            url: "/contract-rest/create-contract-detail",
+            //xử lý khi thành công
+
+            //Chưa sửa
+            success: function (data) {
+                console.log(data)
+                debugger
+                let content = ''
+                for (let i = 0; i < data.length; i++) {
+                    content += getContractDetail(data[i])
+                }
+                document.getElementById("contractList").innerHTML = content;
+            }
+
+        });
+        //chặn sự kiện mặc định của thẻ
+        event.preventDefault();
     }
 </script>
 

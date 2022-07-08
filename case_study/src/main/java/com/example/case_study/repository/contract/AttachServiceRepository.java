@@ -22,4 +22,7 @@ public interface AttachServiceRepository extends PagingAndSortingRepository<Atta
                  @Param("cost") double cost,
                  @Param("unit") String unit,
                  @Param("status") String status);
+
+    @Query(value = "select attach_service_id from contract_detail where contract_id = :id", nativeQuery = true)
+    List<Integer> findByAttachService(@Param("id") int id);
 }

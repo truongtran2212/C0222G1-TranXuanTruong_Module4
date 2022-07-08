@@ -47,7 +47,7 @@ values ('Villa'),
        
 INSERT into `role` (role_name) 
 values("admin"),
-       ("user");
+       ("userApp");
         
         
         
@@ -60,7 +60,7 @@ values ('Karaoke', 10000, 'giờ', 'tiện nghi, hiện tại'),
        ('Buffet buổi trưa', 90000, 'suất', 'đầy đủ đồ ăn, tráng miệng'),
        ('Buffet buổi tối', 16000, 'suất', 'đầy đủ đồ ăn, tráng miệng');
        
-INSERT into `user` 
+INSERT into `userApp`
 values
  ("annguyen@furama.com","annguyen123"),
  ("binhlv@furama.com","binhlv123"),

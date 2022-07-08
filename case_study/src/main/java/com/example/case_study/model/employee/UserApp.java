@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class UserApp {
     @Id
     @Column(name = "username", unique = true)
 
@@ -18,7 +18,7 @@ public class User {
     @NotBlank(message = "Không được đê trống")
     private String password;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "userApp")
     @JsonBackReference(value = "user")
 
     private Employee employee;
@@ -31,16 +31,16 @@ public class User {
         this.employee = employee;
     }
 
-    public User(String userName, String password, Employee employee) {
+    public UserApp(String userName, String password, Employee employee) {
         this.userName = userName;
         this.password = password;
         this.employee = employee;
     }
 
-    public User() {
+    public UserApp() {
     }
 
-    public User(String userName, String password) {
+    public UserApp(String userName, String password) {
         this.userName = userName;
         this.password = password;
     }

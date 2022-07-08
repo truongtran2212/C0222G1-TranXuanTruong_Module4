@@ -7,10 +7,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 public interface ContractRepository extends PagingAndSortingRepository<Contract, Integer> {
 
     @Query(value = "select c from Contract c where c.status = 0")
     Page<Contract> findAll(Pageable pageable);
+
+    @Query(value = "select c from Contract c where c.status = 0")
+    List<Contract> findAll();
 }

@@ -12,9 +12,9 @@ public class AttachServiceController {
     @Autowired
     private AttachServiceService attachServiceService;
 
-    @GetMapping("/list-attach-service")
-    public String showListAttachService(Model model){
-        model.addAttribute("attachServiceList", attachServiceService.findAll());
-        return "contract/index-contract-detail";
-    }
+//    @GetMapping("/list-attach-service")
+//    public String showListAttachService(Model model){
+//        model.addAttribute("attachServiceList", attachServiceService.findAll());
+//        return "contract/index-contract-detail";
+//    }
 }

@@ -34,7 +34,7 @@
 <div class="container-fluid body">
     <div class="center container-fluid">
         <h1 style="text-align: center">Danh sách hợp đồng</h1>
-        <table border="1" style="border-collapse:  collapse; width: 100%">
+        <table border="1" style="border-collapse:  collapse; width: 100%" id = "contractDetailList">
             <thead>
             <tr>
                 <th>#</th>
@@ -50,21 +50,25 @@
             </thead>
             <tbody>
             <tr th:each="contractDetail: ${contractDetailList}">
-                <td style="text-align: center" th:text="${contractDetail.contractDetailId}"></td>
+                <td style="text-align: center" th:text="${contractDetail.contract.getContractId()}"></td>
                 <td th:text="${contractDetail.contract.service.getServiceName()}"></td>
                 <td th:text="${contractDetail.contract.customer.getCustomerName()}"></td>
                 <td th:text="${contractDetail.contract.getContractStartDay()}"></td>
                 <td th:text="${contractDetail.contract.getContractEndDay()}"></td>
                 <td th:text="${contractDetail.contract.contractDeposit}"></td>
-                <td th:text="${contractDetail.contract.contractTotalMoney}"></td>
+                <td th:text="${contractDetail.contract.contractTotalMoney + contractDetail.attachService.attachServiceCost * contractDetail.quantity}"></td>
                 <td>
-                    <button><a href="#" data-toggle="modal"
-                               data-target="#form-create"><i class="fa-solid fa-plus"></i></a></button>
+                    <a href="#" data-toggle="modal"
+                       data-target="#form-create">
+                        <button class="btn btn-primary"><i class="fa-solid fa-plus"></i></button>
+                    </a>
 
-                    <button><a href="#" data-toggle="modal"
-                               data-target="#list-attach-service">Danh sách các dịch vụ đi kèm</a>
+                    <a th:href="${contractDetail.contractDetailId}" class="attachService" data-toggle="modal"
+                       data-target="#list-attach-service">
+                        <button class="btn btn-primary">Danh sách các dịch vụ đi kèm
 
-                    </button>
+                        </button>
+                    </a>
                 </td>
             </tr>
             </tbody>
@@ -92,27 +96,27 @@
     </span>
 </div>
 
-<div class="modal" id="search">
-    <div class="modal-dialog">
-        <form th:action="@{/list-customer}" method="get">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title w-100 text-center">Chọn thuộc tính bạn muốn tìm kiếm</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
+<!--<div class="modal" id="search">-->
+<!--    <div class="modal-dialog">-->
+<!--        <form th:action="@{/list-customer}" method="get">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <h4 class="modal-title w-100 text-center">Chọn thuộc tính bạn muốn tìm kiếm</h4>-->
+<!--                    <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+<!--                </div>-->
 
-                <div class="modal-body footer border- 0">
-                    <input type="text" name="name" placeholder="Tên khách hàng" class="form-control">
-                </div>
-                <div class="modal-footer border-0">
-                    <button type="submit" class="btn btn-dark">
-                        Tìm kiếm
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+<!--                <div class="modal-body footer border- 0">-->
+<!--                    <input type="text" name="name" placeholder="Tên khách hàng" class="form-control">-->
+<!--                </div>-->
+<!--                <div class="modal-footer border-0">-->
+<!--                    <button type="submit" class="btn btn-dark">-->
+<!--                        Tìm kiếm-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</div>-->
 
 <div class="modal" id="list-attach-service">
     <div class="modal-dialog">
@@ -121,29 +125,13 @@
                 <h4 class="modal-title w-100 text-center">Danh sách dịch vụ đi kèm</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <div class="container-fluid body">
-                <div class="center container-fluid">
-                    <table border="1" style="border-collapse:  collapse; width: 100%">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Tên dịch vụ đi kèm</th>
-                            <th>Giá tiền</th>
-                            <th>Đơn vị</th>
-                            <th>Trạng thái</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="attachService: ${attachServiceList}">
-                            <td style="text-align: center" th:text="${attachService.attachServiceId}"></td>
-                            <td th:text="${attachService.attachServiceName}"></td>
-                            <td th:text="${attachService.attachServiceCost}"></td>
-                            <td th:text="${attachService.attachServiceUnit}"></td>
-                            <td th:text="${attachService.attachServiceStatus}"></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+
+            <input class="form-control" id="id" type="hidden" >
+
+            <div class="form-group">
+                <label>Dịch vụ đi kèm</label>
+                <input class="form-control" id="attach-service-name" type="text" readonly>
+
             </div>
         </div>
     </div>
@@ -192,6 +180,32 @@
 <!--    function f() {-->
 
 <!--    }-->
+<!--</script>-->
+
+<!--<script>-->
+<!--    $(document).ready(function () {-->
+<!--        $('#contractDetailList').on("click", ".attachService", function (event) {-->
+<!--            let a = $(this);-->
+<!--            let contractDetailId = a.attr("href")-->
+<!--            $.ajax({-->
+<!--                headers: {-->
+<!--                    'Accept': "application/json",-->
+<!--                    'Content-Type': "application/json"-->
+<!--                },-->
+<!--                type: "GET",-->
+<!--                url: `/attach-service/${contractDetailId}`,-->
+
+
+<!--                success: function (data) {-->
+<!--                    debugger-->
+<!--                    document.getElementById("id").value = data.contractDetailId;-->
+<!--                    document.getElementById("attach-service-name").value = data.attachService.attachServiceName;-->
+
+<!--                }-->
+<!--            })-->
+<!--            event.preventDefault();-->
+<!--        })-->
+<!--    })-->
 <!--</script>-->
 
 </html>

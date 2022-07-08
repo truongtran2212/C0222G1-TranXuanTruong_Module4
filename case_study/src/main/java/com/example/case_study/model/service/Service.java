@@ -88,6 +88,32 @@ public class Service {
         this.status = status;
     }
 
+    public Service(Integer serviceId,
+                   String serviceCode,
+                   String serviceName,
+                   Integer serviceArea,
+                   Double serviceCost,
+                   Integer serviceMaxPeople,
+                   String standardRoom,
+                   String descriptionOtherConvenience,
+                   Double poolArea,
+                   Integer numberOfFloors,
+                   RentType rentType,
+                   ServiceType serviceType) {
+        this.serviceId = serviceId;
+        this.serviceCode = serviceCode;
+        this.serviceName = serviceName;
+        this.serviceArea = serviceArea;
+        this.serviceCost = serviceCost;
+        this.serviceMaxPeople = serviceMaxPeople;
+        this.standardRoom = standardRoom;
+        this.descriptionOtherConvenience = descriptionOtherConvenience;
+        this.poolArea = poolArea;
+        this.numberOfFloors = numberOfFloors;
+        this.rentType = rentType;
+        this.serviceType = serviceType;
+    }
+
     public Integer getServiceId() {
         return serviceId;
     }
